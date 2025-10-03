@@ -82,7 +82,12 @@ export function Header() {
             </Button>
 
             {/* Mobile Menu Button */}
-            <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsDrawerOpen(true)}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden hover:bg-accent transition-colors p-2"
+              onClick={() => setIsDrawerOpen(true)}
+            >
               <Menu className="w-5 h-5" />
             </Button>
           </div>

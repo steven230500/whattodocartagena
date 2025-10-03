@@ -21,10 +21,10 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose} />
 
       {/* Drawer */}
-      <div className="absolute top-0 left-0 bottom-0 w-[280px] bg-card border-r border-border overflow-y-auto">
+      <div className="absolute top-0 left-0 bottom-0 w-[280px] bg-card/95 backdrop-blur-md border-r border-border shadow-2xl overflow-y-auto animate-in slide-in-from-left duration-300">
         <div className="p-4">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">

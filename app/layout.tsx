@@ -63,7 +63,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable} antialiased`}>
-      <body className="font-sans bg-background text-foreground min-h-screen">
+      <body className="font-sans bg-background text-foreground min-h-screen pb-16 md:pb-0">
         {children}
         <Footer />
         <MobileBottomNav locale="es" />
