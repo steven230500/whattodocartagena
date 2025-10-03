@@ -1,3 +1,5 @@
+"use client"
+
 import { CollectibleCard } from "@/components/cards/collectible-card"
 import { RouteCard } from "@/components/cards/route-card"
 import { NeighborhoodCard } from "@/components/cards/neighborhood-card"
@@ -135,9 +137,9 @@ export default function DemoFeaturesPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-cartagena-primary mb-6">Tarjetas de Estadísticas</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <StatsCard title="Lugares Visitados" value="47" subtitle="de 120 disponibles" icon={MapPin} />
-            <StatsCard title="Coleccionables" value="23" subtitle="encontrados" icon={Trophy} />
-            <StatsCard title="Rutas Completadas" value="8" subtitle="de 15 rutas" icon={User} />
+            <StatsCard title="Lugares Visitados" value="47" description="de 120 disponibles" icon={MapPin} />
+            <StatsCard title="Coleccionables" value="23" description="encontrados" icon={Trophy} />
+            <StatsCard title="Rutas Completadas" value="8" description="de 15 rutas" icon={User} />
           </div>
         </section>
 
@@ -214,22 +216,26 @@ export default function DemoFeaturesPage() {
             <InfoCard
               title="Consejos de Viaje"
               content="La mejor época para visitar Cartagena es entre diciembre y abril cuando hay menos lluvia. Lleva protector solar y ropa cómoda para caminar."
-              type="tip"
+              badge={{ text: "Consejo", variant: "secondary" }}
+              color="bg-blue-500"
             />
             <InfoCard
               title="Historia Rápida"
               content="Cartagena fue fundada en 1533 por Pedro de Heredia. Sus murallas fueron construidas para proteger la ciudad de los ataques piratas."
-              type="info"
+              badge={{ text: "Historia", variant: "outline" }}
+              color="bg-amber-500"
             />
             <InfoCard
               title="¡Atención!"
               content="Algunos sitios históricos tienen horarios limitados. Verifica los horarios de apertura antes de tu visita."
-              type="warning"
+              badge={{ text: "Importante", variant: "destructive" }}
+              color="bg-red-500"
             />
             <InfoCard
               title="Gastronomía Local"
               content="No te pierdas el ceviche, las arepas de huevo y el pescado frito. Los jugos naturales son perfectos para el clima tropical."
-              type="success"
+              badge={{ text: "Gastronomía", variant: "default" }}
+              color="bg-green-500"
             />
           </div>
         </section>
