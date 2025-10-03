@@ -1,0 +1,16 @@
+services:
+  app:
+    image: ghcr.io/steven230500/whattodocartagena:latest
+    container_name: whattodocartagena-app
+    env_file: .env
+    restart: unless-stopped
+    networks:
+      - infra_infra_network
+    # Si Caddy central hace reverse proxy, NO expongas puertos.
+    # Si necesitas probar directo: descomenta
+    # ports:
+    #   - "3000:3000"
+
+networks:
+  infra_infra_network:
+    external: true
