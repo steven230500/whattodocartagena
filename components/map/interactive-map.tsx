@@ -48,7 +48,7 @@ const mapPoints = {
       rating: 4.8,
       coordinates: { x: 65, y: 25 },
       icon: Crown,
-      image: "/san-felipe-castle-fortress-cartagena-military-ar.jpg",
+      image: "/castillo-san-felipe-fortress-cartagena.jpg",
       details: "Obra maestra de ingeniería militar del siglo XVII.",
       type: "historic",
     },
@@ -60,7 +60,7 @@ const mapPoints = {
       rating: 4.7,
       coordinates: { x: 50, y: 45 },
       icon: MapPin,
-      image: "/placeholder.svg?key=plazaarmas",
+      image: "/cartagena-unesco-world-heritage-historic-center.jpg",
       details: "Centro neurálgico de la vida colonial y republicana.",
       type: "historic",
     },
@@ -72,7 +72,7 @@ const mapPoints = {
       rating: 4.5,
       coordinates: { x: 40, y: 55 },
       icon: Anchor,
-      image: "/placeholder.svg?key=bovedas",
+      image: "/puerta-del-reloj-cartagena-clock-tower.jpg",
       details: "Espacios que sirvieron como almacenes y cárceles coloniales.",
       type: "historic",
     },
@@ -98,7 +98,7 @@ const mapPoints = {
       rating: 4.8,
       coordinates: { x: 52, y: 38 },
       icon: Star,
-      image: "/placeholder.svg?key=restaurant1621",
+      image: "/caribbean-food-festival-cartagena.jpg",
       details: "Fusión de ingredientes locales con técnicas culinarias modernas.",
       type: "food",
     },
@@ -110,7 +110,7 @@ const mapPoints = {
       rating: 4.6,
       coordinates: { x: 46, y: 48 },
       icon: Heart,
-      image: "/placeholder.svg?key=portaldulces",
+      image: "/traditional-weaving-workshop-cartagena.jpg",
       details: "Cocadas, alegrías y dulces típicos de la región Caribe.",
       type: "food",
     },
@@ -124,7 +124,7 @@ const mapPoints = {
       rating: 4.7,
       coordinates: { x: 49, y: 40 },
       icon: Music,
-      image: "/placeholder.svg?key=teatroheredia",
+      image: "/champeta-concert-cartagena-walls-sunset.jpg",
       details: "Sede del Festival Internacional de Música de Cartagena.",
       type: "culture",
     },
@@ -136,7 +136,7 @@ const mapPoints = {
       rating: 4.6,
       coordinates: { x: 47, y: 44 },
       icon: Crown,
-      image: "/placeholder.svg?key=museooro",
+      image: "/cartagena-independence-1811-heroic-city.jpg",
       details: "Colección de orfebrería indígena más importante del Caribe.",
       type: "culture",
     },
@@ -150,7 +150,7 @@ const mapPoints = {
       rating: 4.8,
       coordinates: { x: 44, y: 41 },
       icon: Camera,
-      image: "/placeholder.svg?key=balcones",
+      image: "/cartagena-walled-city-colonial-architecture.jpg",
       details: "Los balcones más fotografiados de Cartagena.",
       type: "photo",
     },
@@ -162,7 +162,7 @@ const mapPoints = {
       rating: 4.9,
       coordinates: { x: 38, y: 50 },
       icon: Camera,
-      image: "/cartagena-walls-sunset-caribbean-sea-golden-hour.jpg",
+      image: "/cartagena-de-indias-colonial-walls-sunset-caribbea.jpg",
       details: "El mejor spot para capturar la puesta de sol caribeña.",
       type: "photo",
     },
@@ -230,17 +230,17 @@ export function InteractiveMap() {
     if (filters.type !== "all") {
       points = points.filter(
         (point) =>
-          point.commerceData?.type === filters.type ||
+          (point as any).commerceData?.type === filters.type ||
           point.category?.toLowerCase().includes(filters.type.toLowerCase()),
       )
     }
 
     if (filters.subtype !== "all") {
-      points = points.filter((point) => point.commerceData?.subtype === filters.subtype)
+      points = points.filter((point) => (point as any).commerceData?.subtype === filters.subtype)
     }
 
     if (filters.neighborhood !== "all") {
-      points = points.filter((point) => point.commerceData?.barrio === filters.neighborhood)
+      points = points.filter((point) => (point as any).commerceData?.barrio === filters.neighborhood)
     }
 
     return points
@@ -354,12 +354,12 @@ export function InteractiveMap() {
                       <Navigation className="w-4 h-4 mr-2" />
                       Ir Aquí
                     </Button>
-                    {selectedPoint.commerceData ? (
+                    {(selectedPoint as any).commerceData ? (
                       <Button
                         size="sm"
                         variant="outline"
                         className="flex-1 bg-transparent"
-                        onClick={() => window.open(`/comercios/${selectedPoint.commerceData.slug}`, "_blank")}
+                        onClick={() => window.open(`/comercios/${(selectedPoint as any).commerceData.slug}`, "_blank")}
                       >
                         <Info className="w-4 h-4 mr-2" />
                         Ver Comercio
