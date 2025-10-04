@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { LayerToggle } from "@/components/map/layer-toggle"
 import { MapFilters } from "@/components/map/map-filters"
 import { PoiMarker } from "@/components/map/poi-marker"
+import { Skeleton } from "@/components/ui/skeleton"
 import {
   MapPin,
   Clock,
@@ -213,12 +214,32 @@ const mapPoints = {
 export function InteractiveMap() {
   const [activeLayers, setActiveLayers] = useState(["historic", "food", "culture"])
   const [selectedPoint, setSelectedPoint] = useState<any>(null)
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageError, setImageError] = useState(false)
   const [filters, setFilters] = useState({
     type: "all",
     subtype: "all",
     neighborhood: "all",
     openNow: false,
   })
+
+  // Preload image when selectedPoint changes
+  useEffect(() => {
+    if (selectedPoint?.image) {
+      setImageLoading(true)
+      setImageError(false)
+
+      const img = new Image()
+      img.onload = () => {
+        setImageLoading(false)
+      }
+      img.onerror = () => {
+        setImageLoading(false)
+        setImageError(true)
+      }
+      img.src = selectedPoint.image
+    }
+  }, [selectedPoint?.image])
 
   const toggleLayer = (layerId: string) => {
     setActiveLayers((prev) => (prev.includes(layerId) ? prev.filter((id) => id !== layerId) : [...prev, layerId]))
@@ -323,11 +344,31 @@ export function InteractiveMap() {
             {selectedPoint ? (
               <Card className="border-0 shadow-xl">
                 <div className="relative h-48">
-                  <img
-                    src={selectedPoint.image || "/placeholder.svg"}
-                    alt={selectedPoint.name}
-                    className="w-full h-full object-cover rounded-t-lg"
-                  />
+                  {imageLoading ? (
+                    <div className="w-full h-full rounded-t-lg bg-muted animate-pulse flex items-center justify-center">
+                      <div className="space-y-2 w-full p-4">
+                        <Skeleton className="h-4 w-3/4 mx-auto" />
+                        <Skeleton className="h-4 w-1/2 mx-auto" />
+                      </div>
+                    </div>
+                  ) : imageError ? (
+                    <div className="w-full h-full rounded-t-lg bg-muted flex items-center justify-center">
+                      <div className="text-center text-muted-foreground">
+                        <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-muted-foreground/20 flex items-center justify-center">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <p className="text-sm">Imagen no disponible</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={selectedPoint.image || "/placeholder.svg"}
+                      alt={selectedPoint.name}
+                      className="w-full h-full object-cover rounded-t-lg transition-opacity duration-300"
+                    />
+                  )}
                   <div className="absolute top-4 right-4">
                     <Badge variant="secondary" className="bg-white/90 text-foreground">
                       {selectedPoint.category}
