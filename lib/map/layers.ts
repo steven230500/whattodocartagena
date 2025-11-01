@@ -24,3 +24,12 @@ export const NEIGHBORHOODS = [
   "Manga",
   "Crespo",
 ];
+
+export const EVENT_TYPES = {
+  feria: "Feria",
+  gastronomia: "Gastronomía",
+  concierto: "Concierto",
+  festival: "Festival",
+  cultural: "Cultural",
+  deportivo: "Deportivo",
+};
