@@ -6,8 +6,10 @@ import { CommerceFilters } from "@/components/commerce/commerce-filters"
 import { commerces } from "@/lib/data/commerces"
 import type { Commerce } from "@/lib/types/commerce"
 
+const safeCommerces = commerces as Commerce[]
+
 export function CommerceGrid() {
-  const [filteredCommerces, setFilteredCommerces] = useState<Commerce[]>(commerces)
+  const [filteredCommerces, setFilteredCommerces] = useState<Commerce[]>(safeCommerces)
 
   const handleFilterChange = (filters: {
     type: string
@@ -15,7 +17,7 @@ export function CommerceGrid() {
     neighborhood: string
     priceHint: string
   }) => {
-    let filtered = commerces
+    let filtered = safeCommerces
 
     if (filters.type && filters.type !== "all") {
       filtered = filtered.filter((commerce) => commerce.type === filters.type)
@@ -47,7 +49,7 @@ export function CommerceGrid() {
           ))}
         </div>
 
-        {filteredCommerces.length === 0 && (
+        {(filteredCommerces?.length === 0 || !filteredCommerces) && (
           <div className="text-center py-16">
             <p className="text-stone-darker text-lg">No se encontraron comercios con los filtros seleccionados.</p>
           </div>

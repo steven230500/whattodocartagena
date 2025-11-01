@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { MapPin, Store, Filter } from "lucide-react"
 import { useTranslation } from "@/lib/i18n"
 import { useState } from "react"
+import { commerces } from "@/lib/data/commerces"
 
 export function CommerceHero() {
   const { t } = useTranslation()
@@ -60,8 +61,8 @@ export function CommerceHero() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold text-colonial-gold mb-1">50+</div>
-              <div className="text-sm text-white/70">Artesanos</div>
+              <div className="text-3xl font-bold text-colonial-gold mb-1">{commerces?.length || 0}+</div>
+              <div className="text-sm text-white/70">Comercios</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-coral mb-1">30+</div>

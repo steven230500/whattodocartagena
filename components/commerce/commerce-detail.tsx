@@ -66,7 +66,7 @@ export function CommerceDetail({ commerce }: CommerceDetailProps) {
                     <p className="text-stone-dark leading-relaxed">{commerce.content || commerce.description}</p>
                   </div>
 
-                  {commerce.tags.length > 0 && (
+                  {commerce.tags && commerce.tags.length > 0 && (
                     <div className="mt-8">
                       <h3 className="font-semibold text-stone-darker mb-3">Características:</h3>
                       <div className="flex flex-wrap gap-2">

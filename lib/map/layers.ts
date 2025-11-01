@@ -15,6 +15,8 @@ export const COMMERCE_TYPES = {
   artisan: "Artesanías",
   mall: "Centro comercial",
   service: "Servicios",
+  shop: "Tienda",
+  culture: "Cultura",
 };
 export const NEIGHBORHOODS = [
   "Centro Histórico",

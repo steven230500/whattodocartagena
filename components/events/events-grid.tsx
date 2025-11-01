@@ -9,7 +9,7 @@ import { useTranslation } from "@/lib/i18n"
 
 export function EventsGrid() {
   const { t } = useTranslation()
-  const [filteredEvents, setFilteredEvents] = useState<Event[]>(events)
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>(events || [])
   const [showUpcoming, setShowUpcoming] = useState(true)
 
   const handleFilterChange = (filters: {
@@ -17,7 +17,7 @@ export function EventsGrid() {
     venue: string
     dateRange: string
   }) => {
-    let filtered = events
+    let filtered = events || []
 
     if (filters.type && filters.type !== "all") {
       filtered = filtered.filter((event) => event.type === filters.type)
@@ -81,7 +81,7 @@ export function EventsGrid() {
           ))}
         </div>
 
-        {filteredEvents.length === 0 && (
+        {(filteredEvents?.length === 0 || !filteredEvents) && (
           <div className="text-center py-16">
             <p className="text-stone-darker text-lg">No se encontraron eventos con los filtros seleccionados.</p>
           </div>
