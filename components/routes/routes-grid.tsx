@@ -355,9 +355,9 @@ export function RoutesGrid() {
               <p className="text-white/90 mb-6">
                 Descarga la app para acceder a todas las rutas offline y con navegación GPS integrada.
               </p>
-              <Button size="lg" className="bg-white text-coral hover:bg-white/90">
+              <Button size="lg" className="bg-white text-coral hover:bg-white/90" disabled>
                 <Play className="w-5 h-5 mr-2" />
-                Descargar App
+                Próximamente
               </Button>
             </CardContent>
           </Card>

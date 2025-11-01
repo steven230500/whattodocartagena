@@ -276,7 +276,7 @@ export function InteractiveMap() {
       <div className="container mx-auto px-4">
         {/* Layer Controls */}
         <div className="mb-8">
-          <h2 className="font-serif text-3xl font-bold text-foreground mb-6 text-center">Capas del Mapa</h2>
+          <h2 className="font-serif text-3xl font-bold text-foreground mb-6 text-center">Encuentra todo lo que necesitas en Cartagena</h2>
           <LayerToggle
             layers={MAP_LAYERS.map((layer) => ({
               ...layer,
@@ -315,7 +315,7 @@ export function InteractiveMap() {
 
                 {/* Map Legend */}
                 <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg">
-                  <h4 className="font-semibold text-sm mb-2">Leyenda</h4>
+                  <h4 className="font-semibold text-sm mb-2">¿Qué hacer en Cartagena?</h4>
                   <div className="space-y-2">
                     {MAP_LAYERS.filter((layer) => activeLayers.includes(layer.id)).map((layer) => (
                       <div key={layer.id} className="flex items-center space-x-2 text-xs">
@@ -454,7 +454,6 @@ export function InteractiveMap() {
               </Card>
             )}
 
-            {/* Quick Stats */}
             <Card className="border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="font-serif text-lg">Estadísticas</CardTitle>
@@ -470,7 +469,7 @@ export function InteractiveMap() {
                     <div className="text-xs text-muted-foreground">Rutas Disponibles</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-colonial-gold">500+</div>
+                    <div className="text-2xl font-bold text-colonial-gold">+500</div>
                     <div className="text-xs text-muted-foreground">Años de Historia</div>
                   </div>
                   <div>

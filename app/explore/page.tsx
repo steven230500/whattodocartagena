@@ -41,7 +41,7 @@ export default function ExploraPage() {
       icon: Store,
       color: "bg-green-500",
       links: [
-        { label: "Comercios", href: "/comercios" },
+        { label: "Tiendas", href: "/comercios" },
         { label: "Centros comerciales", href: "/comercios?type=mall" },
       ],
     },
@@ -80,16 +80,16 @@ export default function ExploraPage() {
       <main className="pt-24 px-4 container mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">Explora Cartagena</h1>
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">¿Qué hacer en Cartagena?</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Descubre todo lo que la ciudad tiene para ofrecer: cultura, eventos, comercios y más
+            Descubre todo lo que la ciudad tiene para ofrecer: cultura, eventos, tiendas y más
           </p>
 
           {/* Search Bar */}
           <div className="max-w-xl mx-auto relative">
             <input
               type="text"
-              placeholder="Buscar eventos, lugares, comercios..."
+              placeholder="Buscar eventos, lugares, tiendas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-3 pl-12 rounded-lg border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary"

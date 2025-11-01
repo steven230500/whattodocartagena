@@ -26,8 +26,8 @@ export function CallToAction() {
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <CardContent className="p-6 text-center">
                 <Smartphone className="w-8 h-8 mx-auto mb-4 text-white" />
-                <h3 className="font-semibold mb-2">PWA Optimizada</h3>
-                <p className="text-sm text-white/80">Funciona como app nativa en tu móvil</p>
+                <h3 className="font-semibold mb-2">Experiencia Móvil</h3>
+                <p className="text-sm text-white/80">Diseñada para funcionar perfectamente en dispositivos móviles</p>
               </CardContent>
             </Card>
 

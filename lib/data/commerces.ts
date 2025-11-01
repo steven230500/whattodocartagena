@@ -1,60 +1,98 @@
-import type { Commerce } from "@/lib/types/commerce"
-
-export const commerces: Commerce[] = [
-  {
-    name: "Mallplaza Cartagena",
-    slug: "mallplaza-cartagena",
-    type: "mall",
-    subtype: "centro_comercial",
-    barrio: "Bocagrande",
-    coords: { lat: 10.4002, lng: -75.5511 },
-    image: "/modern-shopping-mall-cartagena.jpg",
-    tags: ["eventos", "compras", "familia"],
-    contact: {
-      web: "https://mallplaza.com.co",
-      phone: "+57 5 6420000",
-      instagram: "@mallplazacartagena",
-    },
-    hours: "10:00–21:00",
-    description: "Centro comercial con ferias culturales, shows y gastronomía.",
-    content:
-      "El centro comercial más moderno de Cartagena, con más de 200 tiendas, restaurantes y espacios de entretenimiento. Regularmente organiza eventos culturales y ferias gastronómicas.",
-  },
-  {
-    name: "Taller Mojojoy",
-    slug: "taller-mojojoy",
-    type: "artisan",
-    subtype: "tejidos",
-    barrio: "Getsemaní",
-    coords: { lat: 10.4231, lng: -75.547 },
-    image: "/traditional-weaving-workshop-cartagena.jpg",
-    priceHint: "$$",
-    tags: ["hecho_a_mano", "tradición"],
-    contact: {
-      whatsapp: "+57 300 1234567",
-      instagram: "@tallermojojoy",
-    },
-    description: "Taller artesanal de tejidos tradicionales cartageneros.",
-    content:
-      "Un taller familiar que preserva las técnicas ancestrales de tejido. Aquí puedes encontrar hamacas, bolsos y accesorios hechos a mano con materiales naturales.",
-  },
+export const commerces = [
   {
     name: "La Cevichería",
-    slug: "la-cevicheria",
     type: "food",
-    subtype: "mariscos",
     barrio: "Centro Histórico",
-    coords: { lat: 10.4236, lng: -75.5478 },
+    description: "Famoso restaurante de mariscos y ceviches frescos del Caribe.",
     image: "/traditional-ceviche-restaurant-cartagena.jpg",
-    priceHint: "$$$",
-    tags: ["mariscos", "tradicional", "caribe"],
-    contact: {
-      phone: "+57 5 6641492",
-      instagram: "@lacevicheriacartagena",
-    },
-    hours: "12:00–22:00",
-    description: "El mejor ceviche de Cartagena con recetas tradicionales del Caribe.",
-    content:
-      "Restaurante icónico que sirve los mejores ceviches y mariscos frescos de la ciudad. Sus recetas han pasado de generación en generación.",
+    coords: { lat: 10.4239, lng: -75.5504 },
+    slug: "la-cevicheria-cartagena",
   },
-]
+  {
+    name: "Restaurante 1621",
+    type: "food",
+    barrio: "Centro Histórico",
+    description:
+      "Alta cocina caribeña en el interior del Hotel Sofitel Legend Santa Clara.",
+    image: "/caribbean-food-festival-cartagena.jpg",
+    coords: { lat: 10.4261, lng: -75.5499 },
+    slug: "restaurante-1621",
+  },
+  {
+    name: "Portal de los Dulces",
+    type: "artisan",
+    barrio: "Centro Histórico",
+    description: "Tradicional mercado de dulces típicos: cocadas, alegrías y caballitos.",
+    image: "/portal-de-los-dulces-cartagena.jpg",
+    coords: { lat: 10.4226, lng: -75.5492 },
+    slug: "portal-de-los-dulces",
+  },
+  {
+    name: "Las Bóvedas",
+    type: "artisan",
+    barrio: "San Diego",
+    description:
+      "Antiguos calabozos coloniales convertidos en tiendas de artesanías y galerías.",
+    image: "/cartagena-las-bovedas.jpg",
+    coords: { lat: 10.429, lng: -75.545 },
+    slug: "las-bovedas-cartagena",
+  },
+  {
+    name: "Caribe Plaza",
+    type: "mall",
+    barrio: "Manga",
+    description:
+      "Centro comercial moderno con tiendas de moda, cine y restaurantes.",
+    image: "/caribe-plaza-shopping-cartagena.jpg",
+    coords: { lat: 10.4152, lng: -75.5358 },
+    slug: "caribe-plaza",
+  },
+  {
+    name: "Mall Plaza El Castillo",
+    type: "mall",
+    barrio: "Castillogrande",
+    description:
+      "Centro comercial frente al mar con tiendas exclusivas y zona de comida.",
+    image: "/mall-plaza-el-castillo-cartagena.jpg",
+    coords: { lat: 10.4143, lng: -75.5329 },
+    slug: "mall-plaza-el-castillo",
+  },
+  {
+    name: "Café del Mar",
+    type: "bar",
+    barrio: "Centro Histórico",
+    description:
+      "Bar icónico sobre las murallas con vistas espectaculares al atardecer.",
+    image: "/cafe-del-mar-cartagena-sunset.jpg",
+    coords: { lat: 10.4233, lng: -75.554 },
+    slug: "cafe-del-mar-cartagena",
+  },
+  {
+    name: "Bazurto Social Club",
+    type: "bar",
+    barrio: "Getsemaní",
+    description:
+      "Club emblemático que mezcla champeta, salsa y sonidos caribeños.",
+    image: "/bazurto-social-club-getsemani.jpg",
+    coords: { lat: 10.4252, lng: -75.5478 },
+    slug: "bazurto-social-club",
+  },
+  {
+    name: "Casa Abba",
+    type: "gallery",
+    barrio: "San Diego",
+    description: "Galería contemporánea que destaca artistas locales e internacionales.",
+    image: "/casa-abba-art-gallery-cartagena.jpg",
+    coords: { lat: 10.4281, lng: -75.547 },
+    slug: "casa-abba-gallery",
+  },
+  {
+    name: "St. Dom Boutique",
+    type: "boutique",
+    barrio: "Centro Histórico",
+    description: "Concept store de lujo con diseño latinoamericano y moda sostenible.",
+    image: "/st-dom-boutique-cartagena.jpg",
+    coords: { lat: 10.4224, lng: -75.5507 },
+    slug: "st-dom-boutique",
+  },
+];

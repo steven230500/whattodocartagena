@@ -69,7 +69,7 @@ export function HeroSection() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold text-coral mb-1">500+</div>
+              <div className="text-3xl font-bold text-coral mb-1">+500</div>
               <div className="text-sm text-white/70">Años de Historia</div>
             </div>
             <div className="text-center">
@@ -77,7 +77,7 @@ export function HeroSection() {
               <div className="text-sm text-white/70">Rutas Interactivas</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-colonial-gold mb-1">30+</div>
+              <div className="text-3xl font-bold text-colonial-gold mb-1">+30</div>
               <div className="text-sm text-white/70">Planes Disponibles</div>
             </div>
             <div className="text-center">
