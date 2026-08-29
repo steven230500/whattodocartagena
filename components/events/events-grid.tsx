@@ -3,11 +3,14 @@
 import { useState } from "react"
 import { EventCard } from "@/components/cards/event-card"
 import { EventFilters } from "@/components/events/event-filters"
-import { events } from "@/lib/data/events"
 import type { Event } from "@/lib/types/commerce"
 import { useTranslation } from "@/lib/i18n"
 
-export function EventsGrid() {
+interface EventsGridProps {
+  events: Event[]
+}
+
+export function EventsGrid({ events }: EventsGridProps) {
   const { t } = useTranslation()
   const [filteredEvents, setFilteredEvents] = useState<Event[]>(events || [])
   const [showUpcoming, setShowUpcoming] = useState(true)

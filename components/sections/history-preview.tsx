@@ -11,28 +11,24 @@ const historicalPeriods = [
     title: "Fundación de Cartagena",
     description: "Pedro de Heredia funda la ciudad que se convertiría en el puerto más importante del Caribe.",
     image: "/spanish-colonial-founding-cartagena-1533.jpg",
-    color: "bg-coral",
   },
   {
     year: "1586-1741",
     title: "Construcción de las Murallas",
     description: "Se construyen las fortificaciones que protegerían la ciudad de piratas y enemigos.",
     image: "/cartagena-colonial-walls-construction-fortress.jpg",
-    color: "bg-caribbean-blue",
   },
   {
     year: "1811",
     title: "Independencia - Ciudad Heroica",
     description: "Cartagena se declara independiente, ganándose el título de Ciudad Heroica.",
     image: "/cartagena-independence-1811-heroic-city.jpg",
-    color: "bg-colonial-gold",
   },
   {
     year: "1984",
     title: "Patrimonio de la Humanidad",
     description: "UNESCO declara el centro histórico como Patrimonio de la Humanidad.",
     image: "/cartagena-unesco-world-heritage-historic-center.jpg",
-    color: "bg-forest",
   },
 ]
 
@@ -52,15 +48,15 @@ export function HistoryPreview() {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">Viaja a través del tiempo</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Descubre los momentos clave que forjaron la identidad de Cartagena
+        <div className="max-w-2xl mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">Viaja a través del tiempo</h2>
+          <p className="text-lg text-muted-foreground text-pretty">
+            Los momentos clave que forjaron la identidad de Cartagena.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <Card className="overflow-hidden border-0 shadow-2xl">
+          <Card className="overflow-hidden border border-border shadow-none">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Image */}
               <div className="relative h-64 lg:h-96">
@@ -69,12 +65,10 @@ export function HistoryPreview() {
                   alt={current.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
 
-                {/* Year Badge */}
-                <div
-                  className={`absolute top-4 left-4 ${current.color} text-white px-4 py-2 rounded-full font-bold text-lg`}
-                >
+                {/* Year Badge — historia/patrimonio = colonial-gold, rol fijo */}
+                <div className="absolute top-4 left-4 bg-colonial-gold text-white px-4 py-2 rounded-full font-bold text-lg">
                   {current.year}
                 </div>
               </div>

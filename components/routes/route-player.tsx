@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play, Pause, SkipForward, SkipBack, MapPin, Clock, Volume2 } from "lucide-react"
+import { saveRouteProgress } from "@/app/actions/route-progress"
 
 interface RoutePlayerProps {
   route: {
@@ -13,23 +14,33 @@ interface RoutePlayerProps {
     duration: string
     distance: string
     steps: Array<{
-      id: number
+      id: string
       title: string
       description: string
-      audioUrl: string
-      duration: string
-      image: string
+      audioUrl?: string
+      duration?: string
+      image?: string
     }>
   }
+  routeId?: string
+  initialStep?: number
 }
 
-export function RoutePlayer({ route }: RoutePlayerProps) {
-  const [currentStep, setCurrentStep] = useState(0)
+export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
+  const startStep = Math.min(Math.max(initialStep ?? 0, 0), Math.max(route.steps.length - 1, 0))
+  const [currentStep, setCurrentStep] = useState(startStep)
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   const currentStepData = route.steps[currentStep]
+
+  const goToStep = (index: number) => {
+    setCurrentStep(index)
+    setIsPlaying(false)
+    setProgress(0)
+    if (routeId) void saveRouteProgress(routeId, index)
+  }
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -44,17 +55,13 @@ export function RoutePlayer({ route }: RoutePlayerProps) {
 
   const nextStep = () => {
     if (currentStep < route.steps.length - 1) {
-      setCurrentStep(currentStep + 1)
-      setIsPlaying(false)
-      setProgress(0)
+      goToStep(currentStep + 1)
     }
   }
 
   const prevStep = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
-      setIsPlaying(false)
-      setProgress(0)
+      goToStep(currentStep - 1)
     }
   }
 
@@ -175,11 +182,7 @@ export function RoutePlayer({ route }: RoutePlayerProps) {
             className={`cursor-pointer transition-all duration-200 border-0 ${
               index === currentStep ? "bg-coral/10 ring-2 ring-coral/20" : "hover:bg-muted/50"
             }`}
-            onClick={() => {
-              setCurrentStep(index)
-              setIsPlaying(false)
-              setProgress(0)
-            }}
+            onClick={() => goToStep(index)}
           >
             <CardContent className="p-4">
               <div className="flex items-center space-x-4">

@@ -1,16 +1,17 @@
 import { Header } from "@/components/navigation/header"
 import { EventDetail } from "@/components/events/event-detail"
-import { events } from "@/lib/data/events"
+import { getEventBySlug } from "@/lib/api/events"
 import { notFound } from "next/navigation"
 
 interface EventPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function EventPage({ params }: EventPageProps) {
-  const event = events.find((e) => e.slug === params.slug)
+export default async function EventPage({ params }: EventPageProps) {
+  const { slug } = await params
+  const event = await getEventBySlug(slug)
 
   if (!event) {
     notFound()
@@ -24,10 +25,4 @@ export default function EventPage({ params }: EventPageProps) {
       </main>
     </div>
   )
-}
-
-export function generateStaticParams() {
-  return events.map((event) => ({
-    slug: event.slug,
-  }))
 }

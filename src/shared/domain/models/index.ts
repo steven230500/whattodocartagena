@@ -6,5 +6,4 @@ export * from './map-layer';
 export * from './parish';
 export * from './plan';
 export * from './route';
-export * from './collectible';
 export * from './user';

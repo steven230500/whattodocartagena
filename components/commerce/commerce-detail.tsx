@@ -7,12 +7,17 @@ import { MapPin, Phone, Globe, Instagram, Clock, DollarSign, Navigation } from "
 import { useTranslation } from "@/lib/i18n"
 import type { Commerce } from "@/lib/types/commerce"
 import { COMMERCE_TYPES } from "@/lib/map/layers"
+import { FavoriteButton } from "@/components/business/favorite-button"
+import { ClaimBusinessButton } from "@/components/business/claim-business-button"
+import type { ClaimStatus } from "@/lib/api/business-claims"
 
 interface CommerceDetailProps {
   commerce: Commerce
+  initialFavorited?: boolean
+  claimStatus?: ClaimStatus | null
 }
 
-export function CommerceDetail({ commerce }: CommerceDetailProps) {
+export function CommerceDetail({ commerce, initialFavorited = false, claimStatus = null }: CommerceDetailProps) {
   const { t } = useTranslation()
 
   return (
@@ -26,6 +31,10 @@ export function CommerceDetail({ commerce }: CommerceDetailProps) {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        </div>
+
+        <div className="absolute top-6 right-6 z-20">
+          <FavoriteButton slug={commerce.slug} initialFavorited={initialFavorited} />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-16">
@@ -158,6 +167,14 @@ export function CommerceDetail({ commerce }: CommerceDetailProps) {
                   </div>
                 </CardContent>
               </Card>
+
+              {(!commerce.ownerId || claimStatus) && (
+                <Card>
+                  <CardContent className="p-6">
+                    <ClaimBusinessButton slug={commerce.slug} claimStatus={claimStatus} />
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </div>
         </div>

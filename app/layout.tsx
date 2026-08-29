@@ -1,13 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Instrument_Sans, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { MobileBottomNav } from "@/components/navigation/mobile-bottom-nav"
 import { Footer } from "@/components/navigation/footer"
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-instrument-sans",
   display: "swap",
 })
 
@@ -62,22 +62,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable} antialiased`}>
+    <html lang="es" className={`${instrumentSans.variable} ${playfair.variable} antialiased`}>
       <body className="font-sans bg-background text-foreground min-h-screen">
-        {/* Desktop Layout */}
-        <div className="hidden md:block">
+        {/* Header/MobileBottomNav ya se auto-ocultan por breakpoint (md:hidden /
+            hidden md:block en su propio root) — un solo árbol, sin duplicar. */}
+        <div className="pt-14 md:pt-0 pb-16 md:pb-0">
           {children}
           <Footer />
         </div>
-
-        {/* Mobile Layout */}
-        <div className="md:hidden">
-          <div className="pt-14 pb-16 min-h-screen">
-            {children}
-          </div>
-          <Footer />
-          <MobileBottomNav locale="es" />
-        </div>
+        <MobileBottomNav locale="es" />
       </body>
     </html>
   )

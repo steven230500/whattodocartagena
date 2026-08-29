@@ -16,7 +16,6 @@ const timelineEvents = [
       "El conquistador español Pedro de Heredia funda Cartagena de Indias el 1 de junio de 1533, estableciendo uno de los puertos más importantes del Nuevo Mundo. La ciudad se convierte rápidamente en el principal punto de entrada y salida de riquezas hacia España.",
     image: "/spanish-colonial-founding-cartagena-1533.jpg",
     icon: Crown,
-    color: "bg-coral",
     category: "Fundación",
     keyFacts: [
       "Primera ciudad fundada en la costa caribeña colombiana",
@@ -33,7 +32,6 @@ const timelineEvents = [
       "Durante más de 150 años se construyen las imponentes murallas que rodean la ciudad. Estas fortificaciones, diseñadas por ingenieros militares españoles, protegen Cartagena de los constantes ataques de piratas, corsarios y flotas enemigas.",
     image: "/cartagena-colonial-walls-construction-fortress.jpg",
     icon: Building,
-    color: "bg-caribbean-blue",
     category: "Fortificación",
     keyFacts: [
       "Más de 11 kilómetros de murallas",
@@ -50,7 +48,6 @@ const timelineEvents = [
       "La ciudad resiste heroicamente el asedio de la flota inglesa comandada por Edward Vernon. Blas de Lezo, el almirante español, defiende exitosamente la ciudad en una de las batallas navales más importantes de la historia colonial americana.",
     image: "/placeholder.svg?key=siege1741",
     icon: Sword,
-    color: "bg-colonial-gold",
     category: "Defensa",
     keyFacts: [
       "Flota inglesa de 186 navíos derrotada",
@@ -67,7 +64,6 @@ const timelineEvents = [
       'Cartagena se convierte en la primera ciudad de Colombia en declarar su independencia absoluta de España el 11 de noviembre de 1811. Este acto heroico le otorga el título de "Ciudad Heroica" y marca el inicio de la lucha independentista en la región.',
     image: "/cartagena-independence-1811-heroic-city.jpg",
     icon: Flag,
-    color: "bg-forest",
     category: "Independencia",
     keyFacts: [
       "Primera ciudad independiente de Colombia",
@@ -84,7 +80,6 @@ const timelineEvents = [
       "Pablo Morillo sitia la ciudad durante 106 días. La población resiste heroicamente hasta que el hambre y las enfermedades obligan a la rendición. Miles de cartageneros mueren defendiendo la libertad, consolidando el espíritu heroico de la ciudad.",
     image: "/placeholder.svg?key=morillo1815",
     icon: Users,
-    color: "bg-coral",
     category: "Resistencia",
     keyFacts: [
       "106 días de sitio heroico",
@@ -101,7 +96,6 @@ const timelineEvents = [
       "La UNESCO declara el centro histórico de Cartagena como Patrimonio Cultural de la Humanidad, reconociendo su excepcional valor universal. Las murallas, fortificaciones y arquitectura colonial son preservadas para las futuras generaciones.",
     image: "/cartagena-unesco-world-heritage-historic-center.jpg",
     icon: Building,
-    color: "bg-caribbean-blue",
     category: "Patrimonio",
     keyFacts: [
       "Reconocimiento mundial UNESCO",
@@ -139,24 +133,24 @@ export function InteractiveTimeline() {
     <section ref={timelineRef} className="py-20 bg-background relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="max-w-2xl mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
             Línea de Tiempo Interactiva
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Navega a través de los momentos más importantes de la historia cartagenera
+          <p className="text-lg text-muted-foreground text-pretty">
+            Navega a través de los momentos más importantes de la historia cartagenera.
           </p>
         </div>
 
         {/* Timeline Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap gap-2 mb-12">
           {timelineEvents.map((event, index) => (
             <Button
               key={event.id}
               variant={activeEvent === index ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveEvent(index)}
-              className={`${activeEvent === index ? event.color + " text-white" : ""}`}
+              className={activeEvent === index ? "bg-colonial-gold hover:bg-colonial-gold-dark text-white" : ""}
             >
               {event.year}
             </Button>
@@ -176,14 +170,12 @@ export function InteractiveTimeline() {
                   isActive ? "opacity-100 scale-100" : "opacity-50 scale-95"
                 }`}
               >
-                <Card className={`overflow-hidden border-0 shadow-2xl ${isActive ? "ring-2 ring-coral/20" : ""}`}>
+                <Card className={`overflow-hidden border border-border shadow-none ${isActive ? "ring-2 ring-coral/20" : ""}`}>
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* Content */}
                     <CardContent className="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
                       <div className="flex items-center space-x-4 mb-6">
-                        <div className={`w-12 h-12 rounded-xl ${event.color} flex items-center justify-center`}>
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
+                        <Icon className="w-8 h-8 text-colonial-gold shrink-0" />
                         <div>
                           <Badge variant="secondary" className="mb-2">
                             {event.category}
@@ -212,7 +204,7 @@ export function InteractiveTimeline() {
                         ))}
                       </div>
 
-                      <Button className={`${event.color} text-white hover:opacity-90 self-start`}>
+                      <Button className="bg-colonial-gold hover:bg-colonial-gold-dark text-white self-start">
                         <MapPin className="w-4 h-4 mr-2" />
                         Ver en el Mapa
                       </Button>
@@ -225,12 +217,10 @@ export function InteractiveTimeline() {
                         alt={event.title}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
 
                       {/* Year Badge */}
-                      <div
-                        className={`absolute top-4 right-4 ${event.color} text-white px-4 py-2 rounded-full font-bold text-xl`}
-                      >
+                      <div className="absolute top-4 right-4 bg-colonial-gold text-white px-4 py-2 rounded-full font-bold text-xl">
                         {event.year}
                       </div>
                     </div>

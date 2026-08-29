@@ -1,5 +1,3 @@
-import { Collectible } from './collectible';
-
 export interface UserStats {
   totalPoints: number;
   collectedItems: number;

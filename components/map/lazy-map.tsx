@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { Commerce } from "@/lib/types/commerce";
 
 const RealInteractiveMap = dynamic(() => import("./real-interactive-map"), {
   ssr: false,
@@ -18,6 +19,10 @@ const RealInteractiveMap = dynamic(() => import("./real-interactive-map"), {
   ),
 });
 
-export default function LazyRealInteractiveMap() {
-  return <RealInteractiveMap />;
+interface LazyRealInteractiveMapProps {
+  commerces: Commerce[];
+}
+
+export default function LazyRealInteractiveMap({ commerces }: LazyRealInteractiveMapProps) {
+  return <RealInteractiveMap commerces={commerces} />;
 }

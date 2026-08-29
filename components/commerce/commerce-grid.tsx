@@ -3,13 +3,15 @@
 import { useState } from "react"
 import { CommerceCard } from "@/components/cards/commerce-card"
 import { CommerceFilters } from "@/components/commerce/commerce-filters"
-import { commerces } from "@/lib/data/commerces"
 import type { Commerce } from "@/lib/types/commerce"
 
-const safeCommerces = commerces as Commerce[]
+interface CommerceGridProps {
+  commerces: Commerce[]
+  favoriteSlugs?: string[]
+}
 
-export function CommerceGrid() {
-  const [filteredCommerces, setFilteredCommerces] = useState<Commerce[]>(safeCommerces)
+export function CommerceGrid({ commerces, favoriteSlugs = [] }: CommerceGridProps) {
+  const [filteredCommerces, setFilteredCommerces] = useState<Commerce[]>(commerces)
 
   const handleFilterChange = (filters: {
     type: string
@@ -17,7 +19,7 @@ export function CommerceGrid() {
     neighborhood: string
     priceHint: string
   }) => {
-    let filtered = safeCommerces
+    let filtered = commerces
 
     if (filters.type && filters.type !== "all") {
       filtered = filtered.filter((commerce) => commerce.type === filters.type)
@@ -45,7 +47,11 @@ export function CommerceGrid() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {filteredCommerces.map((commerce) => (
-            <CommerceCard key={commerce.slug} commerce={commerce} />
+            <CommerceCard
+              key={commerce.slug}
+              commerce={commerce}
+              initialFavorited={favoriteSlugs.includes(commerce.slug)}
+            />
           ))}
         </div>
 

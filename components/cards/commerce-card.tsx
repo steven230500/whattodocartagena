@@ -7,13 +7,15 @@ import { MapPin, Clock, Phone, DollarSign, Navigation } from "lucide-react"
 import { useTranslation } from "@/lib/i18n"
 import type { Commerce } from "@/lib/types/commerce"
 import { COMMERCE_TYPES } from "@/lib/map/layers"
+import { FavoriteButton } from "@/components/business/favorite-button"
 import Link from "next/link"
 
 interface CommerceCardProps {
   commerce: Commerce
+  initialFavorited?: boolean
 }
 
-export function CommerceCard({ commerce }: CommerceCardProps) {
+export function CommerceCard({ commerce, initialFavorited = false }: CommerceCardProps) {
   const { t } = useTranslation()
 
   return (
@@ -28,14 +30,15 @@ export function CommerceCard({ commerce }: CommerceCardProps) {
         <div className="absolute top-4 left-4">
           <Badge className="bg-colonial-gold text-white">{COMMERCE_TYPES[commerce.type]}</Badge>
         </div>
-        {commerce.priceHint && (
-          <div className="absolute top-4 right-4">
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          {commerce.priceHint && (
             <Badge variant="outline" className="bg-white/90 text-stone-darker border-white/50">
               <DollarSign className="w-3 h-3 mr-1" />
               {commerce.priceHint}
             </Badge>
-          </div>
-        )}
+          )}
+          <FavoriteButton slug={commerce.slug} initialFavorited={initialFavorited} />
+        </div>
       </div>
 
       <CardHeader className="pb-3">
@@ -87,7 +90,7 @@ export function CommerceCard({ commerce }: CommerceCardProps) {
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Link href={`/comercios/${commerce.slug}`} className="flex-1">
+          <Link href={`/businesses/${commerce.slug}`} className="flex-1">
             <Button className="w-full bg-colonial-gold hover:bg-colonial-gold-dark text-white text-sm">
               {t("cta.viewDetails")}
             </Button>

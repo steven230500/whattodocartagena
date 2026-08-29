@@ -5,11 +5,11 @@ import dynamic from "next/dynamic";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MAP_LAYERS } from "@/lib/map/layers";
-import { commerces } from "@/lib/data/commerces";
 import { LayerToggle } from "@/components/map/layer-toggle";
 import { MapFilters } from "@/components/map/map-filters";
 import { MapLegend } from "@/components/map/map-legend";
 import type { BasePoint, PoiType } from "./types";
+import type { Commerce } from "@/lib/types/commerce";
 import { Info, Navigation } from "lucide-react";
 
 const LeafletCanvas = dynamic(() => import("./leaflet-canvas"), { ssr: false });
@@ -99,18 +99,11 @@ const REAL_POIS: BasePoint[] = [
   },
 ];
 
-/** Comercios -> POIs */
-const COMMERCE_POIS: BasePoint[] = commerces.map((c, i) => ({
-  id: `commerce-${i}`,
-  name: c.name,
-  description: c.description,
-  coords: c.coords,        // asegúrate que ya tengas coords reales en commerces
-  type: "commerce" as PoiType,
-  rating: 4.5,
-  commerceData: c,
-}));
+interface RealInteractiveMapProps {
+  commerces: Commerce[];
+}
 
-export default function RealInteractiveMap() {
+export default function RealInteractiveMap({ commerces }: RealInteractiveMapProps) {
   const [selected, setSelected] = useState<BasePoint | null>(null);
   const [activeLayers, setActiveLayers] = useState<string[]>(
     ["historic", "food", "culture", "photo"] // por defecto
@@ -128,9 +121,23 @@ export default function RealInteractiveMap() {
     return dict;
   }, []);
 
+  const commercePois: BasePoint[] = useMemo(
+    () =>
+      commerces.map((c, i) => ({
+        id: `commerce-${i}`,
+        name: c.name,
+        description: c.description,
+        coords: c.coords,
+        type: "commerce" as PoiType,
+        rating: 4.5,
+        commerceData: c,
+      })),
+    [commerces]
+  );
+
   const allPoints = useMemo(
-    () => [...REAL_POIS, ...COMMERCE_POIS],
-    []
+    () => [...REAL_POIS, ...commercePois],
+    [commercePois]
   );
 
   const visiblePoints = useMemo(() => {

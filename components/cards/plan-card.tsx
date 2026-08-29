@@ -15,7 +15,7 @@ export function PlanCard({ plan }: PlanCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <CardHeader className="p-0">
-        <div className="relative h-48 bg-gradient-to-br from-[var(--color-caribbean-blue)] to-[var(--color-caribbean-blue-dark)]">
+        <div className="relative h-48 bg-coral">
           <div className="absolute inset-0 flex items-center justify-center">
             <h3 className="text-2xl font-serif font-bold text-white text-center px-4 text-balance">{plan.title}</h3>
           </div>

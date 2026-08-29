@@ -1,9 +1,13 @@
 "use client"
 
 import { ParishCard } from "@/components/cards/parish-card"
-import { parishes } from "@/lib/data/parishes"
+import type { Parish } from "@/lib/types/parish"
 
-export function MassSchedulesGrid() {
+interface MassSchedulesGridProps {
+  parishes: Parish[]
+}
+
+export function MassSchedulesGrid({ parishes }: MassSchedulesGridProps) {
   return (
     <section className="py-16 bg-[var(--color-stone-warm)]">
       <div className="container mx-auto px-4">

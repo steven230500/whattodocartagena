@@ -1,11 +1,13 @@
 "use client"
 
-import { X } from "lucide-react"
+import { X, Map, Route } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NAV_PRIMARY } from "@/lib/nav-config"
 import type { Locale } from "@/lib/i18n"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { Logo } from "@/components/navigation/logo"
+import { UserMenu } from "@/components/navigation/user-menu"
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -28,13 +30,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
         {/* Header with close button */}
         <div className="sticky top-0 bg-card/95 backdrop-blur-md border-b border-border p-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-coral-gradient rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CV</span>
-            </div>
-            <div>
-              <h2 className="font-serif font-bold text-lg">Cartagena Viva</h2>
-              <p className="text-xs text-muted-foreground">Menú de navegación</p>
-            </div>
+            <Logo />
           </div>
           <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full w-10 h-10 p-0">
             <X className="w-5 h-5" />
@@ -52,9 +48,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                 className="flex flex-col items-center space-y-2 p-4 bg-accent/50 rounded-xl hover:bg-accent transition-colors"
                 onClick={onClose}
               >
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <span className="text-primary text-lg">🗺️</span>
-                </div>
+                <Map className="w-6 h-6 text-caribbean-blue" />
                 <span className="text-sm font-medium">Mapa</span>
               </a>
               <a
@@ -62,9 +56,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                 className="flex flex-col items-center space-y-2 p-4 bg-accent/50 rounded-xl hover:bg-accent transition-colors"
                 onClick={onClose}
               >
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <span className="text-primary text-lg">🛤️</span>
-                </div>
+                <Route className="w-6 h-6 text-forest" />
                 <span className="text-sm font-medium">Rutas</span>
               </a>
             </div>
@@ -145,10 +137,13 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
 
           {/* Footer Actions */}
           <div className="mt-8 pt-6 border-t border-border">
+            <div className="flex items-center justify-center mb-4">
+              <UserMenu />
+            </div>
             <div className="space-y-3">
               <a
-                href="/planes"
-                className="flex items-center justify-center w-full px-4 py-3 bg-coral-gradient text-white rounded-xl font-medium hover:opacity-90 transition-opacity"
+                href="/plans"
+                className="flex items-center justify-center w-full px-4 py-3 bg-coral hover:bg-coral-dark text-white rounded-xl font-medium transition-colors"
                 onClick={onClose}
               >
                 Planes para locales

@@ -7,9 +7,9 @@ import { Navigation, Locate, Layers } from "lucide-react"
 interface RouteMapProps {
   route: {
     steps: Array<{
-      id: number
+      id: string
       title: string
-      coordinates: { lat: number; lng: number }
+      coordinates?: { lat: number; lng: number }
     }>
   }
 }

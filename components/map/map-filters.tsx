@@ -49,7 +49,7 @@ export function MapFilters({ onFilterChange }: MapFiltersProps) {
     filters.type !== "all" || filters.subtype !== "all" || filters.neighborhood !== "all" || filters.openNow
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6">
+    <div className="bg-card rounded-lg shadow-sm border p-6">
       <div className="flex flex-wrap items-center gap-4 mb-4">
         <h3 className="font-semibold text-stone-darker">Filtros del Mapa:</h3>
 
@@ -103,17 +103,17 @@ export function MapFilters({ onFilterChange }: MapFiltersProps) {
       {hasActiveFilters && (
         <div className="flex flex-wrap gap-2">
           {filters.type !== "all" && (
-            <Badge variant="secondary" className="bg-colonial-gold/10 text-colonial-gold-dark">
+            <Badge variant="secondary" className="bg-coral/10 text-coral-dark">
               {COMMERCE_TYPES[filters.type as keyof typeof COMMERCE_TYPES]}
             </Badge>
           )}
           {filters.neighborhood !== "all" && (
-            <Badge variant="secondary" className="bg-caribbean-blue/10 text-caribbean-blue-dark">
+            <Badge variant="secondary" className="bg-coral/10 text-coral-dark">
               {filters.neighborhood}
             </Badge>
           )}
           {filters.openNow && (
-            <Badge variant="secondary" className="bg-forest/10 text-forest-dark">
+            <Badge variant="secondary" className="bg-coral/10 text-coral-dark">
               Abierto ahora
             </Badge>
           )}

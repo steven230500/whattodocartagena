@@ -10,7 +10,7 @@ interface ParishCardProps {
 export function ParishCard({ parish }: ParishCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <CardHeader className="bg-gradient-to-br from-[var(--color-caribbean-blue)] to-[var(--color-caribbean-blue-dark)] text-white">
+      <CardHeader className="bg-foreground text-stone-warm">
         <CardTitle className="text-xl font-serif text-balance">{parish.name}</CardTitle>
       </CardHeader>
       <CardContent className="p-6">

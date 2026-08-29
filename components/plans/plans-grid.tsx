@@ -3,10 +3,13 @@
 import { useState } from "react"
 import { PlanCard } from "@/components/cards/plan-card"
 import { PlanFilters } from "./plan-filters"
-import { plans } from "@/lib/data/plans"
 import type { Plan } from "@/lib/types/plan"
 
-export function PlansGrid() {
+interface PlansGridProps {
+  plans: Plan[]
+}
+
+export function PlansGrid({ plans }: PlansGridProps) {
   const [filteredPlans, setFilteredPlans] = useState<Plan[]>(plans)
 
   return (

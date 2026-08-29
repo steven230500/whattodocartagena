@@ -21,6 +21,7 @@ export interface Commerce {
   priceHint?: "$" | "$$" | "$$$"
   description: string
   content?: string
+  ownerId?: string
 }
 
 export interface Event {

@@ -94,7 +94,7 @@ export function EventCard({ event }: EventCardProps) {
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Link href={`/eventos/${event.slug}`} className="flex-1">
+          <Link href={`/events/${event.slug}`} className="flex-1">
             <Button className="w-full bg-coral hover:bg-coral-dark text-white text-sm">{t("cta.viewDetails")}</Button>
           </Link>
           <Button variant="outline" size="sm" className="bg-transparent">

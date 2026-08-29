@@ -58,7 +58,7 @@ export const NAV_PRIMARY: NavPrimaryItem[] = [
         group: "Cultura viva",
         groupEn: "Living Culture",
         items: [
-          { label: "Cultura", labelEn: "Culture", href: "/cultura", icon: Music },
+          { label: "Cultura", labelEn: "Culture", href: "/explore?tag=cultura", icon: Music },
           { label: "Gastronomía", labelEn: "Gastronomy", href: "/explore?tag=gastronomia", icon: Store },
         ],
       },

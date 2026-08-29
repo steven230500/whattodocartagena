@@ -1,16 +1,23 @@
 import { Header } from "@/components/navigation/header"
 import { CommerceDetail } from "@/components/commerce/commerce-detail"
-import { commerces } from "@/lib/data/commerces"
+import { getBusinessBySlug } from "@/lib/api/businesses"
+import { getFavoriteSlugs } from "@/lib/api/favorites"
+import { getMyClaimStatus } from "@/lib/api/business-claims"
 import { notFound } from "next/navigation"
 
 interface CommercePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function CommercePage({ params }: CommercePageProps) {
-  const commerce = commerces.find((c) => c.slug === params.slug)
+export default async function CommercePage({ params }: CommercePageProps) {
+  const { slug } = await params
+  const [commerce, favoriteSlugs, claimStatus] = await Promise.all([
+    getBusinessBySlug(slug),
+    getFavoriteSlugs(),
+    getMyClaimStatus(slug),
+  ])
 
   if (!commerce) {
     notFound()
@@ -20,14 +27,8 @@ export default function CommercePage({ params }: CommercePageProps) {
     <div className="min-h-screen">
       <Header />
       <main>
-        <CommerceDetail commerce={commerce} />
+        <CommerceDetail commerce={commerce} initialFavorited={favoriteSlugs.includes(slug)} claimStatus={claimStatus} />
       </main>
     </div>
   )
-}
-
-export function generateStaticParams() {
-  return commerces.map((commerce) => ({
-    slug: commerce.slug,
-  }))
 }
