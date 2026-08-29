@@ -2,6 +2,8 @@ import { getPendingClaims } from "@/lib/api/admin/business-claims"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { ClaimActions } from "./claim-actions"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminBusinessClaimsPage() {
   const claims = await getPendingClaims()
 

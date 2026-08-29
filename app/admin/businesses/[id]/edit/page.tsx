@@ -3,6 +3,8 @@ import { BusinessForm } from "@/components/admin/business-form"
 import { getAdminBusinessById } from "@/lib/api/admin/businesses"
 import { updateBusiness } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditBusinessPageProps {
   params: Promise<{ id: string }>
 }

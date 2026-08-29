@@ -3,6 +3,8 @@ import { getAdminEvents } from "@/lib/api/admin/events"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeleteEventButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminEventsPage() {
   const events = await getAdminEvents()
 

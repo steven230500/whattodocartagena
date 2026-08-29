@@ -3,6 +3,8 @@ import { EventForm } from "@/components/admin/event-form"
 import { getAdminEventById } from "@/lib/api/admin/events"
 import { updateEvent } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditEventPageProps {
   params: Promise<{ id: string }>
 }

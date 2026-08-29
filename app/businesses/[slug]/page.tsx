@@ -5,6 +5,8 @@ import { getFavoriteSlugs } from "@/lib/api/favorites"
 import { getMyClaimStatus } from "@/lib/api/business-claims"
 import { notFound } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 interface CommercePageProps {
   params: Promise<{
     slug: string

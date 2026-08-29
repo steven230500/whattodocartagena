@@ -5,6 +5,8 @@ import { getRouteBySlug } from "@/lib/api/routes"
 import { getRouteProgress } from "@/lib/api/route-progress"
 import { notFound } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 interface RoutePageProps {
   params: Promise<{ slug: string }>
 }

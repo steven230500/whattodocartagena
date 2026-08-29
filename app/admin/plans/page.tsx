@@ -3,6 +3,8 @@ import { getAdminPlans } from "@/lib/api/admin/plans"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeletePlanButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminPlansPage() {
   const plans = await getAdminPlans()
 

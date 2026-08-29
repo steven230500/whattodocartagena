@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/api/auth"
 import { getBusinesses } from "@/lib/api/businesses"
 import { getFavoriteSlugs } from "@/lib/api/favorites"
 
+export const dynamic = "force-dynamic"
+
 export default async function FavoritesPage() {
   const user = await getCurrentUser()
   if (!user) {

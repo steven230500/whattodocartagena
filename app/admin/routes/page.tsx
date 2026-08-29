@@ -3,6 +3,8 @@ import { getAdminRoutes } from "@/lib/api/admin/routes"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeleteRouteButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminRoutesPage() {
   const routes = await getAdminRoutes()
 

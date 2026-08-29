@@ -3,6 +3,8 @@ import { AchievementForm } from "@/components/admin/achievement-form"
 import { getAdminAchievementById } from "@/lib/api/admin/achievements"
 import { updateAchievement } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditAchievementPageProps {
   params: Promise<{ id: string }>
 }

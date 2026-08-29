@@ -3,6 +3,8 @@ import { getAdminBusinesses } from "@/lib/api/admin/businesses"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeleteBusinessButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminBusinessesPage() {
   const businesses = await getAdminBusinesses()
 

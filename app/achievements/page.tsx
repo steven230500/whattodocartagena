@@ -6,6 +6,8 @@ import { UserProgress } from "@/components/gamification/user-progress"
 import { getCurrentUser } from "@/lib/api/auth"
 import { getAchievementProgress } from "@/lib/api/achievements"
 
+export const dynamic = "force-dynamic"
+
 export default async function AchievementsPage() {
   const user = await getCurrentUser()
   if (!user) {

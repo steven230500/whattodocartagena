@@ -3,6 +3,8 @@ import { getAdminAchievements } from "@/lib/api/admin/achievements"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeleteAchievementButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminAchievementsPage() {
   const achievements = await getAdminAchievements()
 

@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { getCurrentUser } from "@/lib/api/auth"
 import { getMyBusinesses, getMyClaims } from "@/lib/api/my-business"
 
+export const dynamic = "force-dynamic"
+
 const STATUS_LABEL: Record<string, string> = {
   pending: "En revisión",
   approved: "Aprobado",

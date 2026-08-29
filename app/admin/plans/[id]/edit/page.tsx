@@ -3,6 +3,8 @@ import { PlanForm } from "@/components/admin/plan-form"
 import { getAdminPlanById } from "@/lib/api/admin/plans"
 import { updatePlan } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditPlanPageProps {
   params: Promise<{ id: string }>
 }

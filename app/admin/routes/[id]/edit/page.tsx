@@ -3,6 +3,8 @@ import { RouteForm } from "@/components/admin/route-form"
 import { getAdminRouteById } from "@/lib/api/admin/routes"
 import { updateRoute } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditRoutePageProps {
   params: Promise<{ id: string }>
 }

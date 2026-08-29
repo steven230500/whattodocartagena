@@ -3,6 +3,8 @@ import { ParishForm } from "@/components/admin/parish-form"
 import { getAdminParishById } from "@/lib/api/admin/parishes"
 import { updateParish } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditParishPageProps {
   params: Promise<{ id: string }>
 }

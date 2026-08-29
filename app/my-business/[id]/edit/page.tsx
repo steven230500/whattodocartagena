@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/api/auth"
 import { getMyBusinessById } from "@/lib/api/my-business"
 import { updateMyBusiness } from "../../actions"
 
+export const dynamic = "force-dynamic"
+
 interface EditMyBusinessPageProps {
   params: Promise<{ id: string }>
 }

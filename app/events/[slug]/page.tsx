@@ -3,6 +3,8 @@ import { EventDetail } from "@/components/events/event-detail"
 import { getEventBySlug } from "@/lib/api/events"
 import { notFound } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 interface EventPageProps {
   params: Promise<{
     slug: string

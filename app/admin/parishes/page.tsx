@@ -3,6 +3,8 @@ import { getAdminParishes } from "@/lib/api/admin/parishes"
 import { AdminNav } from "@/components/admin/admin-nav"
 import { DeleteParishButton } from "./delete-button"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminParishesPage() {
   const parishes = await getAdminParishes()
 
