@@ -22,7 +22,9 @@ export interface StepPayload {
 interface RoutePayload {
   slug: string
   title: string
+  title_en: string | null
   description: string
+  description_en: string | null
   duration: string
   distance: string
   difficulty: string
@@ -68,7 +70,9 @@ function payloadFromForm(formData: FormData): RoutePayload {
   return {
     slug: String(formData.get("slug") ?? ""),
     title: String(formData.get("title") ?? ""),
+    title_en: strOrNull(formData.get("title_en")),
     description: String(formData.get("description") ?? ""),
+    description_en: strOrNull(formData.get("description_en")),
     duration: String(formData.get("duration") ?? ""),
     distance: String(formData.get("distance") ?? ""),
     difficulty: String(formData.get("difficulty") ?? ""),

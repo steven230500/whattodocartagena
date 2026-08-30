@@ -1,9 +1,10 @@
 "use client"
 
 import { X, Map, Route } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { NAV_PRIMARY } from "@/lib/nav-config"
-import type { Locale } from "@/lib/i18n"
+import type { Locale } from "@/i18n/routing"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { Logo } from "@/components/navigation/logo"
@@ -43,22 +44,22 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
           <div className="mb-6">
             <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Acciones rápidas</h3>
             <div className="grid grid-cols-2 gap-3">
-              <a
+              <Link
                 href="/map"
                 className="flex flex-col items-center space-y-2 p-4 bg-accent/50 rounded-xl hover:bg-accent transition-colors"
                 onClick={onClose}
               >
                 <Map className="w-6 h-6 text-caribbean-blue" />
                 <span className="text-sm font-medium">Mapa</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/routes"
                 className="flex flex-col items-center space-y-2 p-4 bg-accent/50 rounded-xl hover:bg-accent transition-colors"
                 onClick={onClose}
               >
                 <Route className="w-6 h-6 text-forest" />
                 <span className="text-sm font-medium">Rutas</span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -71,7 +72,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
 
               if (!hasChildren && item.href) {
                 return (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     className="flex items-center space-x-4 px-4 py-3 text-base font-medium text-foreground hover:bg-accent rounded-xl transition-colors"
@@ -79,7 +80,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                   >
                     {item.icon && <item.icon className="w-5 h-5 text-primary" />}
                     <span>{label}</span>
-                  </a>
+                  </Link>
                 )
               }
 
@@ -110,7 +111,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                                 {group.items.map((navItem) => {
                                   const itemLabel = locale === "es" ? navItem.label : navItem.labelEn
                                   return (
-                                    <a
+                                    <Link
                                       key={navItem.href}
                                       href={navItem.href}
                                       className="flex items-center space-x-3 px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-background rounded-lg transition-colors ml-4"
@@ -118,7 +119,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                                     >
                                       {navItem.icon && <navItem.icon className="w-4 h-4" />}
                                       <span>{itemLabel}</span>
-                                    </a>
+                                    </Link>
                                   )
                                 })}
                               </div>
@@ -141,13 +142,13 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
               <UserMenu />
             </div>
             <div className="space-y-3">
-              <a
+              <Link
                 href="/plans"
                 className="flex items-center justify-center w-full px-4 py-3 bg-coral hover:bg-coral-dark text-white rounded-xl font-medium transition-colors"
                 onClick={onClose}
               >
                 Planes para locales
-              </a>
+              </Link>
               <div className="text-center">
                 <p className="text-xs text-muted-foreground">
                   ¿Necesitas ayuda? <a href="mailto:info@whattodocartagena.com" className="text-primary hover:underline">Contáctanos</a>

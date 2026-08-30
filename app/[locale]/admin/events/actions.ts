@@ -11,6 +11,7 @@ export interface EventFormState {
 
 interface EventPayload {
   title: string
+  title_en: string | null
   slug: string
   start_date: string
   end_date: string | null
@@ -21,6 +22,7 @@ interface EventPayload {
   image: string
   tags: string[]
   description: string
+  description_en: string | null
   content: string | null
 }
 
@@ -38,6 +40,7 @@ function payloadFromForm(formData: FormData): EventPayload {
 
   return {
     title: String(formData.get("title") ?? ""),
+    title_en: strOrNull(formData.get("title_en")),
     slug: String(formData.get("slug") ?? ""),
     start_date: String(formData.get("startDate") ?? ""),
     end_date: strOrNull(formData.get("endDate")),
@@ -48,6 +51,7 @@ function payloadFromForm(formData: FormData): EventPayload {
     image: String(formData.get("image") ?? ""),
     tags,
     description: String(formData.get("description") ?? ""),
+    description_en: strOrNull(formData.get("description_en")),
     content: strOrNull(formData.get("content")),
   }
 }

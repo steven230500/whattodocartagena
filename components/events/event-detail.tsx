@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Calendar, Clock, Navigation, Share2 } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
+import { useLocale } from "next-intl"
 import type { Event } from "@/lib/types/commerce"
 import { EVENT_TYPES } from "@/lib/map/layers"
 
@@ -13,7 +14,10 @@ interface EventDetailProps {
 }
 
 export function EventDetail({ event }: EventDetailProps) {
-  const { t } = useTranslation()
+  const locale = useLocale()
+  const t = useTranslations()
+  const title = locale === "en" && event.titleEn ? event.titleEn : event.title
+  const description = locale === "en" && event.descriptionEn ? event.descriptionEn : event.description
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -57,7 +61,7 @@ export function EventDetail({ event }: EventDetailProps) {
               </Badge>
             </div>
 
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">{event.title}</h1>
+            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">{title}</h1>
 
             <div className="flex items-center text-white/80 mb-2">
               <MapPin className="w-5 h-5 mr-2" />
@@ -69,7 +73,7 @@ export function EventDetail({ event }: EventDetailProps) {
               <span>{formatDateRange()}</span>
             </div>
 
-            <p className="text-xl text-white/90 max-w-2xl">{event.description}</p>
+            <p className="text-xl text-white/90 max-w-2xl">{description}</p>
           </div>
         </div>
       </section>
@@ -85,7 +89,7 @@ export function EventDetail({ event }: EventDetailProps) {
                   <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre el Evento</h2>
 
                   <div className="prose prose-stone max-w-none">
-                    <p className="text-stone-dark leading-relaxed">{event.content || event.description}</p>
+                    <p className="text-stone-dark leading-relaxed">{event.content || description}</p>
                   </div>
 
                   {event.tags.length > 0 && (

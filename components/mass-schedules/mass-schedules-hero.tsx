@@ -1,11 +1,11 @@
 "use client"
 
 import { Church, MapPin, Clock } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import { RampartDivider } from "@/components/ui/rampart-divider"
 
 export function MassSchedulesHero() {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <section className="relative">

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { AdminAchievement } from "@/lib/api/admin/achievements"
-import type { AchievementFormState } from "@/app/admin/achievements/actions"
+import type { AchievementFormState } from "@/app/[locale]/admin/achievements/actions"
 import { ACHIEVEMENT_ICON_KEYS } from "@/lib/achievements/icon-map"
 
 interface AchievementFormProps {

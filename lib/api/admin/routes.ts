@@ -17,7 +17,9 @@ interface ApiRoute {
   id: string
   slug: string
   title: string
+  title_en: string | null
   description: string
+  description_en: string | null
   duration: string
   distance: string
   difficulty: string
@@ -47,7 +49,9 @@ function toRoute(r: ApiRoute): Route {
     id: r.id,
     slug: r.slug,
     title: r.title,
+    titleEn: r.title_en ?? undefined,
     description: r.description,
+    descriptionEn: r.description_en ?? undefined,
     duration: r.duration,
     distance: r.distance,
     difficulty: r.difficulty,

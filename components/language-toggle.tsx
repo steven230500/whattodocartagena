@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe, Check } from "lucide-react"
-import type { Locale } from "@/lib/i18n"
+import type { Locale } from "@/i18n/routing"
 
 interface LanguageToggleProps {
   currentLocale: Locale
@@ -21,23 +21,9 @@ const LANGUAGES = [
 export function LanguageToggle({ currentLocale, onLocaleChange }: LanguageToggleProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedLocale = localStorage.getItem("preferred-locale") as Locale
-      if (savedLocale && (savedLocale === "es" || savedLocale === "en") && savedLocale !== currentLocale) {
-        onLocaleChange(savedLocale)
-      }
-    }
-  }, [currentLocale, onLocaleChange])
-
   const handleLanguageSelect = (locale: Locale) => {
     onLocaleChange(locale)
     setIsOpen(false)
-
-    // Store preference in localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("preferred-locale", locale)
-    }
   }
 
   const currentLanguage = LANGUAGES.find((lang) => lang.code === currentLocale) || LANGUAGES[0]

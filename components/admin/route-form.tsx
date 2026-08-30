@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from "react"
 import type { Route } from "@/lib/api/routes"
-import type { RouteFormState, StepPayload } from "@/app/admin/routes/actions"
+import type { RouteFormState, StepPayload } from "@/app/[locale]/admin/routes/actions"
 
 interface RouteFormProps {
   action: (prevState: RouteFormState | undefined, formData: FormData) => Promise<RouteFormState>
@@ -51,6 +51,8 @@ export function RouteForm({ action, route, submitLabel }: RouteFormProps) {
         <Field label="Slug" name="slug" defaultValue={route?.slug} required />
       </div>
 
+      <Field label="Título (Inglés)" name="title_en" defaultValue={route?.titleEn} />
+
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-muted-foreground mb-1">
           Descripción
@@ -59,6 +61,19 @@ export function RouteForm({ action, route, submitLabel }: RouteFormProps) {
           id="description"
           name="description"
           defaultValue={route?.description}
+          rows={2}
+          className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description_en" className="block text-sm font-medium text-muted-foreground mb-1">
+          Descripción (Inglés)
+        </label>
+        <textarea
+          id="description_en"
+          name="description_en"
+          defaultValue={route?.descriptionEn}
           rows={2}
           className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
         />

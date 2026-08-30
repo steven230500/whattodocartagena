@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Globe, Instagram, Clock, DollarSign, Navigation } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
+import { useLocale } from "next-intl"
 import type { Commerce } from "@/lib/types/commerce"
 import { COMMERCE_TYPES } from "@/lib/map/layers"
 import { FavoriteButton } from "@/components/business/favorite-button"
@@ -18,7 +19,9 @@ interface CommerceDetailProps {
 }
 
 export function CommerceDetail({ commerce, initialFavorited = false, claimStatus = null }: CommerceDetailProps) {
-  const { t } = useTranslation()
+  const locale = useLocale()
+  const t = useTranslations()
+  const description = locale === "en" && commerce.descriptionEn ? commerce.descriptionEn : commerce.description
 
   return (
     <div className="min-h-screen bg-stone-warm">
@@ -56,7 +59,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
               <span>{commerce.barrio}</span>
             </div>
 
-            <p className="text-xl text-white/90 max-w-2xl">{commerce.description}</p>
+            <p className="text-xl text-white/90 max-w-2xl">{description}</p>
           </div>
         </div>
       </section>
@@ -72,7 +75,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
                   <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre {commerce.name}</h2>
 
                   <div className="prose prose-stone max-w-none">
-                    <p className="text-stone-dark leading-relaxed">{commerce.content || commerce.description}</p>
+                    <p className="text-stone-dark leading-relaxed">{commerce.content || description}</p>
                   </div>
 
                   {commerce.tags && commerce.tags.length > 0 && (

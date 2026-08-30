@@ -1,33 +1,27 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { LanguageToggle } from "@/components/language-toggle"
 import { MegaMenu } from "@/components/navigation/mega-menu"
 import { MobileDrawer } from "@/components/navigation/mobile-drawer"
 import { SearchButton } from "@/components/navigation/search-button"
 import { Menu } from "lucide-react"
-import { useTranslation, type Locale } from "@/lib/i18n"
+import { useLocale } from "next-intl"
+import { Link, usePathname, useRouter } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import { NAV_PRIMARY } from "@/lib/nav-config"
 import { Logo } from "@/components/navigation/logo"
 import { UserMenu } from "@/components/navigation/user-menu"
 
 export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const [currentLocale, setCurrentLocale] = useState<Locale>("es")
-  const { t } = useTranslation(currentLocale)
+  const currentLocale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedLocale = localStorage.getItem("preferred-locale") as Locale
-      if (savedLocale && (savedLocale === "es" || savedLocale === "en")) {
-        setCurrentLocale(savedLocale)
-      }
-    }
-  }, [])
-
-  const handleLocaleChange = (newLocale: Locale) => {
-    setCurrentLocale(newLocale)
+  const handleLocaleChange = (nextLocale: Locale) => {
+    router.replace(pathname, { locale: nextLocale })
   }
 
   return (
@@ -49,14 +43,14 @@ export function Header() {
                 if (item.href) {
                   const label = currentLocale === "es" ? item.label : item.labelEn
                   return (
-                    <a
+                    <Link
                       key={item.href}
                       href={item.href}
                       className="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                     >
                       {item.icon && <item.icon className="w-4 h-4" />}
                       <span>{label}</span>
-                    </a>
+                    </Link>
                   )
                 }
 
@@ -69,7 +63,7 @@ export function Header() {
               <SearchButton />
               <LanguageToggle currentLocale={currentLocale} onLocaleChange={handleLocaleChange} />
               <Button asChild size="sm" className="bg-coral hover:bg-coral-dark text-white">
-                <a href="/plans">{currentLocale === "es" ? "Planes para locales" : "Local Plans"}</a>
+                <Link href="/plans">{currentLocale === "es" ? "Planes para locales" : "Local Plans"}</Link>
               </Button>
               <UserMenu />
             </div>

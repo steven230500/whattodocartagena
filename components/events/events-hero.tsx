@@ -2,10 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 
 export function EventsHero() {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <section className="relative min-h-[60vh] flex items-center overflow-hidden">

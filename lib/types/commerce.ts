@@ -20,12 +20,14 @@ export interface Commerce {
   hours?: string
   priceHint?: "$" | "$$" | "$$$"
   description: string
+  descriptionEn?: string
   content?: string
   ownerId?: string
 }
 
 export interface Event {
   title: string
+  titleEn?: string
   slug: string
   startDate: string
   endDate?: string
@@ -39,6 +41,7 @@ export interface Event {
   image: string
   tags: string[]
   description: string
+  descriptionEn?: string
   content?: string
 }
 

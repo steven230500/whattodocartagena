@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import type { Plan } from "@/lib/types/plan"
 
 interface PlanFiltersProps {
@@ -12,7 +12,7 @@ interface PlanFiltersProps {
 }
 
 export function PlanFilters({ plans, onFilter }: PlanFiltersProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
   const [selectedType, setSelectedType] = useState<string>("all")
   const [selectedPrice, setSelectedPrice] = useState<string>("all")
 

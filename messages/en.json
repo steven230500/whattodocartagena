@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "history": "History",
+    "map": "Map",
+    "routes": "Routes",
+    "culture": "Culture",
+    "collectibles": "Collectibles",
+    "commerce": "Commerce",
+    "events": "Events"
+  },
+  "home": {
+    "hero": {
+      "title": "Discover the magic of Cartagena",
+      "subtitle": "An immersive cultural experience that takes you through 500 years of history, traditions and secrets of the Heroic City.",
+      "cta": "Start Exploration"
+    },
+    "features": {
+      "title": "A complete experience",
+      "subtitle": "Combines modern technology with authentic narratives to create the most complete cultural guide to Cartagena."
+    }
+  },
+  "features": {
+    "timeline": {
+      "title": "Interactive Timeline",
+      "description": "Travel through 500 years of history from foundation to today"
+    },
+    "map": {
+      "title": "Maps with Historical Layers",
+      "description": "Explore different eras and discover how the city changed"
+    },
+    "audio": {
+      "title": "Immersive Audio Guides",
+      "description": "Listen to stories narrated by locals and history experts"
+    },
+    "palenque": {
+      "title": "Palenque Stories",
+      "description": "Learn about Afro-descendant heritage and the fight for freedom"
+    },
+    "ar": {
+      "title": "Augmented Reality",
+      "description": "See how historical places looked in different eras"
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "Travel through time",
+      "subtitle": "Discover the moments that forged the identity of Cartagena de Indias"
+    },
+    "timeline": {
+      "title": "Historical Timeline"
+    }
+  },
+  "map": {
+    "hero": {
+      "title": "Explore Cartagena",
+      "subtitle": "Discover historical, gastronomic and cultural places with our interactive map"
+    },
+    "layers": {
+      "historical": "Historical Sites",
+      "gastronomy": "Gastronomy",
+      "culture": "Culture",
+      "photography": "Photo Spots",
+      "commerce": "Commerce",
+      "mall": "Shopping Malls",
+      "historic": "Historical Sites"
+    }
+  },
+  "routes": {
+    "hero": {
+      "title": "Walking Routes",
+      "subtitle": "Explore Cartagena on foot with our guided thematic routes"
+    },
+    "filter": {
+      "all": "All",
+      "history": "History",
+      "food": "Food",
+      "culture": "Culture",
+      "nature": "Landscapes",
+      "art": "Art",
+      "fortress": "Fortresses"
+    }
+  },
+  "commerce": {
+    "title": "Local Commerce",
+    "subtitle": "Discover authentic artisans, restaurants and shops in Cartagena",
+    "filters": {
+      "type": "Type",
+      "subtype": "Subtype",
+      "neighborhood": "Neighborhood",
+      "price": "Price",
+      "all": "All"
+    },
+    "types": {
+      "mall": "Shopping Mall",
+      "artisan": "Artisan",
+      "food": "Food",
+      "shop": "Shop",
+      "service": "Service",
+      "culture": "Cultural"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Discover festivals, concerts and cultural events in Cartagena",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "types": {
+      "festival": "Festival",
+      "concierto": "Concert",
+      "feria": "Fair",
+      "mall_event": "Mall Event",
+      "gastronomia": "Gastronomic",
+      "cultural": "Cultural"
+    }
+  },
+  "plans": {
+    "title": "Local Plans",
+    "subtitle": "Discover the best activities and events to enjoy the weekend in Cartagena",
+    "updated": "Updated weekly",
+    "allNeighborhoods": "All neighborhoods",
+    "freeAndPaid": "Free and paid",
+    "filters": {
+      "type": "Plan type",
+      "price": "Price",
+      "all": "All"
+    },
+    "types": {
+      "cultural": "Cultural",
+      "gastronomic": "Gastronomic",
+      "outdoor": "Outdoor",
+      "nightlife": "Nightlife",
+      "shopping": "Shopping"
+    },
+    "price": {
+      "free": "Free",
+      "paid": "Paid"
+    }
+  },
+  "mass": {
+    "title": "Mass Schedules",
+    "subtitle": "Updated information on mass schedules at the main parishes in Cartagena",
+    "updated": "Updated monthly",
+    "mainParishes": "Main parishes"
+  },
+  "common": {
+    "duration": "Duration",
+    "difficulty": "Difficulty",
+    "points": "points of interest",
+    "start": "Start Route",
+    "easy": "Easy",
+    "moderate": "Moderate",
+    "hard": "Hard",
+    "minutes": "min",
+    "hours": "h",
+    "clearFilters": "Clear filters"
+  },
+  "cta": {
+    "viewOnMap": "View on map",
+    "contact": "Contact",
+    "visit": "Visit",
+    "getDirections": "Get directions",
+    "viewDetails": "View details"
+  }
+}

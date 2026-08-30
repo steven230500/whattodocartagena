@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { MyBusiness } from "@/lib/api/my-business"
-import type { MyBusinessFormState } from "@/app/my-business/actions"
+import type { MyBusinessFormState } from "@/app/[locale]/my-business/actions"
 import { ImageUploadField } from "@/components/forms/image-upload-field"
 
 interface MyBusinessFormProps {

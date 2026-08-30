@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import type { NavPrimaryItem, Locale } from "@/lib/nav-config"
 
 interface MegaMenuProps {
@@ -62,14 +63,14 @@ export function MegaMenu({ item, locale }: MegaMenuProps) {
                       const itemLabel = locale === "es" ? navItem.label : navItem.labelEn
                       return (
                         <li key={navItem.href}>
-                          <a
+                          <Link
                             href={navItem.href}
                             className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                             onClick={() => setIsOpen(false)}
                           >
                             {navItem.icon && <navItem.icon className="w-4 h-4" />}
                             <span>{itemLabel}</span>
-                          </a>
+                          </Link>
                         </li>
                       )
                     })}

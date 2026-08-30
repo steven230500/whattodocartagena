@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { AdminBusiness } from "@/lib/api/admin/businesses"
-import type { BusinessFormState } from "@/app/admin/businesses/actions"
+import type { BusinessFormState } from "@/app/[locale]/admin/businesses/actions"
 import { ImageUploadField } from "@/components/forms/image-upload-field"
 
 interface BusinessFormProps {
@@ -48,6 +48,19 @@ export function BusinessForm({ action, business, submitLabel }: BusinessFormProp
           id="description"
           name="description"
           defaultValue={business?.description}
+          rows={3}
+          className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description_en" className="block text-sm font-medium text-muted-foreground mb-1">
+          Descripción (Inglés)
+        </label>
+        <textarea
+          id="description_en"
+          name="description_en"
+          defaultValue={business?.descriptionEn}
           rows={3}
           className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
         />

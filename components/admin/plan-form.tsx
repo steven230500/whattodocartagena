@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { Plan } from "@/lib/types/plan"
-import type { PlanFormState } from "@/app/admin/plans/actions"
+import type { PlanFormState } from "@/app/[locale]/admin/plans/actions"
 
 interface PlanFormProps {
   action: (prevState: PlanFormState | undefined, formData: FormData) => Promise<PlanFormState>

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { AdminEvent } from "@/lib/api/admin/events"
-import type { EventFormState } from "@/app/admin/events/actions"
+import type { EventFormState } from "@/app/[locale]/admin/events/actions"
 
 interface EventFormProps {
   action: (prevState: EventFormState | undefined, formData: FormData) => Promise<EventFormState>
@@ -19,6 +19,8 @@ export function EventForm({ action, event, submitLabel }: EventFormProps) {
         <Field label="Título" name="title" defaultValue={event?.title} required />
         <Field label="Slug" name="slug" defaultValue={event?.slug} required />
       </div>
+
+      <Field label="Título (Inglés)" name="title_en" defaultValue={event?.titleEn} />
 
       <div className="grid grid-cols-2 gap-4">
         <Field label="Fecha inicio (YYYY-MM-DD)" name="startDate" defaultValue={event?.startDate} required />
@@ -46,6 +48,19 @@ export function EventForm({ action, event, submitLabel }: EventFormProps) {
           id="description"
           name="description"
           defaultValue={event?.description}
+          rows={2}
+          className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description_en" className="block text-sm font-medium text-muted-foreground mb-1">
+          Descripción (Inglés)
+        </label>
+        <textarea
+          id="description_en"
+          name="description_en"
+          defaultValue={event?.descriptionEn}
           rows={2}
           className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
         />

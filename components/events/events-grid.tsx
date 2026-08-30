@@ -4,14 +4,14 @@ import { useMemo, useState } from "react"
 import { EventCard } from "@/components/cards/event-card"
 import { EventFilters } from "@/components/events/event-filters"
 import type { Event } from "@/lib/types/commerce"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 
 interface EventsGridProps {
   events: Event[]
 }
 
 export function EventsGrid({ events }: EventsGridProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
   const [showUpcoming, setShowUpcoming] = useState(true)
   const [typeVenueFilters, setTypeVenueFilters] = useState({ type: "all", venue: "all" })
 

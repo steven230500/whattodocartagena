@@ -4,6 +4,7 @@ import type { Event } from "@/lib/types/commerce"
 interface ApiEvent {
   id: string
   title: string
+  title_en: string | null
   slug: string
   start_date: string
   end_date: string | null
@@ -15,12 +16,14 @@ interface ApiEvent {
   image: string
   tags: string[]
   description: string
+  description_en: string | null
   content: string | null
 }
 
 function toEvent(e: ApiEvent): Event {
   return {
     title: e.title,
+    titleEn: e.title_en ?? undefined,
     slug: e.slug,
     startDate: e.start_date,
     endDate: e.end_date ?? undefined,
@@ -30,6 +33,7 @@ function toEvent(e: ApiEvent): Event {
     image: e.image,
     tags: e.tags,
     description: e.description,
+    descriptionEn: e.description_en ?? undefined,
     content: e.content ?? undefined,
   }
 }

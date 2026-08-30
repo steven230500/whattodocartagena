@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getLocale } from "next-intl/server"
 import { Header } from "@/components/navigation/header"
 import { EventDetail } from "@/components/events/event-detail"
 import { getEventBySlug } from "@/lib/api/events"
@@ -14,16 +15,24 @@ interface EventPageProps {
 
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
   const { slug } = await params
-  const event = await getEventBySlug(slug)
+  const [event, locale] = await Promise.all([getEventBySlug(slug), getLocale()])
   if (!event) return {}
 
-  const title = `${event.title} | What to do Cartagena`
+  const eventTitle = locale === "en" && event.titleEn ? event.titleEn : event.title
+  const description = locale === "en" && event.descriptionEn ? event.descriptionEn : event.description
+  const title = `${eventTitle} | What to do Cartagena`
   return {
     title,
-    description: event.description,
-    alternates: { canonical: `https://whattodocartagena.com/events/${slug}` },
-    openGraph: { title, description: event.description, images: [event.image], type: "website" },
-    twitter: { card: "summary_large_image", title, description: event.description },
+    description,
+    alternates: {
+      canonical: `https://whattodocartagena.com/events/${slug}`,
+      languages: {
+        es: `https://whattodocartagena.com/events/${slug}`,
+        en: `https://whattodocartagena.com/en/events/${slug}`,
+      },
+    },
+    openGraph: { title, description, images: [event.image], type: "website" },
+    twitter: { card: "summary_large_image", title, description },
   }
 }
 

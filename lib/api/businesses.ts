@@ -13,6 +13,7 @@ interface ApiBusiness {
   image: string
   tags: string[]
   description: string
+  description_en: string | null
   hours: string | null
   price_hint: string | null
   phone: string | null
@@ -41,6 +42,7 @@ function toCommerce(b: ApiBusiness): Commerce {
     hours: b.hours ?? undefined,
     priceHint: (b.price_hint as Commerce["priceHint"]) ?? undefined,
     description: b.description,
+    descriptionEn: b.description_en ?? undefined,
     ownerId: b.owner_id ?? undefined,
   }
 }

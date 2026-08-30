@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { X } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import { EVENT_TYPES } from "@/lib/map/layers"
 
 interface EventFiltersProps {
@@ -17,7 +17,7 @@ interface EventFiltersProps {
 }
 
 export function EventFilters({ onFilterChange }: EventFiltersProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
   const [filters, setFilters] = useState({
     type: "all",
     venue: "all",

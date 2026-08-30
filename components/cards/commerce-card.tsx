@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MapPin, Clock, Phone, DollarSign, Navigation } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import type { Commerce } from "@/lib/types/commerce"
 import { COMMERCE_TYPES } from "@/lib/map/layers"
 import { FavoriteButton } from "@/components/business/favorite-button"
@@ -16,7 +16,7 @@ interface CommerceCardProps {
 }
 
 export function CommerceCard({ commerce, initialFavorited = false }: CommerceCardProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">

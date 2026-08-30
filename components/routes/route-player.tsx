@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play, Pause, SkipForward, SkipBack, MapPin, Clock, Volume2 } from "lucide-react"
 import { saveRouteProgress } from "@/app/actions/route-progress"
+import { useLocale } from "next-intl"
 
 interface RoutePlayerProps {
   route: {
     title: string
+    titleEn?: string
     description: string
+    descriptionEn?: string
     duration: string
     distance: string
     steps: Array<{
@@ -27,6 +30,9 @@ interface RoutePlayerProps {
 }
 
 export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
+  const locale = useLocale()
+  const title = locale === "en" && route.titleEn ? route.titleEn : route.title
+  const description = locale === "en" && route.descriptionEn ? route.descriptionEn : route.description
   const startStep = Math.min(Math.max(initialStep ?? 0, 0), Math.max(route.steps.length - 1, 0))
   const [currentStep, setCurrentStep] = useState(startStep)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -69,8 +75,8 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
     <div className="p-6 bg-background overflow-y-auto">
       {/* Route Header */}
       <div className="mb-6">
-        <h1 className="font-serif text-3xl font-bold text-foreground mb-2">{route.title}</h1>
-        <p className="text-muted-foreground mb-4">{route.description}</p>
+        <h1 className="font-serif text-3xl font-bold text-foreground mb-2">{title}</h1>
+        <p className="text-muted-foreground mb-4">{description}</p>
         <div className="flex items-center space-x-4 text-sm text-muted-foreground">
           <div className="flex items-center space-x-1">
             <Clock className="w-4 h-4" />

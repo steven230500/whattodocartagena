@@ -8,6 +8,7 @@ export interface AdminEvent extends Event {
 interface ApiEvent {
   id: string
   title: string
+  title_en: string | null
   slug: string
   start_date: string
   end_date: string | null
@@ -18,6 +19,7 @@ interface ApiEvent {
   image: string
   tags: string[]
   description: string
+  description_en: string | null
   content: string | null
 }
 
@@ -25,6 +27,7 @@ function toAdminEvent(e: ApiEvent): AdminEvent {
   return {
     id: e.id,
     title: e.title,
+    titleEn: e.title_en ?? undefined,
     slug: e.slug,
     startDate: e.start_date,
     endDate: e.end_date ?? undefined,
@@ -34,6 +37,7 @@ function toAdminEvent(e: ApiEvent): AdminEvent {
     image: e.image,
     tags: e.tags,
     description: e.description,
+    descriptionEn: e.description_en ?? undefined,
     content: e.content ?? undefined,
   }
 }

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import type { Parish } from "@/lib/types/parish"
-import type { ParishFormState } from "@/app/admin/parishes/actions"
+import type { ParishFormState } from "@/app/[locale]/admin/parishes/actions"
 import { serializeSchedules } from "@/lib/admin/schedules"
 
 interface ParishFormProps {

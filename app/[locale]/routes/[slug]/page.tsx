@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getLocale } from "next-intl/server"
 import { Header } from "@/components/navigation/header"
 import { RoutePlayer } from "@/components/routes/route-player"
 import { RouteMap } from "@/components/routes/route-map"
@@ -14,16 +15,24 @@ interface RoutePageProps {
 
 export async function generateMetadata({ params }: RoutePageProps): Promise<Metadata> {
   const { slug } = await params
-  const route = await getRouteBySlug(slug)
+  const [route, locale] = await Promise.all([getRouteBySlug(slug), getLocale()])
   if (!route) return {}
 
-  const title = `${route.title} | What to do Cartagena`
+  const routeTitle = locale === "en" && route.titleEn ? route.titleEn : route.title
+  const description = locale === "en" && route.descriptionEn ? route.descriptionEn : route.description
+  const title = `${routeTitle} | What to do Cartagena`
   return {
     title,
-    description: route.description,
-    alternates: { canonical: `https://whattodocartagena.com/routes/${slug}` },
-    openGraph: { title, description: route.description, images: [route.image], type: "website" },
-    twitter: { card: "summary_large_image", title, description: route.description },
+    description,
+    alternates: {
+      canonical: `https://whattodocartagena.com/routes/${slug}`,
+      languages: {
+        es: `https://whattodocartagena.com/routes/${slug}`,
+        en: `https://whattodocartagena.com/en/routes/${slug}`,
+      },
+    },
+    openGraph: { title, description, images: [route.image], type: "website" },
+    twitter: { card: "summary_large_image", title, description },
   }
 }
 

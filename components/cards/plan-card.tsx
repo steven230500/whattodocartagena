@@ -3,14 +3,14 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, DollarSign, Clock } from "lucide-react"
 import type { Plan } from "@/lib/types/plan"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 
 interface PlanCardProps {
   plan: Plan
 }
 
 export function PlanCard({ plan }: PlanCardProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">

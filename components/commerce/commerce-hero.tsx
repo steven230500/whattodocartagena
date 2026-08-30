@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button"
 import { MapPin, Filter } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 
 interface CommerceHeroProps {
   count?: number
 }
 
 export function CommerceHero({ count = 0 }: CommerceHeroProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <section className="relative min-h-[60vh] flex items-center overflow-hidden">

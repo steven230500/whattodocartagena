@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { X } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import { COMMERCE_TYPES, NEIGHBORHOODS } from "@/lib/map/layers"
 
 interface CommerceFiltersProps {
@@ -18,7 +18,7 @@ interface CommerceFiltersProps {
 }
 
 export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
   const [filters, setFilters] = useState({
     type: "all",
     subtype: "all",

@@ -20,6 +20,7 @@ interface BusinessPayload {
   image: string
   tags: string[]
   description: string
+  description_en: string | null
   hours: string | null
   price_hint: string | null
   phone: string | null
@@ -52,6 +53,7 @@ function payloadFromForm(formData: FormData): BusinessPayload {
     image: String(formData.get("image") ?? ""),
     tags,
     description: String(formData.get("description") ?? ""),
+    description_en: strOrNull(formData.get("description_en")),
     hours: strOrNull(formData.get("hours")),
     price_hint: strOrNull(formData.get("price_hint")),
     phone: strOrNull(formData.get("phone")),

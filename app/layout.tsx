@@ -1,9 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Instrument_Sans, Playfair_Display } from "next/font/google"
+import { getLocale } from "next-intl/server"
 import "./globals.css"
-import { MobileBottomNav } from "@/components/navigation/mobile-bottom-nav"
-import { Footer } from "@/components/navigation/footer"
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -56,22 +55,16 @@ export const viewport = {
   themeColor: '#ff6b47',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const locale = await getLocale()
+
   return (
-    <html lang="es" className={`${instrumentSans.variable} ${playfair.variable} antialiased`}>
-      <body className="font-sans bg-background text-foreground min-h-screen">
-        {/* Header/MobileBottomNav ya se auto-ocultan por breakpoint (md:hidden /
-            hidden md:block en su propio root) — un solo árbol, sin duplicar. */}
-        <div className="pt-14 md:pt-0 pb-16 md:pb-0">
-          {children}
-          <Footer />
-        </div>
-        <MobileBottomNav locale="es" />
-      </body>
+    <html lang={locale} className={`${instrumentSans.variable} ${playfair.variable} antialiased`}>
+      <body className="font-sans bg-background text-foreground min-h-screen">{children}</body>
     </html>
   )
 }

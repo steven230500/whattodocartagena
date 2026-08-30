@@ -1,15 +1,12 @@
 "use client"
 
 import { NAV_MOBILE_BOTTOM } from "@/lib/nav-config"
-import type { Locale } from "@/lib/i18n"
-import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
+import { Link, usePathname } from "@/i18n/navigation"
 
-interface MobileBottomNavProps {
-  locale: Locale
-}
-
-export function MobileBottomNav({ locale }: MobileBottomNavProps) {
+export function MobileBottomNav() {
   const pathname = usePathname()
+  const locale = useLocale()
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-card/95 backdrop-blur-md border-t border-border shadow-lg safe-area-pb">
@@ -20,7 +17,7 @@ export function MobileBottomNav({ locale }: MobileBottomNavProps) {
           const Icon = item.icon!
 
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className={`flex flex-col items-center justify-center flex-1 h-full space-y-1 transition-all duration-300 rounded-xl px-3 py-2 mx-1 ${
@@ -40,7 +37,7 @@ export function MobileBottomNav({ locale }: MobileBottomNavProps) {
               }`}>
                 {label}
               </span>
-            </a>
+            </Link>
           )
         })}
       </div>

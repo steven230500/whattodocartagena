@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Navigation, Share2 } from "lucide-react"
-import { useTranslation } from "@/lib/i18n"
+import { useTranslations } from "next-intl"
 import type { Event } from "@/lib/types/commerce"
 import { EVENT_TYPES } from "@/lib/map/layers"
 import Link from "next/link"
@@ -14,7 +14,7 @@ interface EventCardProps {
 }
 
 export function EventCard({ event }: EventCardProps) {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)

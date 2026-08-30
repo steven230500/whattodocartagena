@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "history": "Historia",
+    "map": "Mapa",
+    "routes": "Rutas",
+    "culture": "Cultura",
+    "collectibles": "Coleccionables",
+    "commerce": "Comercios",
+    "events": "Eventos"
+  },
+  "home": {
+    "hero": {
+      "title": "Descubre la magia de Cartagena",
+      "subtitle": "Una experiencia cultural inmersiva que te lleva a través de 500 años de historia, tradiciones y secretos de la Ciudad Heroica.",
+      "cta": "Comenzar Exploración"
+    },
+    "features": {
+      "title": "Una experiencia completa",
+      "subtitle": "Combina tecnología moderna con narrativas auténticas para crear la guía cultural más completa de Cartagena."
+    }
+  },
+  "features": {
+    "timeline": {
+      "title": "Línea de Tiempo Interactiva",
+      "description": "Viaja a través de 500 años de historia desde la fundación hasta hoy"
+    },
+    "map": {
+      "title": "Mapas con Capas Históricas",
+      "description": "Explora diferentes épocas y descubre cómo cambió la ciudad"
+    },
+    "audio": {
+      "title": "Audio Guías Inmersivas",
+      "description": "Escucha relatos narrados por locales y expertos en historia"
+    },
+    "palenque": {
+      "title": "Historias de Palenque",
+      "description": "Conoce la herencia afrodescendiente y la lucha por la libertad"
+    },
+    "ar": {
+      "title": "Realidad Aumentada",
+      "description": "Ve cómo lucían los lugares históricos en diferentes épocas"
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "Viaja a través del tiempo",
+      "subtitle": "Descubre los momentos que forjaron la identidad de Cartagena de Indias"
+    },
+    "timeline": {
+      "title": "Línea de Tiempo Histórica"
+    }
+  },
+  "map": {
+    "hero": {
+      "title": "Explora Cartagena",
+      "subtitle": "Descubre lugares históricos, gastronómicos y culturales con nuestro mapa interactivo"
+    },
+    "layers": {
+      "historical": "Sitios Históricos",
+      "gastronomy": "Gastronomía",
+      "culture": "Cultura",
+      "photography": "Spots Fotográficos",
+      "commerce": "Comercios",
+      "mall": "Centros Comerciales",
+      "historic": "Sitios Históricos"
+    }
+  },
+  "routes": {
+    "hero": {
+      "title": "Rutas Caminables",
+      "subtitle": "Explora Cartagena a pie con nuestras rutas temáticas guiadas"
+    },
+    "filter": {
+      "all": "Todas",
+      "history": "Historia",
+      "food": "Gastronomía",
+      "culture": "Cultura",
+      "nature": "Paisajes",
+      "art": "Arte",
+      "fortress": "Fortalezas"
+    }
+  },
+  "commerce": {
+    "title": "Comercios Locales",
+    "subtitle": "Descubre artesanos, restaurantes y tiendas auténticas de Cartagena",
+    "filters": {
+      "type": "Tipo",
+      "subtype": "Subtipo",
+      "neighborhood": "Barrio",
+      "price": "Precio",
+      "all": "Todos"
+    },
+    "types": {
+      "mall": "Centro Comercial",
+      "artisan": "Artesanía",
+      "food": "Gastronomía",
+      "shop": "Tienda",
+      "service": "Servicio",
+      "culture": "Cultural"
+    }
+  },
+  "events": {
+    "title": "Eventos",
+    "subtitle": "Descubre festivales, conciertos y eventos culturales en Cartagena",
+    "upcoming": "Próximos Eventos",
+    "past": "Eventos Pasados",
+    "types": {
+      "festival": "Festival",
+      "concierto": "Concierto",
+      "feria": "Feria",
+      "mall_event": "Evento de Centro Comercial",
+      "gastronomia": "Gastronómico",
+      "cultural": "Cultural"
+    }
+  },
+  "plans": {
+    "title": "Planes para Locales",
+    "subtitle": "Descubre las mejores actividades y eventos para disfrutar el fin de semana en Cartagena",
+    "updated": "Actualizado semanalmente",
+    "allNeighborhoods": "Todos los barrios",
+    "freeAndPaid": "Gratis y pagos",
+    "filters": {
+      "type": "Tipo de plan",
+      "price": "Precio",
+      "all": "Todos"
+    },
+    "types": {
+      "cultural": "Cultural",
+      "gastronomic": "Gastronómico",
+      "outdoor": "Al aire libre",
+      "nightlife": "Vida nocturna",
+      "shopping": "Compras"
+    },
+    "price": {
+      "free": "Gratis",
+      "paid": "Pago"
+    }
+  },
+  "mass": {
+    "title": "Horarios de Misas",
+    "subtitle": "Información actualizada de horarios de misas en las principales parroquias de Cartagena",
+    "updated": "Actualizado mensualmente",
+    "mainParishes": "Principales parroquias"
+  },
+  "common": {
+    "duration": "Duración",
+    "difficulty": "Dificultad",
+    "points": "puntos de interés",
+    "start": "Comenzar Ruta",
+    "easy": "Fácil",
+    "moderate": "Moderado",
+    "hard": "Difícil",
+    "minutes": "min",
+    "hours": "h",
+    "clearFilters": "Limpiar filtros"
+  },
+  "cta": {
+    "viewOnMap": "Ver en el mapa",
+    "contact": "Contactar",
+    "visit": "Visitar",
+    "getDirections": "Cómo llegar",
+    "viewDetails": "Ver detalles"
+  }
+}
