@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/navigation/header"
 import { RoutePlayer } from "@/components/routes/route-player"
 import { RouteMap } from "@/components/routes/route-map"
@@ -9,6 +10,21 @@ export const dynamic = "force-dynamic"
 
 interface RoutePageProps {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: RoutePageProps): Promise<Metadata> {
+  const { slug } = await params
+  const route = await getRouteBySlug(slug)
+  if (!route) return {}
+
+  const title = `${route.title} | What to do Cartagena`
+  return {
+    title,
+    description: route.description,
+    alternates: { canonical: `https://whattodocartagena.com/routes/${slug}` },
+    openGraph: { title, description: route.description, images: [route.image], type: "website" },
+    twitter: { card: "summary_large_image", title, description: route.description },
+  }
 }
 
 export default async function RoutePage({ params }: RoutePageProps) {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/navigation/header"
 import { CommerceDetail } from "@/components/commerce/commerce-detail"
 import { getBusinessBySlug } from "@/lib/api/businesses"
@@ -11,6 +12,21 @@ interface CommercePageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata({ params }: CommercePageProps): Promise<Metadata> {
+  const { slug } = await params
+  const commerce = await getBusinessBySlug(slug)
+  if (!commerce) return {}
+
+  const title = `${commerce.name} | What to do Cartagena`
+  return {
+    title,
+    description: commerce.description,
+    alternates: { canonical: `https://whattodocartagena.com/businesses/${slug}` },
+    openGraph: { title, description: commerce.description, images: [commerce.image], type: "website" },
+    twitter: { card: "summary_large_image", title, description: commerce.description },
+  }
 }
 
 export default async function CommercePage({ params }: CommercePageProps) {
