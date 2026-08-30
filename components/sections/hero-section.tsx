@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button"
 import { RampartDivider } from "@/components/ui/rampart-divider"
 import { Compass, Calendar, Church } from "lucide-react"
 
-export function HeroSection() {
+interface HeroSectionProps {
+  routeCount: number
+}
+
+export function HeroSection({ routeCount }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
       {/* Background Image */}
@@ -35,7 +39,9 @@ export function HeroSection() {
             Una experiencia interactiva a través de 500 años de historia, cultura y tradiciones caribeñas.
           </p>
 
-          <p className="text-sm text-white/60 mb-10">500+ años de historia · 15 rutas interactivas · Patrimonio UNESCO</p>
+          <p className="text-sm text-white/60 mb-10">
+            500+ años de historia · {routeCount} rutas interactivas · Patrimonio UNESCO
+          </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8 py-4 text-lg" asChild>

@@ -21,8 +21,9 @@ const RealInteractiveMap = dynamic(() => import("./real-interactive-map"), {
 
 interface LazyRealInteractiveMapProps {
   commerces: Commerce[];
+  routeCount: number;
 }
 
-export default function LazyRealInteractiveMap({ commerces }: LazyRealInteractiveMapProps) {
-  return <RealInteractiveMap commerces={commerces} />;
+export default function LazyRealInteractiveMap({ commerces, routeCount }: LazyRealInteractiveMapProps) {
+  return <RealInteractiveMap commerces={commerces} routeCount={routeCount} />;
 }

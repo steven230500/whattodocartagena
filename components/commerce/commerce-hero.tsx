@@ -37,9 +37,7 @@ export function CommerceHero({ count = 0 }: CommerceHeroProps) {
 
           <p className="text-lg md:text-xl text-white/80 mb-4 max-w-xl text-pretty">{t("commerce.subtitle")}</p>
 
-          <p className="text-sm text-white/60 mb-8">
-            {count}+ comercios · 30+ restaurantes · 25+ tiendas · 15+ servicios
-          </p>
+          <p className="text-sm text-white/60 mb-8">{count} comercios en el directorio</p>
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8 py-4 text-lg">

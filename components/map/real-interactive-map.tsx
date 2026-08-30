@@ -101,9 +101,10 @@ const REAL_POIS: BasePoint[] = [
 
 interface RealInteractiveMapProps {
   commerces: Commerce[];
+  routeCount: number;
 }
 
-export default function RealInteractiveMap({ commerces }: RealInteractiveMapProps) {
+export default function RealInteractiveMap({ commerces, routeCount }: RealInteractiveMapProps) {
   const [selected, setSelected] = useState<BasePoint | null>(null);
   const [activeLayers, setActiveLayers] = useState<string[]>(
     ["historic", "food", "culture", "photo"] // por defecto
@@ -257,7 +258,7 @@ export default function RealInteractiveMap({ commerces }: RealInteractiveMapProp
                     <div className="text-xs text-muted-foreground">Puntos Visibles</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-caribbean-blue">25</div>
+                    <div className="text-2xl font-bold text-caribbean-blue">{routeCount}</div>
                     <div className="text-xs text-muted-foreground">Rutas Disponibles</div>
                   </div>
                   <div>
@@ -265,8 +266,8 @@ export default function RealInteractiveMap({ commerces }: RealInteractiveMapProp
                     <div className="text-xs text-muted-foreground">Años de Historia</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-forest">4.8</div>
-                    <div className="text-xs text-muted-foreground">Rating Promedio</div>
+                    <div className="text-2xl font-bold text-forest">{REAL_POIS.length}</div>
+                    <div className="text-xs text-muted-foreground">Sitios de Interés</div>
                   </div>
                 </div>
               </div>
