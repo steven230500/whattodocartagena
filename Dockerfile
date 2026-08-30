@@ -24,10 +24,17 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
+RUN addgroup -g 10001 appgroup && adduser -D -u 10001 -G appgroup appuser
+
 # Copiamos el standalone y estáticos
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+
+# Directorio para imágenes subidas en runtime — separado de public/, que se
+# hornea en la imagen en build time y no sobrevive al próximo deploy.
+RUN mkdir -p /app/uploads && chown -R appuser:appgroup /app/uploads
+USER appuser
 
 EXPOSE 3000
 CMD ["node", "server.js"]

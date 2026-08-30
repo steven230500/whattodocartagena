@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     networks:
       - infra_infra_network
+    volumes:
+      - cartagena_uploads:/app/uploads
     # Si Caddy central hace reverse proxy, NO expongas puertos.
     # Si necesitas probar directo: descomenta
     # ports:
@@ -14,3 +16,6 @@ services:
 networks:
   infra_infra_network:
     external: true
+
+volumes:
+  cartagena_uploads:

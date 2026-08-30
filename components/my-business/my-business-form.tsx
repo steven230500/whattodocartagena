@@ -3,6 +3,7 @@
 import { useActionState } from "react"
 import type { MyBusiness } from "@/lib/api/my-business"
 import type { MyBusinessFormState } from "@/app/my-business/actions"
+import { ImageUploadField } from "@/components/forms/image-upload-field"
 
 interface MyBusinessFormProps {
   action: (prevState: MyBusinessFormState | undefined, formData: FormData) => Promise<MyBusinessFormState>
@@ -27,7 +28,7 @@ export function MyBusinessForm({ action, business }: MyBusinessFormProps) {
         />
       </div>
 
-      <Field label="Imagen (ruta en /public)" name="image" defaultValue={business.image} />
+      <ImageUploadField name="image" label="Imagen" defaultValue={business.image} />
       <Field label="Tags (separados por coma)" name="tags" defaultValue={business.tags?.join(", ")} />
 
       <div className="grid grid-cols-2 gap-4">

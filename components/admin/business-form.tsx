@@ -3,6 +3,7 @@
 import { useActionState } from "react"
 import type { AdminBusiness } from "@/lib/api/admin/businesses"
 import type { BusinessFormState } from "@/app/admin/businesses/actions"
+import { ImageUploadField } from "@/components/forms/image-upload-field"
 
 interface BusinessFormProps {
   action: (prevState: BusinessFormState | undefined, formData: FormData) => Promise<BusinessFormState>
@@ -31,7 +32,7 @@ export function BusinessForm({ action, business, submitLabel }: BusinessFormProp
         <Field label="Longitud" name="lng" type="number" step="any" defaultValue={business?.coords.lng} />
       </div>
 
-      <Field label="Imagen (ruta en /public)" name="image" defaultValue={business?.image} />
+      <ImageUploadField name="image" label="Imagen" defaultValue={business?.image} />
 
       <Field
         label="Tags (separados por coma)"
