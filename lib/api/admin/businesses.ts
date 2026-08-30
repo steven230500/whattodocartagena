@@ -5,7 +5,6 @@ import type { Commerce } from "@/lib/types/commerce"
 
 export interface AdminBusiness extends Commerce {
   id: string
-  verified: boolean
 }
 
 interface ApiBusiness {
@@ -28,7 +27,6 @@ interface ApiBusiness {
   web: string | null
   email: string | null
   instagram: string | null
-  verified: boolean
 }
 
 function toAdminBusiness(b: ApiBusiness): AdminBusiness {
@@ -52,7 +50,6 @@ function toAdminBusiness(b: ApiBusiness): AdminBusiness {
     priceHint: (b.price_hint as Commerce["priceHint"]) ?? undefined,
     description: b.description,
     descriptionEn: b.description_en ?? undefined,
-    verified: b.verified,
   }
 }
 

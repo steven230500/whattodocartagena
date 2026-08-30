@@ -81,11 +81,6 @@ export function BusinessForm({ action, business, submitLabel }: BusinessFormProp
         <Field label="Instagram" name="instagram" defaultValue={business?.contact.instagram} />
       </div>
 
-      <label className="flex items-center gap-2 text-sm text-foreground">
-        <input type="checkbox" name="verified" defaultChecked={business?.verified} />
-        Verificado
-      </label>
-
       {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
 
       <button

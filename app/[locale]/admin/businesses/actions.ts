@@ -27,7 +27,6 @@ interface BusinessPayload {
   web: string | null
   email: string | null
   instagram: string | null
-  verified: boolean
 }
 
 function strOrNull(v: FormDataEntryValue | null): string | null {
@@ -60,7 +59,6 @@ function payloadFromForm(formData: FormData): BusinessPayload {
     web: strOrNull(formData.get("web")),
     email: strOrNull(formData.get("email")),
     instagram: strOrNull(formData.get("instagram")),
-    verified: formData.get("verified") === "on",
   }
 }
 
