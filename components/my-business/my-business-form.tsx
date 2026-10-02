@@ -49,7 +49,7 @@ export function MyBusinessForm({ action, business }: MyBusinessFormProps) {
       </div>
 
       <p className="text-xs text-muted-foreground">
-        Nombre, slug, tipo, barrio, ubicación y la marca "Verificado" las administra el equipo del sitio —
+        Nombre, slug, tipo, barrio, ubicación y la marca &quot;Verificado&quot; las administra el equipo del sitio —
         escribinos si necesitás cambiarlas.
       </p>
 

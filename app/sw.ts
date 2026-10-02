@@ -1,7 +1,9 @@
 import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching"
 import { clientsClaim } from "workbox-core"
 
-declare const self: ServiceWorkerGlobalScope
+declare const self: ServiceWorkerGlobalScope & {
+  __WB_MANIFEST: Parameters<typeof precacheAndRoute>[0]
+}
 
 // Precache all static assets
 precacheAndRoute(self.__WB_MANIFEST)
@@ -36,10 +38,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Cache API responses with network-first strategy
-  if (url.pathname.startsWith("/api/")) {
+  else if (url.pathname.startsWith("/api/")) {
     event.respondWith(
-      fetch(request).catch(() => {
-        return caches.match(request)
+      fetch(request).catch(async () => {
+        return (await caches.match(request)) ?? Response.error()
       }),
     )
   }
@@ -47,10 +49,11 @@ self.addEventListener("fetch", (event) => {
 
 // Background sync for offline actions
 self.addEventListener("sync", (event) => {
-  if (event.tag === "background-sync") {
-    event.waitUntil(
+  const syncEvent = event as ExtendableEvent & { tag: string }
+  if (syncEvent.tag === "background-sync") {
+    syncEvent.waitUntil(
       // Handle offline actions when connection is restored
-      console.log("Background sync triggered"),
+      Promise.resolve().then(() => console.log("Background sync triggered")),
     )
   }
 })

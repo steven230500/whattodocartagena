@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: RoutePageProps): Promise<Meta
     title,
     description,
     alternates: {
-      canonical: `https://whattodocartagena.com/routes/${slug}`,
+      canonical: `https://whattodocartagena.com${locale === "en" ? "/en" : ""}/routes/${slug}`,
       languages: {
         es: `https://whattodocartagena.com/routes/${slug}`,
         en: `https://whattodocartagena.com/en/routes/${slug}`,

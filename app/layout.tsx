@@ -17,15 +17,13 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://whattodocartagena.com"),
   title: "What to do Cartagena - Guía Interactiva",
   description:
     "Descubre qué hacer en Cartagena de Indias con nuestra guía interactiva completa de actividades, eventos, comercios y rutas turísticas.",
   keywords: "Cartagena, Colombia, qué hacer, turismo, guía, eventos, comercios, rutas, Ciudad Heroica",
   authors: [{ name: "What to do Cartagena" }],
   manifest: "/manifest.json",
-  alternates: {
-    canonical: "https://whattodocartagena.com",
-  },
   robots: "index, follow",
   openGraph: {
     title: "What to do Cartagena - Guía Interactiva",
@@ -45,8 +43,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "What to do Cartagena",
   },
-  // icons removed - no icon files present
-     generator: 'v0.app'
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico" }], apple: "/apple-icon.png" },
 }
 
 export const viewport = {

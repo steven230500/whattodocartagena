@@ -149,15 +149,15 @@ export default function RealInteractiveMap({ commerces, routeCount }: RealIntera
     if (filters.type !== "all") {
       pts = pts.filter(
         (p) =>
-          (p as any).commerceData?.type === filters.type ||
+          p.commerceData?.type === filters.type ||
           p.category?.toLowerCase().includes(filters.type.toLowerCase())
       );
     }
     if (filters.subtype !== "all") {
-      pts = pts.filter((p) => (p as any).commerceData?.subtype === filters.subtype);
+      pts = pts.filter((p) => p.commerceData?.subtype === filters.subtype);
     }
     if (filters.neighborhood !== "all") {
-      pts = pts.filter((p) => (p as any).commerceData?.barrio === filters.neighborhood);
+      pts = pts.filter((p) => p.commerceData?.barrio === filters.neighborhood);
     }
     // openNow: si tu dataset lo soporta, filtra por horarios aquí
 

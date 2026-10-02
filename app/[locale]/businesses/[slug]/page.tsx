@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: CommercePageProps): Promise<M
     title,
     description,
     alternates: {
-      canonical: `https://whattodocartagena.com/businesses/${slug}`,
+      canonical: `https://whattodocartagena.com${locale === "en" ? "/en" : ""}/businesses/${slug}`,
       languages: {
         es: `https://whattodocartagena.com/businesses/${slug}`,
         en: `https://whattodocartagena.com/en/businesses/${slug}`,

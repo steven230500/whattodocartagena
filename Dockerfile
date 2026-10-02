@@ -17,7 +17,7 @@ COPY . .
 # Variables necesarias en build (solo públicas)
 ENV NODE_ENV=production
 
-RUN pnpm build
+RUN pnpm lint && pnpm typecheck && pnpm build && pnpm test:uploads
 
 ### Runtime mínimo
 FROM node:20-alpine AS runner

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export function SearchButton() {
   const handleSearch = () => {
     // TODO: Implement search functionality
-    console.log("[v0] Search button clicked - search functionality to be implemented")
+    console.log("Search button clicked - search functionality to be implemented")
   }
 
   return (

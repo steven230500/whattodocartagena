@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 import { useEffect, useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { Heart, LogOut, Trophy, Store } from "lucide-react"
@@ -45,12 +47,12 @@ export function UserMenu() {
 
   if (user === null) {
     return (
-      <a
+      <Link
         href="/login"
         className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-2"
       >
         Iniciar sesión
-      </a>
+      </Link>
     )
   }
 
@@ -67,22 +69,22 @@ export function UserMenu() {
         <DropdownMenuLabel className="truncate">{user.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <a href="/favorites" className="flex items-center gap-2 cursor-pointer">
+          <Link href="/favorites" className="flex items-center gap-2 cursor-pointer">
             <Heart className="w-4 h-4" />
             Favoritos
-          </a>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href="/achievements" className="flex items-center gap-2 cursor-pointer">
+          <Link href="/achievements" className="flex items-center gap-2 cursor-pointer">
             <Trophy className="w-4 h-4" />
             Logros
-          </a>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href="/my-business" className="flex items-center gap-2 cursor-pointer">
+          <Link href="/my-business" className="flex items-center gap-2 cursor-pointer">
             <Store className="w-4 h-4" />
             Mi negocio
-          </a>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
           disabled={pending}

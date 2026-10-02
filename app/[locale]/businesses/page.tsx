@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("businesses")
+
 import { Header } from "@/components/navigation/header"
 import { CommerceHero } from "@/components/commerce/commerce-hero"
 import { CommerceGrid } from "@/components/commerce/commerce-grid"

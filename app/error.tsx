@@ -13,7 +13,7 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error("[v0] Error boundary caught:", error)
+    console.error("Error boundary caught:", error)
   }, [error])
 
   return (

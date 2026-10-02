@@ -1,25 +1,11 @@
 "use client"
 
-import { Crown, Utensils, Music, Camera, Store, ShoppingBag, MapPin } from "lucide-react"
+import { MapPin, type LucideIcon } from "lucide-react"
 
 interface PoiMarkerProps {
-  point: any
+  point: { icon?: LucideIcon; coordinates: { x: number; y: number } }
   onClick: () => void
   layerColor: string
-}
-
-const iconMap = {
-  Crown,
-  Utensils,
-  Music,
-  Camera,
-  Store,
-  ShoppingBag,
-  MapPin,
-  Building: Crown,
-  Anchor: MapPin,
-  Star: Utensils,
-  Heart: Utensils,
 }
 
 export function PoiMarker({ point, onClick, layerColor }: PoiMarkerProps) {

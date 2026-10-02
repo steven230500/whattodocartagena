@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("history")
+
 import { Header } from "@/components/navigation/header"
 import { InteractiveTimeline } from "@/components/timeline/interactive-timeline"
 import { TimelineHero } from "@/components/timeline/timeline-hero"

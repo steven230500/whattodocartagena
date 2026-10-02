@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("plans")
+
 import { Header } from "@/components/navigation/header"
 import { PlansHero } from "@/components/plans/plans-hero"
 import { PlansGrid } from "@/components/plans/plans-grid"

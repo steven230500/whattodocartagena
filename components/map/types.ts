@@ -1,3 +1,5 @@
+import type { Commerce } from "@/lib/types/commerce";
+
 export type PoiType =
   | "historic"
   | "food"
@@ -19,5 +21,5 @@ export type BasePoint = {
   details?: string;
   neighborhood?: string;
   type: PoiType;
-  commerceData?: any;
+  commerceData?: Commerce;
 };

@@ -1,4 +1,5 @@
 import { cookies } from "next/headers"
+import { getCurrentUser } from "@/lib/api/auth"
 import { NextResponse } from "next/server"
 import { randomUUID } from "node:crypto"
 import { mkdir, writeFile } from "node:fs/promises"
@@ -18,7 +19,15 @@ async function isAuthed(): Promise<boolean> {
   const cookieStore = await cookies()
   const adminKey = cookieStore.get("admin_key")?.value
   if (adminKey && adminKey === process.env.ADMIN_API_KEY) return true
-  return Boolean(cookieStore.get("user_token")?.value)
+  // The cookie is only a bearer credential: the API must validate it.
+  // Preserve uploads for registered users and the existing admin-key flow.
+  try {
+    const user = await getCurrentUser()
+    return typeof user?.id === "string" && user.id.length > 0
+  } catch {
+    // Fail closed when the API is unavailable or returns malformed data.
+    return false
+  }
 }
 
 export async function POST(request: Request) {

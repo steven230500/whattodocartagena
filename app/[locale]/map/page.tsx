@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("map")
+
 import { Header } from "@/components/navigation/header";
 import { MapHero } from "@/components/map/map-hero";
 import LazyRealInteractiveMap from "@/components/map/lazy-map";

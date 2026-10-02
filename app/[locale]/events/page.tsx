@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("events")
+
 import { Header } from "@/components/navigation/header"
 import { EventsHero } from "@/components/events/events-hero"
 import { EventsGrid } from "@/components/events/events-grid"

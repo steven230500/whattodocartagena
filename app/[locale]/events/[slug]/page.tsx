@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
     title,
     description,
     alternates: {
-      canonical: `https://whattodocartagena.com/events/${slug}`,
+      canonical: `https://whattodocartagena.com${locale === "en" ? "/en" : ""}/events/${slug}`,
       languages: {
         es: `https://whattodocartagena.com/events/${slug}`,
         en: `https://whattodocartagena.com/en/events/${slug}`,

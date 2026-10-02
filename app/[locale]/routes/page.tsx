@@ -1,3 +1,7 @@
+import { publicPageMetadata } from "@/lib/seo"
+
+export const generateMetadata = () => publicPageMetadata("routes")
+
 import { Header } from "@/components/navigation/header"
 import { RoutesGrid } from "@/components/routes/routes-grid"
 import { RoutesHero } from "@/components/routes/routes-hero"

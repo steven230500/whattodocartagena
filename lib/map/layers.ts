@@ -1,4 +1,4 @@
-import type { MapLayer } from "@/lib/types/commerce";
+import type { Event, MapLayer } from "@/lib/types/commerce";
 
 export const MAP_LAYERS: MapLayer[] = [
   { id: "historic", label: "Sitios históricos y patrimonio", color: "#EF4444", icon: "crown" },
@@ -34,4 +34,5 @@ export const EVENT_TYPES = {
   festival: "Festival",
   cultural: "Cultural",
   deportivo: "Deportivo",
-};
+  mall_event: "Evento en centro comercial",
+} satisfies Record<Event["type"] | "deportivo", string>;
