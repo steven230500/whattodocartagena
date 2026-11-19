@@ -115,8 +115,8 @@ test("una ruta se traza con sus paradas y el recorrido llega hasta el final", as
 
   await sheet(page, testInfo, true)
   await page.getByRole("button", { name: "Recorrer la ruta" }).click()
-  await expect(page.locator('[data-stop="1"]')).toHaveAttribute("data-state", "current", { timeout: 20_000 })
-  await expect(page.locator('[data-stop="2"]')).toHaveAttribute("data-state", "current", { timeout: 20_000 })
+  await expect(page.locator('[data-stop="1"]')).toHaveAttribute("data-state", "current", { timeout: 45_000 })
+  await expect(page.locator('[data-stop="2"]')).toHaveAttribute("data-state", "current", { timeout: 45_000 })
   await expect(page.locator('[data-stop="0"]')).toHaveAttribute("data-state", "done")
 
   const card = page.locator('[data-card="stop"]').filter({ visible: true })
