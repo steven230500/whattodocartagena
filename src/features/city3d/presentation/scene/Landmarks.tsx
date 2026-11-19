@@ -5,10 +5,9 @@ import * as THREE from "three"
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import { useExplorer } from "../state"
 import { buildLandmarks, type LandmarkMesh } from "../mesh/landmarks"
+import { paintLandmark } from "./materials"
 
 const TAP_SLOP = 6
-const FLOOD = new THREE.Color("#ffb070")
-const CORAL = new THREE.Color("#ff6b47")
 
 /**
  * Monumentos con modelo propio. De noche quedan iluminados con reflectores
@@ -55,13 +54,7 @@ function Landmark({
   useEffect(() => () => material.dispose(), [material])
 
   useEffect(() => {
-    if (selected || hovered) {
-      material.emissive.copy(CORAL)
-      material.emissiveIntensity = (selected ? 0.16 : 0.1) + night * 0.25
-    } else {
-      material.emissive.copy(FLOOD)
-      material.emissiveIntensity = night * 0.38
-    }
+    paintLandmark(material, selected, hovered, night)
     invalidate()
   }, [material, selected, hovered, night, invalidate])
 

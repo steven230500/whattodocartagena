@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from "react"
 import type { CameraControls } from "@react-three/drei"
 import type { CityModel } from "../domain/city-model"
 import type { ExplorerPlace, ExplorerRoute } from "../domain/explorer"
@@ -66,8 +66,7 @@ export function ExplorerProvider({
     initialState({ minutes: cartagenaMinutes(new Date()), routeId: initialRouteId, progress }),
   )
   const controls = useRef<CameraControls | null>(null)
-  const anchors = useRef<AnchorRegistry>(null as unknown as AnchorRegistry)
-  if (!anchors.current) anchors.current = new AnchorRegistry()
+  const [anchors] = useState(() => new AnchorRegistry())
 
   const projection = useMemo(() => createProjection(model.origin), [model.origin])
   const graph = useMemo(() => new StreetGraph(model.graph.nodes, model.graph.edges), [model])
@@ -147,14 +146,14 @@ export function ExplorerProvider({
       routePath,
       placeBuilding,
       selectedBuilding,
-      anchors: anchors.current,
+      anchors,
       state,
       dispatch,
       controls,
       camera,
       reducedMotion,
     }),
-    [model, places, routes, projection, routePath, placeBuilding, selectedBuilding, state, camera, reducedMotion],
+    [model, places, routes, projection, routePath, placeBuilding, selectedBuilding, anchors, state, camera, reducedMotion],
   )
   return <ExplorerContext.Provider value={value}>{children}</ExplorerContext.Provider>
 }

@@ -41,25 +41,22 @@ function hasWebGL() {
 
 export default function CityExplorer({ places, routes, initialRouteId, progress, saveProgress }: CityExplorerProps) {
   const t = useTranslations("city3d")
-  const [status, setStatus] = useState<Status>({ kind: "loading" })
+  // componente solo de cliente (ssr: false): window existe desde el primer render
+  const [webgl] = useState(hasWebGL)
+  const [reducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+  const [status, setStatus] = useState<Status>(() => (webgl ? { kind: "loading" } : { kind: "no-webgl" }))
   const [attempt, setAttempt] = useState(0)
-  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-    if (!hasWebGL()) {
-      setStatus({ kind: "no-webgl" })
-      return
-    }
+    if (!webgl) return
     let alive = true
-    setStatus({ kind: "loading" })
     loadCity()
       .then((model) => alive && setStatus({ kind: "ready", model }))
       .catch(() => alive && setStatus({ kind: "error" }))
     return () => {
       alive = false
     }
-  }, [attempt])
+  }, [webgl, attempt])
 
   return (
     <div
@@ -89,7 +86,10 @@ export default function CityExplorer({ places, routes, initialRouteId, progress,
                 <p className="font-serif text-xl">{t("error")}</p>
                 <button
                   type="button"
-                  onClick={() => setAttempt((a) => a + 1)}
+                  onClick={() => {
+                    setStatus({ kind: "loading" })
+                    setAttempt((a) => a + 1)
+                  }}
                   className="mt-4 rounded-full bg-coral px-5 py-2 text-sm font-semibold"
                 >
                   {t("retry")}

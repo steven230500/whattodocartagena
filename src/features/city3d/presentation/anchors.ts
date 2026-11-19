@@ -14,7 +14,11 @@ export class AnchorRegistry {
   private items = new Map<string, Anchor>()
   private v = new THREE.Vector3()
   /** lo asigna AnchorSync: pide un cuadro cuando cambia algo fuera del Canvas */
-  onChange: () => void = () => {}
+  private onChange: () => void = () => {}
+
+  setOnChange(fn: () => void) {
+    this.onChange = fn
+  }
 
   register(id: string, el: HTMLElement | null, pos: [number, number, number]) {
     if (!el) {

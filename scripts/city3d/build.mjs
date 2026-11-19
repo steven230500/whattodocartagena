@@ -514,7 +514,10 @@ async function main() {
     const runs = []
     w.nodes.forEach((id, i) => {
       if (inside(pts[i])) run.push(i)
-      else if (run.length) (runs.push(run), (run = []))
+      else if (run.length) {
+        runs.push(run)
+        run = []
+      }
     })
     if (run.length) runs.push(run)
     for (const r of runs) {

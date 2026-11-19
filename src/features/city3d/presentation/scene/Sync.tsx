@@ -10,11 +10,9 @@ export function AnchorSync() {
   const { anchors } = useExplorer()
   const invalidate = useThree((s) => s.invalidate)
   useEffect(() => {
-    anchors.onChange = invalidate
+    anchors.setOnChange(invalidate)
     invalidate()
-    return () => {
-      anchors.onChange = () => {}
-    }
+    return () => anchors.setOnChange(() => {})
   }, [anchors, invalidate])
   useFrame(({ camera, size }) => anchors.update(camera, size.width, size.height))
   return null

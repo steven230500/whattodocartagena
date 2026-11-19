@@ -39,6 +39,12 @@ const pages = {
     "Ubica lugares de interés de Cartagena de Indias en el mapa interactivo.",
     "Find places of interest in Cartagena de Indias on the interactive map."
   ],
+  "map/3d": [
+    "Cartagena en 3D",
+    "Cartagena in 3D",
+    "Recorre la ciudad amurallada en 3D con la luz de este momento: monumentos, barrios y rutas por calles reales.",
+    "Explore the walled city in 3D, lit as it is right now: landmarks, neighborhoods and routes along real streets."
+  ],
   "explore": [
     "Explora Cartagena",
     "Explore Cartagena",

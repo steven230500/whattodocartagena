@@ -5,7 +5,7 @@ import * as THREE from "three"
 import { useFrame, useThree } from "@react-three/fiber"
 import { useExplorer } from "../state"
 import { LAYER_Y } from "../mesh/geometry"
-import { createSkyMaterial } from "./materials"
+import { createSkyMaterial, paintSky } from "./materials"
 import type { LightPalette, SunPosition } from "../../domain/sun"
 import { sunDirection } from "../../domain/sun"
 
@@ -32,9 +32,7 @@ export function SkyAndLight({ sun, palette, shadows }: { sun: SunPosition; palet
   }, [sun])
 
   useEffect(() => {
-    sky.uniforms.uTop.value.set(palette.skyTop)
-    sky.uniforms.uHorizon.value.set(palette.skyHorizon)
-    scene.fog = new THREE.Fog(palette.skyHorizon, 2600, 7800)
+    paintSky(scene, sky, palette.skyTop, palette.skyHorizon)
     invalidate()
   }, [palette, sky, scene, invalidate])
 

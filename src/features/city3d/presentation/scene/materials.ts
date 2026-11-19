@@ -138,3 +138,71 @@ void main() {
 }`,
   })
 }
+
+/**
+ * Materiales de la ciudad con sus actualizaciones. Los objetos de three.js son
+ * mutables por diseño: se cambian con estos métodos (fuera del render) en vez de
+ * asignar propiedades desde los componentes.
+ */
+export class CityMaterials {
+  readonly building = createBuildingMaterial()
+  readonly street = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, emissive: new THREE.Color("#ffad5c") })
+  readonly wall = new THREE.MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.92,
+    side: THREE.DoubleSide,
+    emissive: new THREE.Color("#ff9d4d"),
+  })
+  readonly merlon: THREE.MeshStandardMaterial
+
+  constructor(merlonColor: string) {
+    this.merlon = new THREE.MeshStandardMaterial({ color: merlonColor, roughness: 0.92, emissive: new THREE.Color("#ff9d4d") })
+  }
+
+  /** noche: ventanas, faroles en las calles y muralla con luz cálida */
+  setNight(night: number) {
+    this.building.uniforms.uNight.value = night
+    this.street.emissiveIntensity = night * 0.09
+    this.wall.emissiveIntensity = night * 0.32
+    this.merlon.emissiveIntensity = night * 0.32
+  }
+
+  setFocus(barrio: number, selected: number, hover: number) {
+    this.building.uniforms.uBarrio.value = barrio
+    this.building.uniforms.uSelected.value = selected
+    this.building.uniforms.uHover.value = hover
+  }
+
+  setRise(rise: number) {
+    this.building.uniforms.uRise.value = rise
+  }
+
+  dispose() {
+    this.building.material.dispose()
+    this.building.depth.dispose()
+    this.street.dispose()
+    this.wall.dispose()
+    this.merlon.dispose()
+  }
+}
+
+const FLOOD = new THREE.Color("#ffb070")
+const CORAL = new THREE.Color("#ff6b47")
+
+/** Monumento: reflectores cálidos de noche; coral si está elegido o bajo el cursor. */
+export function paintLandmark(material: THREE.MeshStandardMaterial, selected: boolean, hovered: boolean, night: number) {
+  if (selected || hovered) {
+    material.emissive.copy(CORAL)
+    material.emissiveIntensity = (selected ? 0.16 : 0.1) + night * 0.25
+  } else {
+    material.emissive.copy(FLOOD)
+    material.emissiveIntensity = night * 0.38
+  }
+}
+
+/** Cielo y niebla según la paleta de la hora. */
+export function paintSky(scene: THREE.Scene, sky: THREE.ShaderMaterial, top: string, horizon: string) {
+  sky.uniforms.uTop.value.set(top)
+  sky.uniforms.uHorizon.value.set(horizon)
+  scene.fog = new THREE.Fog(horizon, 2600, 7800)
+}

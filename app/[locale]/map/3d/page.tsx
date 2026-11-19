@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale } from "next-intl/server"
+import { publicPageMetadata } from "@/lib/seo"
 import { Header } from "@/components/navigation/header"
 import { getBusinesses } from "@/lib/api/businesses"
 import { getRoutes } from "@/lib/api/routes"
@@ -10,24 +10,7 @@ import { LazyCityExplorer, placesFromCommerces, placesFromPois, routesForExplore
 
 export const dynamic = "force-dynamic"
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("city3d")
-  const title = `${t("title")} | What to do Cartagena`
-  const description = t("subtitle")
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: "https://whattodocartagena.com/map/3d",
-      languages: {
-        es: "https://whattodocartagena.com/map/3d",
-        en: "https://whattodocartagena.com/en/map/3d",
-      },
-    },
-    openGraph: { title, description, images: ["/aerial-view-of-cartagena-historic-center-with-wall.jpg"], type: "website" },
-    twitter: { card: "summary_large_image", title, description },
-  }
-}
+export const generateMetadata = () => publicPageMetadata("map/3d")
 
 interface Map3DPageProps {
   searchParams: Promise<{ route?: string }>

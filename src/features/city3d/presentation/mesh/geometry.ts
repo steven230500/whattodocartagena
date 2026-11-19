@@ -214,8 +214,14 @@ function miterOffsets(pts: Ring) {
     let d2y = ny_ - y
     const l1 = Math.hypot(d1x, d1y)
     const l2 = Math.hypot(d2x, d2y)
-    if (l1 > 0) (d1x /= l1), (d1y /= l1)
-    if (l2 > 0) (d2x /= l2), (d2y /= l2)
+    if (l1 > 0) {
+      d1x /= l1
+      d1y /= l1
+    }
+    if (l2 > 0) {
+      d2x /= l2
+      d2y /= l2
+    }
     let tx = d1x + d2x
     let ty = d1y + d2y
     const tl = Math.hypot(tx, ty)

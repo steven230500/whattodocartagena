@@ -5,7 +5,7 @@ import * as THREE from "three"
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import { useExplorer } from "../state"
 import { buildBuildings, buildFlat, buildStreets, buildWalls, LAYER_Y } from "../mesh/geometry"
-import { createBuildingMaterial } from "./materials"
+import { CityMaterials } from "./materials"
 import { SURFACES } from "../palette"
 import { Landmarks } from "./Landmarks"
 
@@ -30,25 +30,7 @@ export function City({ night }: { night: number }) {
     }
   }, [model])
 
-  const mat = useMemo(() => createBuildingMaterial(), [])
-  const streetMat = useMemo(
-    () => new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, emissive: new THREE.Color("#ffad5c") }),
-    [],
-  )
-  const wallMat = useMemo(
-    () =>
-      new THREE.MeshStandardMaterial({
-        vertexColors: true,
-        roughness: 0.92,
-        side: THREE.DoubleSide,
-        emissive: new THREE.Color("#ff9d4d"),
-      }),
-    [],
-  )
-  const merlonMat = useMemo(
-    () => new THREE.MeshStandardMaterial({ color: SURFACES.wall, roughness: 0.92, emissive: new THREE.Color("#ff9d4d") }),
-    [],
-  )
+  const mats = useMemo(() => new CityMaterials(SURFACES.wall), [])
   const inlandWaterMat = useRef<THREE.MeshStandardMaterial>(null)
 
   // liberar GPU al desmontar
@@ -59,40 +41,30 @@ export function City({ night }: { night: number }) {
       })
       geo.buildings.geometry.dispose()
       geo.walls.body.dispose()
-      mat.material.dispose()
-      mat.depth.dispose()
-      streetMat.dispose()
-      wallMat.dispose()
-      merlonMat.dispose()
+      mats.dispose()
     },
-    [geo, mat, streetMat, wallMat, merlonMat],
+    [geo, mats],
   )
 
-  // noche: ventanas, faroles en las calles, muralla con luz cálida
   useEffect(() => {
-    mat.uniforms.uNight.value = night
-    streetMat.emissiveIntensity = night * 0.09
-    wallMat.emissiveIntensity = night * 0.32
-    merlonMat.emissiveIntensity = night * 0.32
+    mats.setNight(night)
     invalidate()
-  }, [night, mat, streetMat, wallMat, merlonMat, invalidate])
+  }, [night, mats, invalidate])
 
   useEffect(() => {
-    mat.uniforms.uBarrio.value = state.barrio
-    mat.uniforms.uSelected.value = selectedBuilding
-    mat.uniforms.uHover.value = state.hover
+    mats.setFocus(state.barrio, selectedBuilding, state.hover)
     invalidate()
-  }, [state.barrio, selectedBuilding, state.hover, mat, invalidate])
+  }, [state.barrio, selectedBuilding, state.hover, mats, invalidate])
 
   // "levantar la ciudad" al cargar
   const rise = useRef(reducedMotion ? 1 : 0)
   useLayoutEffect(() => {
-    mat.uniforms.uRise.value = rise.current
-  }, [mat])
+    mats.setRise(rise.current)
+  }, [mats])
   useFrame((_, dt) => {
     if (rise.current >= 1) return
     rise.current = Math.min(1, rise.current + dt / 2.2)
-    mat.uniforms.uRise.value = rise.current
+    mats.setRise(rise.current)
     invalidate()
   })
 
@@ -141,20 +113,20 @@ export function City({ night }: { night: number }) {
       <mesh geometry={geo.plazas} receiveShadow>
         <meshStandardMaterial vertexColors roughness={1} />
       </mesh>
-      <mesh geometry={geo.streets} material={streetMat} receiveShadow />
-      <mesh geometry={geo.walls.body} material={wallMat} castShadow receiveShadow />
+      <mesh geometry={geo.streets} material={mats.street} receiveShadow />
+      <mesh geometry={geo.walls.body} material={mats.wall} castShadow receiveShadow />
       <instancedMesh
         ref={merlonRef}
         args={[undefined, undefined, geo.walls.merlons.length]}
-        material={merlonMat}
+        material={mats.merlon}
         castShadow
       >
         <boxGeometry args={[1, 1, 1]} />
       </instancedMesh>
       <mesh
         geometry={geo.buildings.geometry}
-        material={mat.material}
-        customDepthMaterial={mat.depth}
+        material={mats.building.material}
+        customDepthMaterial={mats.building.depth}
         castShadow
         receiveShadow
         onPointerDown={onBuildingDown}
