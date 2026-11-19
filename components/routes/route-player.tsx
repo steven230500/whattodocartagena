@@ -40,6 +40,10 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   const currentStepData = route.steps[currentStep]
+  // audios que no cargaron (404, formato): no mostrar un reproductor que no suena
+  const [brokenAudio, setBrokenAudio] = useState<Record<string, true>>({})
+  const audioUrl = currentStepData.audioUrl
+  const hasAudio = !!audioUrl && !brokenAudio[audioUrl]
 
   const goToStep = (index: number) => {
     setCurrentStep(index)
@@ -91,18 +95,20 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
 
       {/* Current Step */}
       <Card className="mb-6 border-0 shadow-lg">
-        <div className="relative h-48">
-          <img
-            src={currentStepData.image || "/placeholder.svg"}
-            alt={currentStepData.title}
-            className="w-full h-full object-cover rounded-t-lg"
-          />
-          <div className="absolute top-4 right-4">
-            <Badge className="bg-coral text-white border-0">
-              Paso {currentStep + 1} de {route.steps.length}
-            </Badge>
+        {currentStepData.image ? (
+          <div className="relative h-48">
+            <img src={currentStepData.image} alt={currentStepData.title} className="w-full h-full object-cover rounded-t-lg" />
+            <div className="absolute top-4 right-4">
+              <Badge className="bg-foreground text-background border-0">
+                Paso {currentStep + 1} de {route.steps.length}
+              </Badge>
+            </div>
           </div>
-        </div>
+        ) : (
+          <p className="px-6 pt-6 text-xs font-semibold uppercase tracking-wide text-coral-dark">
+            Paso {currentStep + 1} de {route.steps.length}
+          </p>
+        )}
 
         <CardHeader>
           <CardTitle className="font-serif text-xl">{currentStepData.title}</CardTitle>
@@ -112,6 +118,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
           <p className="text-muted-foreground mb-6 text-pretty">{currentStepData.description}</p>
 
           {/* Audio Player */}
+          {hasAudio ? (
           <div className="bg-muted/30 rounded-lg p-4 mb-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
@@ -137,6 +144,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                 onClick={prevStep}
                 disabled={currentStep === 0}
                 className="bg-transparent"
+                aria-label="Paso anterior"
               >
                 <SkipBack className="w-4 h-4" />
               </Button>
@@ -144,7 +152,8 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
               <Button
                 size="sm"
                 onClick={togglePlay}
-                className="bg-coral hover:bg-coral-dark text-white w-12 h-12 rounded-full"
+                className="bg-coral hover:bg-coral-dark text-foreground w-12 h-12 rounded-full"
+                aria-label={isPlaying ? "Pausar audio" : "Escuchar audio"}
               >
                 {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
               </Button>
@@ -155,16 +164,31 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                 onClick={nextStep}
                 disabled={currentStep === route.steps.length - 1}
                 className="bg-transparent"
+                aria-label="Paso siguiente"
               >
                 <SkipForward className="w-4 h-4" />
               </Button>
             </div>
           </div>
+          ) : (
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <Button variant="outline" size="sm" onClick={prevStep} disabled={currentStep === 0}>
+                <SkipBack className="mr-1.5 h-4 w-4" aria-hidden /> Anterior
+              </Button>
+              <Button size="sm" onClick={nextStep} disabled={currentStep === route.steps.length - 1} className="bg-foreground text-background hover:bg-foreground/90">
+                Siguiente parada <SkipForward className="ml-1.5 h-4 w-4" aria-hidden />
+              </Button>
+            </div>
+          )}
 
           {/* Hidden Audio Element */}
           <audio
             ref={audioRef}
-            src={currentStepData.audioUrl}
+            src={hasAudio ? audioUrl : undefined}
+            onError={() => {
+              if (audioUrl) setBrokenAudio((b) => ({ ...b, [audioUrl]: true }))
+              setIsPlaying(false)
+            }}
             onTimeUpdate={() => {
               if (audioRef.current) {
                 const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100

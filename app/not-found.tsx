@@ -1,5 +1,8 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { Home, MapPin } from "lucide-react"
+
+export const metadata: Metadata = { title: "Página no encontrada | What to do Cartagena", robots: { index: false } }
 
 export default function NotFound() {
   return (
@@ -15,11 +18,10 @@ export default function NotFound() {
 
         {/* Content */}
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance">
-          ¡Ups! Te perdiste en Cartagena
+          Esta calle no lleva a ninguna parte
         </h1>
         <p className="text-lg text-muted-foreground mb-8 text-pretty max-w-md mx-auto">
-          La página que buscas no existe o ha sido movida. No te preocupes, te ayudaremos a encontrar el camino de
-          vuelta.
+          La página que buscas no existe o cambió de dirección. Vuelve al inicio o busca en el mapa.
         </p>
 
         {/* Actions */}

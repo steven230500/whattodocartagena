@@ -82,7 +82,6 @@ export default function CityCanvas({ onReady, onContextLost, onContextRestored }
         onReady?.()
       }}
       onPointerMissed={() => state.selection && dispatch({ type: "select", selection: null })}
-      aria-label="Mapa 3D de Cartagena"
     >
       <PerformanceMonitor
         onDecline={() => setQuality((q) => ({ dpr: [1, Math.max(1, q.dpr[1] - 0.5)], shadows: false }))}

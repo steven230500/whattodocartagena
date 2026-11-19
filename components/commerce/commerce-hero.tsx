@@ -32,7 +32,6 @@ export function CommerceHero({ count = 0 }: CommerceHeroProps) {
 
           <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6 text-balance">
             {t("commerce.title")}
-            <span className="block">Locales</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/80 mb-4 max-w-xl text-pretty">{t("commerce.subtitle")}</p>

@@ -62,7 +62,7 @@ const shortcuts = [
   {
     label: "Hoy cerca de ti",
     href: "/explore?near=me&when=today",
-    image: "/walking-tour-cartagena-cobblestone-streets.png",
+    image: "/walking-tour-cartagena-cobblestone-streets.jpg",
   },
   {
     label: "Gratis este fin de semana",

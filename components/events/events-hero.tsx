@@ -28,14 +28,11 @@ export function EventsHero() {
 
           <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6 text-balance">
             {t("events.title")}
-            <span className="block text-coral">Culturales</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/80 mb-4 max-w-xl text-pretty">{t("events.subtitle")}</p>
 
-          <p className="text-sm text-white/60 mb-8">
-            12 festivales · 25 conciertos · 18 ferias · 30 eventos gastronómicos
-          </p>
+          <div className="mb-8" />
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8 py-4 text-lg">

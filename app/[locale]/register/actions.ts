@@ -23,7 +23,7 @@ export async function register(
   // Auto-login después de registrarse, no tiene sentido pedirle 2 formularios.
   const { token, error: loginError } = await loginUser(email, password)
   if (loginError || !token) {
-    return { error: loginError || "Cuenta creada, pero no se pudo iniciar sesión. Probá loguearte." }
+    return { error: loginError || "Cuenta creada, pero no se pudo iniciar sesión. Inicia sesión con tu correo y contraseña." }
   }
 
   const cookieStore = await cookies()

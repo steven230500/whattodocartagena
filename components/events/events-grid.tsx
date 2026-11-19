@@ -1,5 +1,7 @@
 "use client"
 
+import { Link } from "@/i18n/navigation"
+
 import { useMemo, useState } from "react"
 import { EventCard } from "@/components/cards/event-card"
 import { EventFilters } from "@/components/events/event-filters"
@@ -68,9 +70,14 @@ export function EventsGrid({ events }: EventsGridProps) {
           <div className="text-center py-16">
             <p className="text-stone-darker text-lg">
               {showUpcoming
-                ? "No hay eventos próximos cargados por ahora. Volvé pronto."
+                ? "Todavía no hay eventos próximos publicados."
                 : "No hay eventos pasados que coincidan con los filtros seleccionados."}
             </p>
+            {showUpcoming && (
+              <Link href="/plans" className="mt-4 inline-flex items-center gap-1 font-semibold text-coral-dark hover:underline">
+                Mira los planes de esta semana →
+              </Link>
+            )}
           </div>
         )}
       </div>

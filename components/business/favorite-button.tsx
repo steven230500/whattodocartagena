@@ -36,6 +36,7 @@ export function FavoriteButton({ slug, initialFavorited, className = "" }: Favor
           }
         })
       }}
+      aria-pressed={favorited}
       className={`inline-flex items-center justify-center rounded-full bg-white/90 hover:bg-white p-2 shadow-sm transition-colors disabled:opacity-50 ${className}`}
     >
       <Heart className={`w-4 h-4 ${favorited ? "fill-coral text-coral" : "text-stone-darker"}`} />

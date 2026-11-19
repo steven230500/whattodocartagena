@@ -97,7 +97,7 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
       </div>
 
       {/* panel: filtros y lista */}
-      <aside className="flex flex-col border-border md:order-1 md:min-h-0 md:border-r">
+      <div role="region" aria-label={t("panelTitle")} className="flex flex-col border-border md:order-1 md:min-h-0 md:border-r">
         <div className="shrink-0 border-b border-border px-4 pb-4 pt-5 md:px-5">
           <h2 className="font-serif text-2xl font-bold leading-tight">{t("panelTitle")}</h2>
 
@@ -236,7 +236,7 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
           <span className="flex-1">{t("routesLink", { count: routeCount })}</span>
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
-      </aside>
+      </div>
     </section>
   )
 }

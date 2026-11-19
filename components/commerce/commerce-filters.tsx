@@ -51,7 +51,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
         <h3 className="font-semibold text-stone-darker">Filtros:</h3>
 
         <Select value={filters.type} onValueChange={(value) => updateFilter("type", value)}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label={t("commerce.filters.type")}>
             <SelectValue placeholder={t("commerce.filters.type")} />
           </SelectTrigger>
           <SelectContent>
@@ -65,7 +65,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
         </Select>
 
         <Select value={filters.neighborhood} onValueChange={(value) => updateFilter("neighborhood", value)}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label={t("commerce.filters.neighborhood")}>
             <SelectValue placeholder={t("commerce.filters.neighborhood")} />
           </SelectTrigger>
           <SelectContent>
@@ -79,7 +79,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
         </Select>
 
         <Select value={filters.priceHint} onValueChange={(value) => updateFilter("priceHint", value)}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label={t("commerce.filters.price")}>
             <SelectValue placeholder={t("commerce.filters.price")} />
           </SelectTrigger>
           <SelectContent>

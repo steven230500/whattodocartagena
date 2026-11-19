@@ -43,7 +43,7 @@ export function PlanFilters({ plans, onFilter }: PlanFiltersProps) {
   return (
     <div className="flex flex-wrap gap-4 items-center">
       <Select value={selectedType} onValueChange={handleTypeChange}>
-        <SelectTrigger className="w-[200px]">
+        <SelectTrigger className="w-[200px]" aria-label={t("plans.filters.type")}>
           <SelectValue placeholder={t("plans.filters.type")} />
         </SelectTrigger>
         <SelectContent>
@@ -57,7 +57,7 @@ export function PlanFilters({ plans, onFilter }: PlanFiltersProps) {
       </Select>
 
       <Select value={selectedPrice} onValueChange={handlePriceChange}>
-        <SelectTrigger className="w-[200px]">
+        <SelectTrigger className="w-[200px]" aria-label={t("plans.filters.price")}>
           <SelectValue placeholder={t("plans.filters.price")} />
         </SelectTrigger>
         <SelectContent>

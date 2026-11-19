@@ -4,7 +4,7 @@ export function RoutesHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/walking-tour-cartagena-cobblestone-streets.png')`,
+          backgroundImage: `url('/walking-tour-cartagena-cobblestone-streets.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />

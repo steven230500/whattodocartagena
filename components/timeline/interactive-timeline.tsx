@@ -166,11 +166,10 @@ export function InteractiveTimeline() {
             return (
               <div
                 key={event.id}
-                className={`mb-20 transition-all duration-700 ${
-                  isActive ? "opacity-100 scale-100" : "opacity-50 scale-95"
-                }`}
+                className="mb-20"
               >
-                <Card className={`overflow-hidden border border-border shadow-none ${isActive ? "ring-2 ring-coral/20" : ""}`}>
+                {/* todo el contenido se lee igual; el hito activo solo se marca con el borde */}
+                <Card className={`overflow-hidden border shadow-none transition-colors duration-300 ${isActive ? "border-coral ring-2 ring-coral/20" : "border-border"}`}>
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* Content */}
                     <CardContent className="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">

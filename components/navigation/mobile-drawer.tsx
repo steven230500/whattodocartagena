@@ -33,7 +33,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
           <div className="flex items-center space-x-3">
             <Logo />
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full w-10 h-10 p-0">
+          <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full w-10 h-10 p-0" aria-label="Cerrar menú">
             <X className="w-5 h-5" />
           </Button>
         </div>

@@ -35,7 +35,10 @@ type Status = { kind: "loading" } | { kind: "ready"; model: CityModel } | { kind
 function hasWebGL() {
   try {
     const c = document.createElement("canvas")
-    return !!(c.getContext("webgl2") || c.getContext("webgl"))
+    const gl = c.getContext("webgl2") || c.getContext("webgl")
+    // liberar el contexto de prueba: los navegadores limitan cuántos hay vivos a la vez
+    gl?.getExtension("WEBGL_lose_context")?.loseContext()
+    return !!gl
   } catch {
     return false
   }
@@ -162,7 +165,7 @@ function ExplorerLayout() {
 
   return (
     <div className="absolute inset-0" data-city3d-stage data-ready={ready ? "" : undefined} data-night={night >= 0.5 ? "" : undefined}>
-      <div className={cn("absolute inset-0 transition-opacity duration-300", lost && "opacity-0")}>
+      <div role="img" aria-label={t("canvasLabel")} className={cn("absolute inset-0 transition-opacity duration-300", lost && "opacity-0")}>
         <CityCanvas
           key={canvasKey}
           onReady={() => setReady(true)}
@@ -222,7 +225,7 @@ function ExplorerLayout() {
       </div>
 
       {/* escritorio: hora abajo y selección a la derecha */}
-      <div className="absolute bottom-4 left-[392px] right-4 z-10 mx-auto hidden max-w-xl rounded-2xl bg-background/95 px-4 py-3 text-foreground shadow-xl md:block">
+      <div className="absolute bottom-10 left-[392px] right-4 z-10 mx-auto hidden max-w-xl rounded-2xl bg-background/95 px-4 py-3 text-foreground shadow-xl md:block">
         <TimeDock />
       </div>
       {state.selection && <SelectionCard className="absolute right-16 top-4 z-10 hidden w-80 md:block" />}

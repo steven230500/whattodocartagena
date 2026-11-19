@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation"
-import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -12,32 +12,6 @@ export function Footer() {
             <p className="text-sm text-stone-warm/70 mb-4">
               Tu guía cultural interactiva para descubrir la historia, tradiciones y belleza de Cartagena de Indias.
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-warm/70 hover:text-coral transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-warm/70 hover:text-coral transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-warm/70 hover:text-coral transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -113,10 +87,6 @@ export function Footer() {
                   info@whattodocartagena.com
                 </a>
               </li>
-              <li className="flex items-center space-x-2 text-stone-warm/70">
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <span>+57 300 123 4567</span>
-              </li>
             </ul>
           </div>
         </div>
@@ -141,7 +111,7 @@ export function Footer() {
       <div className="bg-black/20 py-4">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-stone-warm/70">
-            Desarrollado by{" "}
+            Desarrollado por{" "}
             <a
               href="https://stevenpatino.dev"
               target="_blank"

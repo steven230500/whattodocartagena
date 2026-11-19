@@ -70,7 +70,7 @@ export function RouteMap({ route }: RouteMapProps) {
       )}
 
       <div className="absolute top-4 right-4 flex flex-col space-y-2 z-[1000]">
-        <Button size="sm" variant="outline" onClick={getCurrentLocation} className="bg-white/95 backdrop-blur-sm">
+        <Button size="sm" variant="outline" onClick={getCurrentLocation} className="bg-white/95 backdrop-blur-sm" aria-label="Mostrar mi ubicación">
           <Locate className="w-4 h-4" />
         </Button>
       </div>

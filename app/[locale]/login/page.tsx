@@ -1,14 +1,17 @@
 "use client"
 
 import { useActionState } from "react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
+import { Header } from "@/components/navigation/header"
 import { login } from "./actions"
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, undefined)
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <>
+    <Header />
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 md:pt-16">
       <form action={formAction} className="w-full max-w-sm space-y-4 border border-border rounded-lg p-8 bg-card">
         <h1 className="font-serif text-2xl font-bold text-foreground">Iniciar sesión</h1>
         <div>
@@ -45,12 +48,13 @@ export default function LoginPage() {
           {pending ? "Entrando..." : "Entrar"}
         </button>
         <p className="text-sm text-muted-foreground text-center">
-          ¿No tenés cuenta?{" "}
+          ¿No tienes cuenta?{" "}
           <Link href="/register" className="text-coral hover:underline">
-            Registrate
+            Regístrate
           </Link>
         </p>
       </form>
     </div>
+    </>
   )
 }

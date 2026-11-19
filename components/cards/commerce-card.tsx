@@ -90,13 +90,18 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Link href={`/businesses/${commerce.slug}`} className="flex-1">
-            <Button className="w-full bg-colonial-gold hover:bg-colonial-gold-dark text-white text-sm">
-              {t("cta.viewDetails")}
-            </Button>
-          </Link>
-          <Button variant="outline" size="sm" className="bg-transparent">
-            <Navigation className="w-4 h-4" />
+          <Button asChild className="flex-1 bg-colonial-gold hover:bg-colonial-gold-dark text-white text-sm">
+            <Link href={`/businesses/${commerce.slug}`}>{t("cta.viewDetails")}</Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="bg-transparent">
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${commerce.coords.lat},${commerce.coords.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Cómo llegar a ${commerce.name}`}
+            >
+              <Navigation className="w-4 h-4" />
+            </a>
           </Button>
         </div>
       </CardContent>

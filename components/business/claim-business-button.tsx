@@ -38,7 +38,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
         onClick={() => setOpen(true)}
       >
         <Store className="w-4 h-4 mr-2" />
-        ¿Es tu negocio? Reclamalo
+        ¿Es tu negocio? Reclámalo
       </Button>
     )
   }
@@ -48,7 +48,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Contanos por qué este negocio es tuyo (opcional)"
+        placeholder="Cuéntanos por qué este negocio es tuyo (opcional)"
         rows={2}
         className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
       />
@@ -70,7 +70,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
                 return
               }
               if (result === "error") {
-                setError("No se pudo enviar la solicitud. Probá de nuevo.")
+                setError("No se pudo enviar la solicitud. Intenta de nuevo.")
                 return
               }
               setStatus("pending")

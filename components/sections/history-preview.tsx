@@ -87,10 +87,10 @@ export function HistoryPreview() {
                 {/* Navigation */}
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" onClick={prevPeriod} className="w-10 h-10 p-0 bg-transparent">
+                    <Button variant="outline" size="sm" onClick={prevPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label="Período anterior">
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
-                    <Button variant="outline" size="sm" onClick={nextPeriod} className="w-10 h-10 p-0 bg-transparent">
+                    <Button variant="outline" size="sm" onClick={nextPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label="Período siguiente">
                       <ChevronRight className="w-4 h-4" />
                     </Button>
                   </div>
@@ -100,6 +100,8 @@ export function HistoryPreview() {
                       <button
                         key={index}
                         onClick={() => setCurrentPeriod(index)}
+                        aria-label={`Período ${index + 1} de ${historicalPeriods.length}`}
+                        aria-current={index === currentPeriod ? "step" : undefined}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           index === currentPeriod ? "bg-coral w-8" : "bg-muted-foreground/30"
                         }`}

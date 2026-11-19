@@ -57,7 +57,7 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
         <h3 className="font-semibold text-stone-darker">Filtros:</h3>
 
         <Select value={filters.type} onValueChange={(value) => updateFilter("type", value)}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label="Tipo de Evento">
             <SelectValue placeholder="Tipo de Evento" />
           </SelectTrigger>
           <SelectContent>
@@ -71,7 +71,7 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
         </Select>
 
         <Select value={filters.venue} onValueChange={(value) => updateFilter("venue", value)}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-[200px]" aria-label="Lugar">
             <SelectValue placeholder="Lugar" />
           </SelectTrigger>
           <SelectContent>
