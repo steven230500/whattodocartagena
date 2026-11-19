@@ -4,7 +4,7 @@ import { Moon, Sun, Sunrise, Sunset, Radio } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useExplorer } from "../state"
 import { useMemo } from "react"
-import { cartagenaMinutes, timePresets } from "../../domain/sun"
+import { cartagenaMinutes, momentOf, timePresets } from "../../domain/sun"
 import { cn } from "@/lib/utils"
 
 export const formatMinutes = (m: number) =>
@@ -22,9 +22,16 @@ export function TimeDock({ className, compact = false }: { className?: string; c
   const t = useTranslations("city3d.time")
   const { state, dispatch, model } = useExplorer()
   const presets = useMemo(() => timePresets(model.origin.lat, model.origin.lng), [model.origin])
+  const moment = momentOf(state.minutes, presets)
+  const tm = useTranslations("city3d.moments")
 
   return (
     <div className={cn("flex flex-col gap-2", className)}>
+      {!compact && (
+        <p data-moment={moment} aria-live="polite" className="font-serif text-sm italic leading-snug text-foreground/75">
+          {tm(moment)}
+        </p>
+      )}
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -36,6 +43,7 @@ export function TimeDock({ className, compact = false }: { className?: string; c
               : "border border-coral text-coral hover:bg-coral/10",
           )}
           aria-pressed={state.live}
+          data-live={state.live ? "on" : "off"}
           title={state.live ? undefined : t("backLive")}
         >
           <Radio className="h-3.5 w-3.5" aria-hidden />
@@ -62,6 +70,7 @@ export function TimeDock({ className, compact = false }: { className?: string; c
           <button
             key={key}
             type="button"
+            data-preset={key}
             onClick={() => dispatch({ type: "time", minutes: presets[key] })}
             title={formatMinutes(presets[key])}
             className="flex flex-1 items-center justify-center gap-1 rounded-full border border-foreground/10 px-2 py-1.5 text-xs text-foreground/80 transition-colors hover:border-foreground/30 hover:text-foreground"

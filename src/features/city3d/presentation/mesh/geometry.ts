@@ -79,6 +79,8 @@ export function buildBuildings(model: CityModel): BuildingsGeometry {
     centers[id * 3] = cx / outer.length
     centers[id * 3 + 1] = cy / outer.length
     centers[id * 3 + 2] = h
+    // los monumentos tienen modelo propio (mesh/landmarks.ts)
+    if (b.landmark) return
 
     const vert = (x: number, y: number, z: number, nx: number, ny: number, nz: number, r: number, g: number, bl: number) => {
       pos.push(x, y, z)

@@ -1,70 +1,20 @@
 "use client"
 
-import { createContext, useContext, useMemo, useReducer, useRef, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from "react"
 import type { CameraControls } from "@react-three/drei"
 import type { CityModel } from "../domain/city-model"
-import type { ExplorerPlace, ExplorerRoute, PlaceKind } from "../domain/explorer"
+import type { ExplorerPlace, ExplorerRoute } from "../domain/explorer"
 import { createProjection, type Projection } from "../domain/projection"
 import { StreetGraph, type PathResult } from "../domain/street-graph"
+import { findBuildingAt } from "../domain/city-queries"
 import { cartagenaMinutes } from "../domain/sun"
+import { initialState, reducer, type Action, type ExplorerState } from "../application/explorer-state"
 import { AnchorRegistry } from "./anchors"
 
-export type Tab = "explore" | "routes" | "barrios"
+export type { Tab, Selection, ExplorerState } from "../application/explorer-state"
 
-export type Selection =
-  | { type: "place"; id: string }
-  | { type: "building"; id: number }
-  | { type: "stop"; index: number }
-  | null
-
-export interface ExplorerState {
-  tab: Tab
-  minutes: number
-  live: boolean
-  kinds: PlaceKind[]
-  barrio: number
-  routeId: string | null
-  touring: boolean
-  stop: number
-  selection: Selection
-}
-
-type Action =
-  | { type: "tab"; tab: Tab }
-  | { type: "time"; minutes: number }
-  | { type: "live"; minutes: number }
-  | { type: "toggleKind"; kind: PlaceKind }
-  | { type: "barrio"; index: number }
-  | { type: "route"; id: string | null }
-  | { type: "tour"; playing: boolean }
-  | { type: "stop"; index: number }
-  | { type: "select"; selection: Selection }
-
-const ALL_KINDS: PlaceKind[] = ["heritage", "food", "culture", "shop", "nature"]
-
-function reducer(s: ExplorerState, a: Action): ExplorerState {
-  switch (a.type) {
-    case "tab":
-      return { ...s, tab: a.tab }
-    case "time":
-      return { ...s, minutes: a.minutes, live: false }
-    case "live":
-      return { ...s, minutes: a.minutes, live: true }
-    case "toggleKind":
-      return { ...s, kinds: s.kinds.includes(a.kind) ? s.kinds.filter((k) => k !== a.kind) : [...s.kinds, a.kind] }
-    case "barrio":
-      return { ...s, barrio: s.barrio === a.index ? -1 : a.index, selection: null }
-    case "route":
-      // al elegir ruta se encuadra completa; la parada se elige después (o con el recorrido)
-      return { ...s, routeId: a.id, touring: false, stop: 0, barrio: -1, selection: null }
-    case "tour":
-      return { ...s, touring: a.playing }
-    case "stop":
-      return { ...s, stop: a.index, selection: { type: "stop", index: a.index } }
-    case "select":
-      return { ...s, selection: a.selection, touring: a.selection?.type === "stop" ? s.touring : false }
-  }
-}
+/** Guarda el avance en una ruta (server action; sin sesión no hace nada). */
+export type SaveProgress = (routeId: string, step: number) => Promise<void>
 
 export interface CameraApi {
   /** vuela a un punto local (x este, y norte) */
@@ -79,6 +29,10 @@ interface Ctx {
   projection: Projection
   /** ruta activa trazada por calles (null si no hay ruta elegida) */
   routePath: PathResult | null
+  /** edificio bajo cada lugar (id de lugar → índice de edificio, o -1) */
+  placeBuilding: Record<string, number>
+  /** edificio a resaltar como seleccionado (directo o vía lugar) */
+  selectedBuilding: number
   anchors: AnchorRegistry
   state: ExplorerState
   dispatch: (a: Action) => void
@@ -94,6 +48,8 @@ export function ExplorerProvider({
   places,
   routes,
   initialRouteId,
+  progress,
+  saveProgress,
   reducedMotion,
   children,
 }: {
@@ -101,20 +57,14 @@ export function ExplorerProvider({
   places: ExplorerPlace[]
   routes: ExplorerRoute[]
   initialRouteId?: string
+  progress?: Record<string, number>
+  saveProgress?: SaveProgress
   reducedMotion: boolean
   children: ReactNode
 }) {
-  const [state, dispatch] = useReducer(reducer, undefined, () => ({
-    tab: initialRouteId ? "routes" : "explore",
-    minutes: cartagenaMinutes(new Date()),
-    live: true,
-    kinds: ALL_KINDS,
-    barrio: -1,
-    routeId: initialRouteId ?? null,
-    touring: false,
-    stop: 0,
-    selection: null,
-  }) as ExplorerState)
+  const [state, dispatch] = useReducer(reducer, undefined, () =>
+    initialState({ minutes: cartagenaMinutes(new Date()), routeId: initialRouteId, progress }),
+  )
   const controls = useRef<CameraControls | null>(null)
   const anchors = useRef<AnchorRegistry>(null as unknown as AnchorRegistry)
   if (!anchors.current) anchors.current = new AnchorRegistry()
@@ -126,6 +76,29 @@ export function ExplorerProvider({
     if (!route || route.stops.length === 0) return null
     return graph.routeThrough(route.stops.map((s) => projection.toLocal(s.position)))
   }, [routes, state.routeId, graph, projection])
+
+  const placeBuilding = useMemo(() => {
+    const out: Record<string, number> = {}
+    for (const p of places) {
+      const [x, y] = projection.toLocal(p.position)
+      out[p.id] = findBuildingAt(model.buildings, x, y)
+    }
+    return out
+  }, [places, projection, model.buildings])
+
+  const sel = state.selection
+  const selectedBuilding =
+    sel?.type === "building" ? sel.id : sel?.type === "place" ? (placeBuilding[sel.id] ?? -1) : -1
+
+  // progreso: guardar la parada alcanzada (pasivo, como el reproductor de rutas)
+  const lastSaved = useRef<string>("")
+  useEffect(() => {
+    if (!saveProgress || !state.routeId || state.selection?.type !== "stop") return
+    const key = `${state.routeId}:${state.stop}`
+    if (lastSaved.current === key) return
+    lastSaved.current = key
+    saveProgress(state.routeId, state.stop).catch(() => {})
+  }, [saveProgress, state.routeId, state.stop, state.selection])
 
   const camera = useMemo<CameraApi>(
     () => ({
@@ -172,6 +145,8 @@ export function ExplorerProvider({
       routes,
       projection,
       routePath,
+      placeBuilding,
+      selectedBuilding,
       anchors: anchors.current,
       state,
       dispatch,
@@ -179,7 +154,7 @@ export function ExplorerProvider({
       camera,
       reducedMotion,
     }),
-    [model, places, routes, projection, routePath, state, camera, reducedMotion],
+    [model, places, routes, projection, routePath, placeBuilding, selectedBuilding, state, camera, reducedMotion],
   )
   return <ExplorerContext.Provider value={value}>{children}</ExplorerContext.Provider>
 }

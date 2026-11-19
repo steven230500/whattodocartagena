@@ -5,6 +5,8 @@ import { useExplorer } from "../state"
 import { PLACE_COLORS, SURFACES } from "../palette"
 import { ROUTE_Y } from "../scene/RouteLayer"
 import { cn } from "@/lib/utils"
+import { stopStatus } from "../../application/explorer-state"
+import { focusDistance } from "../../domain/city-queries"
 
 /** Barrios con etiqueta siempre visible (el resto aparece al elegirlo en la pestaña Barrios). */
 const LABELED_BARRIOS = new Set(["Centro", "San Diego", "Getsemaní", "La Matuna", "Manga", "El Espinal"])
@@ -25,7 +27,7 @@ export function MapOverlay() {
   const route = routes.find((r) => r.id === state.routeId)
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden" aria-label="Marcadores">
+    <div data-city3d-pins className="pointer-events-none absolute inset-0 z-[5] overflow-hidden" aria-label="Marcadores">
       {!route &&
         model.barrios.map((b, i) =>
           LABELED_BARRIOS.has(b.name) || state.barrio === i ? <BarrioLabel key={b.name} index={i} /> : null,
@@ -37,7 +39,7 @@ export function MapOverlay() {
 }
 
 function PlacePin({ id }: { id: string }) {
-  const { places, projection, state, dispatch, camera } = useExplorer()
+  const { places, projection, state, dispatch, camera, placeBuilding, model } = useExplorer()
   const p = places.find((x) => x.id === id)!
   const [x, y] = projection.toLocal(p.position)
   const ref = useAnchor(`place:${id}`, [x, 14, -y])
@@ -49,9 +51,13 @@ function PlacePin({ id }: { id: string }) {
         type="button"
         aria-label={p.name}
         aria-pressed={selected}
+        data-pin={id}
+        data-state={selected ? "selected" : "idle"}
+        onMouseEnter={() => dispatch({ type: "hover", id: placeBuilding[id] ?? -1 })}
+        onMouseLeave={() => dispatch({ type: "hover", id: -1 })}
         onClick={() => {
           dispatch({ type: "select", selection: selected ? null : { type: "place", id } })
-          if (!selected) camera.flyTo(x, y, { distance: 210, polar: 0.9 })
+          if (!selected) camera.flyTo(x, y, { distance: focusDistance(model.buildings, placeBuilding[id] ?? -1), polar: 0.9 })
         }}
         className="group pointer-events-auto absolute bottom-0 left-0 flex -translate-x-1/2 flex-col items-center"
       >
@@ -83,6 +89,7 @@ function BarrioLabel({ index }: { index: number }) {
       <button
         type="button"
         aria-pressed={active}
+        data-barrio={b.name}
         onClick={() => {
           dispatch({ type: "barrio", index })
           if (!active) camera.flyTo(b.center[0], b.center[1], { distance: 650, polar: 0.8 })
@@ -104,8 +111,9 @@ function StopPin({ index }: { index: number }) {
   const s = route.stops[index]
   const k = routePath!.stopIndex[index]
   const ref = useAnchor(`stop:${route.id}:${s.id}`, [routePath!.points[k * 2], ROUTE_Y + 6, -routePath!.points[k * 2 + 1]])
-  const active = state.stop === index
-  const done = index < state.stop
+  const status = stopStatus(state, index)
+  const active = status === "current"
+  const done = status === "done"
   return (
     <div ref={ref} className={cn("absolute left-0 top-0 will-change-transform", active ? "z-20" : "z-10")}>
       <button
@@ -113,6 +121,8 @@ function StopPin({ index }: { index: number }) {
         onClick={() => dispatch({ type: "stop", index })}
         aria-label={`${index + 1}. ${s.title}`}
         aria-current={active ? "step" : undefined}
+        data-stop={index}
+        data-state={status}
         className={cn(
           "pointer-events-auto absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 font-semibold shadow-[0_2px_10px_rgba(0,0,0,.45)] transition-all",
           active ? "h-9 w-9 border-white text-sm text-white" : "h-7 w-7 text-xs",

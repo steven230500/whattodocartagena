@@ -7,12 +7,13 @@ import { useExplorer } from "../state"
 import { buildBuildings, buildFlat, buildStreets, buildWalls, LAYER_Y } from "../mesh/geometry"
 import { createBuildingMaterial } from "./materials"
 import { SURFACES } from "../palette"
+import { Landmarks } from "./Landmarks"
 
 /** Distancia máxima (px) entre pointerdown y click para contarlo como toque, no arrastre. */
 const TAP_SLOP = 6
 
 export function City({ night }: { night: number }) {
-  const { model, state, dispatch, camera, reducedMotion } = useExplorer()
+  const { model, state, dispatch, camera, reducedMotion, selectedBuilding } = useExplorer()
   const invalidate = useThree((s) => s.invalidate)
 
   const geo = useMemo(() => {
@@ -78,9 +79,10 @@ export function City({ night }: { night: number }) {
 
   useEffect(() => {
     mat.uniforms.uBarrio.value = state.barrio
-    mat.uniforms.uSelected.value = state.selection?.type === "building" ? state.selection.id : -1
+    mat.uniforms.uSelected.value = selectedBuilding
+    mat.uniforms.uHover.value = state.hover
     invalidate()
-  }, [state.barrio, state.selection, mat, invalidate])
+  }, [state.barrio, selectedBuilding, state.hover, mat, invalidate])
 
   // "levantar la ciudad" al cargar
   const rise = useRef(reducedMotion ? 1 : 0)
@@ -158,6 +160,7 @@ export function City({ night }: { night: number }) {
         onPointerDown={onBuildingDown}
         onClick={onBuildingClick}
       />
+      <Landmarks night={night} rise={rise} />
     </group>
   )
 }

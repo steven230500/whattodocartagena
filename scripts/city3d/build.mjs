@@ -333,6 +333,19 @@ const hash = (n) => {
   return ((x >>> 0) % 10000) / 10000
 }
 
+/**
+ * Monumentos con modelo propio en el cliente (presentation/mesh/landmarks.ts):
+ * su huella de OSM se marca con `lm` y el cliente no la levanta como bloque.
+ */
+const LANDMARKS = [
+  { key: "torre-reloj", name: /^Puerta del Reloj$/ },
+  { key: "catedral", name: /^Catedral de Santa Catalina/ },
+  { key: "san-pedro", name: /^Iglesia de San Pedro Claver$/ },
+  { key: "trinidad", name: /^Iglesia de la Trinidad$/ },
+  { key: "castillo", name: /^Castillo San Felipe de Barajas$/ },
+]
+const landmarkKey = (tags) => LANDMARKS.find((l) => tags.name && l.name.test(tags.name))?.key
+
 const HISTORIC_BARRIOS = new Set(["Centro", "San Diego", "Getsemaní", "La Matuna"])
 
 function estimateHeight(tags, area, barrio, rnd) {
@@ -438,7 +451,21 @@ async function main() {
       b: Math.max(0, barrios.findIndex((x) => x.name === barrio)),
     }
     if (p.tags.name) b.n = p.tags.name
+    const lm = landmarkKey(p.tags)
+    if (lm) b.lm = lm
     buildings.push(b)
+  }
+  const found = new Set(buildings.map((b) => b.lm).filter(Boolean))
+  const missing = LANDMARKS.filter((l) => !found.has(l.key)).map((l) => l.key)
+  if (missing.length) throw new Error(`monumentos sin huella en OSM: ${missing.join(", ")}`)
+
+  // las murallas del castillo quedan dentro de su modelo escalonado
+  const castle = polygons((t) => landmarkKey(t) === "castillo")[0]
+  const castleBox = castle && {
+    minX: Math.min(...castle.outer.map((p) => p[0])) - 40,
+    maxX: Math.max(...castle.outer.map((p) => p[0])) + 40,
+    minY: Math.min(...castle.outer.map((p) => p[1])) - 40,
+    maxY: Math.max(...castle.outer.map((p) => p[1])) + 40,
   }
 
   // muralla
@@ -448,6 +475,11 @@ async function main() {
     if (!(t.barrier === "city_wall" || t.historic === "citywalls" || t.historic === "castle_wall")) continue
     const pts = wayPts(w)
     if (!pts || !pts.some(inside)) continue
+    if (
+      t.historic === "castle_wall" &&
+      castleBox &&
+      pts.every(([x, y]) => x > castleBox.minX && x < castleBox.maxX && y > castleBox.minY && y < castleBox.maxY)
+    ) continue
     walls.push({ p: flat(pts), n: t.name })
   }
 

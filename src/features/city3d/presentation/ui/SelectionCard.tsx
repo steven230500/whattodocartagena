@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 export function SelectionCard({ className }: { className?: string }) {
   const t = useTranslations("city3d.selection")
   const tk = useTranslations("city3d.kinds")
+  const tl = useTranslations("city3d.landmarks")
   const { model, places, routes, state, dispatch } = useExplorer()
   const sel = state.selection
   if (!sel) return null
@@ -30,7 +31,7 @@ export function SelectionCard({ className }: { className?: string }) {
     const p = places.find((x) => x.id === sel.id)
     if (!p) return null
     return (
-      <article className={cn("relative overflow-hidden rounded-2xl bg-card text-card-foreground shadow-xl", className)}>
+      <article data-card="place" className={cn("relative overflow-hidden rounded-2xl bg-card text-card-foreground shadow-xl", className)}>
         {p.image && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={p.image} alt="" className="h-28 w-full object-cover" loading="lazy" />
@@ -56,10 +57,24 @@ export function SelectionCard({ className }: { className?: string }) {
   if (sel.type === "building") {
     const b = model.buildings[sel.id]
     if (!b) return null
+    if (b.landmark) {
+      return (
+        <article data-card="building" className={cn("relative rounded-2xl bg-card p-4 pr-10 text-card-foreground shadow-xl", className)}>
+          {close}
+          <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-colonial-gold">
+            <span className="h-2 w-2 rounded-full bg-colonial-gold" />
+            {tl("label")}
+          </p>
+          <h3 className="font-serif text-lg font-bold leading-tight">{tl(`${b.landmark}.title`)}</h3>
+          <p className="mt-1 text-sm text-foreground/75">{tl(`${b.landmark}.fact`)}</p>
+          <p className="mt-2 text-[11px] text-foreground/45">{tl("approx")}</p>
+        </article>
+      )
+    }
     const barrio = model.barrios[b.barrio]?.name
     const floors = Math.max(1, Math.round((b.height - 1) / 4))
     return (
-      <article className={cn("relative rounded-2xl bg-card p-4 pr-10 text-card-foreground shadow-xl", className)}>
+      <article data-card="building" className={cn("relative rounded-2xl bg-card p-4 pr-10 text-card-foreground shadow-xl", className)}>
         {close}
         <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/50">{t("building")}</p>
         <h3 className="font-serif text-lg font-bold leading-tight">{b.name ?? (barrio ? t("in", { barrio }) : t("building"))}</h3>
@@ -73,7 +88,7 @@ export function SelectionCard({ className }: { className?: string }) {
   if (!route || !stop) return null
   const total = route.stops.length
   return (
-    <article className={cn("relative rounded-2xl bg-card p-4 text-card-foreground shadow-xl", className)}>
+    <article data-card="stop" className={cn("relative rounded-2xl bg-card p-4 text-card-foreground shadow-xl", className)}>
       <p className="mb-1 text-xs font-semibold uppercase tracking-wide" style={{ color: SURFACES.route }}>
         {t("stop", { n: sel.index + 1, total })}
       </p>

@@ -1,19 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { Compass, Map as MapIcon, RotateCcw } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import type { CityModel } from "../domain/city-model"
 import type { ExplorerPlace, ExplorerRoute } from "../domain/explorer"
-import { cartagenaMinutes } from "../domain/sun"
+import { cartagenaDateAt, cartagenaMinutes, paletteFor, sunPosition } from "../domain/sun"
 import { loadCity } from "../infrastructure/load-city"
-import { ExplorerProvider, useExplorer } from "./state"
+import { ExplorerProvider, useExplorer, type SaveProgress } from "./state"
 import { Crenellation, ExplorerPanel } from "./ui/ExplorerPanel"
 import { SelectionCard } from "./ui/SelectionCard"
 import { MapOverlay } from "./ui/MapOverlay"
 import { TimeDock } from "./ui/TimeDock"
+import { cn } from "@/lib/utils"
 
 const CityCanvas = dynamic(() => import("./scene/CityCanvas"), { ssr: false })
 
@@ -21,6 +22,10 @@ export interface CityExplorerProps {
   places: ExplorerPlace[]
   routes: ExplorerRoute[]
   initialRouteId?: string
+  /** parada guardada por ruta (usuario con sesión) */
+  progress?: Record<string, number>
+  /** server action para guardar el avance; sin sesión no hace nada */
+  saveProgress?: SaveProgress
 }
 
 type Status = { kind: "loading" } | { kind: "ready"; model: CityModel } | { kind: "error" } | { kind: "no-webgl" }
@@ -34,7 +39,7 @@ function hasWebGL() {
   }
 }
 
-export default function CityExplorer({ places, routes, initialRouteId }: CityExplorerProps) {
+export default function CityExplorer({ places, routes, initialRouteId, progress, saveProgress }: CityExplorerProps) {
   const t = useTranslations("city3d")
   const [status, setStatus] = useState<Status>({ kind: "loading" })
   const [attempt, setAttempt] = useState(0)
@@ -57,13 +62,19 @@ export default function CityExplorer({ places, routes, initialRouteId }: CityExp
   }, [attempt])
 
   return (
-    <div className="relative h-[calc(100dvh-4rem)] w-full overflow-hidden bg-[#1a2547] max-md:h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom))]">
+    <div
+      data-city3d
+      data-status={status.kind}
+      className="relative h-[calc(100dvh-4rem)] w-full overflow-hidden bg-[#1a2547] max-md:h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom))]"
+    >
       {status.kind === "ready" ? (
         <ExplorerProvider
           model={status.model}
           places={places}
           routes={routes}
           initialRouteId={initialRouteId}
+          progress={progress}
+          saveProgress={saveProgress}
           reducedMotion={reducedMotion}
         >
           <ExplorerLayout />
@@ -100,9 +111,37 @@ export default function CityExplorer({ places, routes, initialRouteId }: CityExp
   )
 }
 
+/** Si el contexto WebGL no vuelve en este tiempo, se monta un canvas nuevo. */
+const REBUILD_AFTER_MS = 4000
+
 function ExplorerLayout() {
   const t = useTranslations("city3d")
-  const { state, dispatch, camera } = useExplorer()
+  const { state, dispatch, camera, model } = useExplorer()
+  const [ready, setReady] = useState(false)
+  const [lost, setLost] = useState(false)
+  const [canvasKey, setCanvasKey] = useState(0)
+  const rebuild = useRef<number | null>(null)
+
+  const onContextLost = () => {
+    setLost(true)
+    if (rebuild.current) window.clearTimeout(rebuild.current)
+    rebuild.current = window.setTimeout(() => {
+      rebuild.current = null
+      setCanvasKey((k) => k + 1)
+      setLost(false)
+    }, REBUILD_AFTER_MS)
+  }
+  const onContextRestored = () => {
+    if (rebuild.current) window.clearTimeout(rebuild.current)
+    rebuild.current = null
+    setLost(false)
+  }
+  useEffect(() => () => void (rebuild.current && window.clearTimeout(rebuild.current)), [])
+
+  const night = useMemo(() => {
+    const s = sunPosition(cartagenaDateAt(state.minutes), model.origin.lat, model.origin.lng)
+    return paletteFor(s.altitude).night
+  }, [state.minutes, model.origin])
 
   // reloj en vivo: avanza con la hora real de Cartagena
   useEffect(() => {
@@ -112,11 +151,30 @@ function ExplorerLayout() {
   }, [state.live, dispatch])
 
   return (
-    <>
-      <div className="absolute inset-0">
-        <CityCanvas />
+    <div className="absolute inset-0" data-city3d-stage data-ready={ready ? "" : undefined} data-night={night >= 0.5 ? "" : undefined}>
+      <div className={cn("absolute inset-0 transition-opacity duration-300", lost && "opacity-0")}>
+        <CityCanvas
+          key={canvasKey}
+          onReady={() => setReady(true)}
+          onContextLost={onContextLost}
+          onContextRestored={onContextRestored}
+        />
       </div>
-      <MapOverlay />
+      {/* póster mientras el navegador devuelve (o no) el contexto WebGL */}
+      <div
+        data-city3d-poster
+        aria-hidden={!lost}
+        className={cn(
+          "absolute inset-0 grid place-items-center bg-[radial-gradient(ellipse_at_center,#2c3f7a_0%,#141d38_70%)] px-6 text-center text-white transition-opacity duration-300",
+          lost ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+      >
+        <div>
+          <Crenellation className="mx-auto mb-4 w-32 bg-[#FFD9A8]" />
+          <p className="font-serif text-lg">{t("recovering")}</p>
+        </div>
+      </div>
+      {!lost && <MapOverlay />}
 
       <ExplorerPanel />
 
@@ -162,6 +220,6 @@ function ExplorerLayout() {
       <p className="pointer-events-none absolute left-3 top-3 z-10 rounded-full bg-background/85 px-2.5 py-1 text-[10px] text-foreground/70 md:left-auto md:right-4 md:top-auto md:bottom-1.5 md:text-[11px]">
         <span className="hidden md:inline">{t("hintMouse")} · </span>© OpenStreetMap contributors
       </p>
-    </>
+    </div>
   )
 }

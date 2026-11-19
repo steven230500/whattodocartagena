@@ -201,7 +201,8 @@
       "back": "Todas las rutas",
       "stops": "{count, plural, one {# parada} other {# paradas}}",
       "play": "Recorrer la ruta",
-      "pause": "Pausar"
+      "pause": "Pausar",
+      "progress": "{done} de {total} paradas"
     },
     "barrios": {
       "hint": "Toca un barrio para resaltarlo y volar hasta él.",
@@ -222,6 +223,40 @@
       "openRoute": "Abrir ruta"
     },
     "cta": "Ver la ciudad en 3D",
-    "open3d": "Ver en 3D"
+    "open3d": "Ver en 3D",
+    "recovering": "Recuperando la ciudad 3D…",
+    "landmarks": {
+      "label": "Monumento",
+      "approx": "Modelo aproximado: las proporciones son de referencia.",
+      "torre-reloj": {
+        "title": "Torre del Reloj",
+        "fact": "Puerta principal de la ciudad amurallada desde el siglo XVII; la torre con el reloj se le agregó en 1888."
+      },
+      "catedral": {
+        "title": "Catedral de Santa Catalina de Alejandría",
+        "fact": "Se empezó a construir en 1577. La torre que se ve hoy es una reforma de comienzos del siglo XX."
+      },
+      "san-pedro": {
+        "title": "Iglesia de San Pedro Claver",
+        "fact": "Templo jesuita del siglo XVII donde reposan los restos de San Pedro Claver, defensor de los esclavizados."
+      },
+      "trinidad": {
+        "title": "Iglesia de la Trinidad",
+        "fact": "Corazón de Getsemaní: su plaza es punto de encuentro del barrio desde el siglo XVII."
+      },
+      "castillo": {
+        "title": "Castillo San Felipe de Barajas",
+        "fact": "La mayor fortaleza que levantó España en América, sobre el cerro de San Lázaro, a partir de 1657."
+      }
+    },
+    "moments": {
+      "night": "Noche en la ciudad amurallada: plazas encendidas y música en Getsemaní.",
+      "dawn": "Amanece sobre el mar: la muralla toma color antes que las calles.",
+      "morning": "Mañana fresca: buena hora para caminar el Centro antes del calor.",
+      "noon": "Sol alto: busca la sombra de los balcones y los patios.",
+      "afternoon": "Tarde caribeña: la brisa empieza a entrar desde el mar.",
+      "golden": "Hora dorada: la luz cae sobre la muralla y las fachadas.",
+      "dusk": "Cae la tarde: el cielo se pinta sobre la bahía."
+    }
   }
 }

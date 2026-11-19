@@ -14,7 +14,11 @@ export interface CityBuilding {
   roof: number
   barrio: number
   name?: string
+  /** monumento con modelo propio (no se levanta como bloque) */
+  landmark?: LandmarkKey
 }
+
+export type LandmarkKey = "torre-reloj" | "catedral" | "san-pedro" | "trinidad" | "castillo"
 
 export interface CityBarrio {
   name: string
@@ -65,6 +69,6 @@ export interface RawCity {
   walls: { p: number[]; n?: string }[]
   streets: { w: number; p: number[] }[]
   graph: { n: number[]; e: number[] }
-  buildings: { p: number[][]; h: number; f: number; r: number; b: number; n?: string }[]
+  buildings: { p: number[][]; h: number; f: number; r: number; b: number; n?: string; lm?: LandmarkKey }[]
   landmarks: { n: string; x: number; y: number; k: string }[]
 }

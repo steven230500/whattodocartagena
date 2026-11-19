@@ -141,3 +141,17 @@ export function timePresets(lat: number, lng: number, now = new Date()): TimePre
   }
   return { dawn, noon, sunset, night: Math.min(sunset + 150, 1439) }
 }
+
+export type DayMoment = "night" | "dawn" | "morning" | "noon" | "afternoon" | "golden" | "dusk"
+
+/** Momento del día con nombre (para la frase que acompaña la hora). */
+export function momentOf(minutes: number, p: TimePresets): DayMoment {
+  const m = ((minutes % 1440) + 1440) % 1440
+  if (m < p.dawn - 60 || m >= p.sunset + 75) return "night"
+  if (m < p.dawn + 60) return "dawn"
+  if (m < p.noon - 90) return "morning"
+  if (m < p.noon + 120) return "noon"
+  if (m < p.sunset - 60) return "afternoon"
+  if (m < p.sunset + 15) return "golden"
+  return "dusk"
+}

@@ -1,4 +1,4 @@
-import { Home, Clock, Map, Route, Sparkles, Music, Calendar, Store, Church, TrendingUp, Gift } from "lucide-react"
+import { Home, Clock, Map, Route, Sparkles, Music, Calendar, Store, Church, TrendingUp, Gift, Box } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 export type Locale = "es" | "en"
@@ -87,6 +87,7 @@ export const NAV_PRIMARY: NavPrimaryItem[] = [
         group: "Atajos",
         groupEn: "Shortcuts",
         items: [
+          { label: "Ciudad en 3D", labelEn: "City in 3D", href: "/map/3d", icon: Box },
           { label: "Hoy cerca de ti", labelEn: "Today Near You", href: "/explore?near=me&when=today", icon: Map },
           {
             label: "Gratis este fin de semana",

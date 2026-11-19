@@ -3,6 +3,7 @@ import * as THREE from "three"
 export interface BuildingUniforms {
   uNight: { value: number }
   uSelected: { value: number }
+  uHover: { value: number }
   uBarrio: { value: number }
   uRise: { value: number }
 }
@@ -18,6 +19,7 @@ export function createBuildingMaterial() {
   const uniforms: BuildingUniforms = {
     uNight: { value: 0 },
     uSelected: { value: -1 },
+    uHover: { value: -1 },
     uBarrio: { value: -1 },
     uRise: { value: 1 },
   }
@@ -54,6 +56,7 @@ vObjNormal = normal;`,
         `#include <common>
 uniform float uNight;
 uniform float uSelected;
+uniform float uHover;
 uniform float uBarrio;
 varying float vId;
 varying float vBarrio;
@@ -81,7 +84,8 @@ float isSel = 1.0 - step(0.5, abs(vId - uSelected));
 float focus = uBarrio < -0.5 ? 1.0 : 1.0 - step(0.5, abs(vBarrio - uBarrio));
 float grey = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));
 diffuseColor.rgb = mix(mix(vec3(grey), vec3(0.93, 0.9, 0.85), 0.55), diffuseColor.rgb, focus);
-diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.42, 0.28), isSel * 0.6);`,
+float isHov = (1.0 - step(0.5, abs(vId - uHover))) * (1.0 - isSel);
+diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.42, 0.28), isSel * 0.6 + isHov * 0.3);`,
       )
       .replace(
         "#include <emissivemap_fragment>",
@@ -89,7 +93,7 @@ diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.42, 0.28), isSel * 0.6);`,
 totalEmissiveRadiance += vec3(1.0, 0.66, 0.3) * lit * 1.6 * mix(0.04, 1.0, focus);
 // resplandor cálido de los faroles sobre la parte baja de las fachadas
 totalEmissiveRadiance += vec3(1.0, 0.6, 0.28) * isWall * (1.0 - smoothstep(0.0, 10.0, vPos.y)) * uNight * 0.55 * mix(0.08, 1.0, focus);
-totalEmissiveRadiance += vec3(1.0, 0.42, 0.28) * isSel * (0.18 + 0.5 * uNight);`,
+totalEmissiveRadiance += vec3(1.0, 0.42, 0.28) * (isSel + isHov * 0.5) * (0.18 + 0.5 * uNight);`,
       )
   }
   // la sombra también respeta la animación de crecer

@@ -21,6 +21,8 @@ const PAUSE_AT_STOP = 2.4
 export function RouteLayer() {
   const { routePath: path, state, dispatch, controls, camera, reducedMotion } = useExplorer()
   const invalidate = useThree((s) => s.invalidate)
+  const cam = useThree((s) => s.camera) as THREE.PerspectiveCamera
+  const size = useThree((s) => s.size)
 
   const points = useMemo(() => {
     if (!path) return null
@@ -37,8 +39,14 @@ export function RouteLayer() {
       minX = Math.min(minX, path.points[i]); maxX = Math.max(maxX, path.points[i])
       minY = Math.min(minY, path.points[i + 1]); maxY = Math.max(maxY, path.points[i + 1])
     }
-    const span = Math.max(maxX - minX, maxY - minY, 200)
-    camera.flyTo((minX + maxX) / 2, (minY + maxY) / 2, { distance: span * 1.6, polar: 0.75 })
+    // distancia para que la ruta entre completa en el campo de visión más angosto
+    // (en un celular vertical el horizontal es ~23°, no los 40° verticales)
+    const span = Math.max(maxX - minX, maxY - minY, 150)
+    const vfov = (cam.fov * Math.PI) / 180
+    const hfov = 2 * Math.atan(Math.tan(vfov / 2) * (size.width / Math.max(size.height, 1)))
+    const fit = (span / 2 / Math.tan(Math.min(vfov, hfov) / 2)) * 1.35
+    camera.flyTo((minX + maxX) / 2, (minY + maxY) / 2, { distance: Math.max(fit, 260), polar: 0.75 })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, camera])
 
   const lineRef = useRef<ComponentRef<typeof Line>>(null)

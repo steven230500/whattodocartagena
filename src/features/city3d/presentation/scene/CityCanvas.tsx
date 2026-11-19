@@ -42,7 +42,13 @@ function isSoftwareRenderer() {
   }
 }
 
-export default function CityCanvas() {
+export interface CityCanvasProps {
+  onReady?: () => void
+  onContextLost?: () => void
+  onContextRestored?: () => void
+}
+
+export default function CityCanvas({ onReady, onContextLost, onContextRestored }: CityCanvasProps) {
   const { model, state, controls, camera, dispatch } = useExplorer()
   const [quality, setQuality] = useState<Quality>(() => detectQuality())
 
@@ -67,6 +73,12 @@ export default function CityCanvas() {
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping
         gl.toneMappingExposure = 1.05
+        const canvas = gl.domElement
+        canvas.dataset.city3dCanvas = ""
+        // three.js ya llama preventDefault y reconstruye su estado al recuperar el contexto
+        canvas.addEventListener("webglcontextlost", () => onContextLost?.())
+        canvas.addEventListener("webglcontextrestored", () => onContextRestored?.())
+        onReady?.()
       }}
       onPointerMissed={() => state.selection && dispatch({ type: "select", selection: null })}
       aria-label="Mapa 3D de Cartagena"

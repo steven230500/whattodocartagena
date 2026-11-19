@@ -48,6 +48,7 @@ export function decodeCity(raw: RawCity): CityModel {
       roof: b.r,
       barrio: b.b,
       name: b.n,
+      landmark: b.lm,
     })),
     landmarks: raw.landmarks.map((l) => ({ name: l.n, kind: l.k, x: l.x * s, y: l.y * s })),
   }

@@ -75,7 +75,29 @@ pnpm dev          # Inicia servidor de desarrollo
 pnpm build        # Construye para producción
 pnpm start        # Inicia servidor de producción
 pnpm lint         # Ejecuta linter
+
+# Pruebas
+pnpm test         # Unitarias (vitest): dominio del mapa 3D, datos y estado
+pnpm test:e2e     # End-to-end (Playwright) del mapa 3D, escritorio y celular,
+                  # contra una API simulada (tests/e2e/mock-api.mjs)
+
+# Mapa 3D
+pnpm city3d:build            # Regenera public/3d/cartagena.json desde la caché de OSM
+pnpm city3d:build --fetch    # Vuelve a bajar los datos de OpenStreetMap
 ```
+
+### Mapa 3D ("Cartagena viva", `/map/3d`)
+
+- `scripts/city3d/build.mjs` convierte OpenStreetMap (edificios, muralla, calles, costa, barrios) en
+  `public/3d/cartagena.json`. El JSON va al repo: el build no depende de la red. OSM no trae alturas en
+  la zona, así que se estiman por barrio; los monumentos (Torre del Reloj, Catedral, San Pedro Claver,
+  la Trinidad, Castillo San Felipe) tienen modelo propio en `presentation/mesh/landmarks.ts`.
+- `src/features/city3d`: `domain` (proyección, sol, grafo de calles: puro), `application` (estado del
+  explorador), `infrastructure` (carga del modelo y adaptadores de la API), `presentation` (escena
+  React Three Fiber e interfaz).
+- E2E: Chromium headless dibuja WebGL con SwiftShader. Para usar un Chromium local en vez de
+  `pnpm exec playwright install chromium`, definir `PLAYWRIGHT_CHROMIUM_EXECUTABLE`.
+- Datos © OpenStreetMap contributors (ODbL): la atribución se muestra en la escena.
 
 ## 🌐 Despliegue
 

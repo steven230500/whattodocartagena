@@ -6,10 +6,12 @@ import { useTranslations } from "next-intl"
 import { useExplorer, type Tab } from "../state"
 import type { PlaceKind } from "../../domain/explorer"
 import { createProjection } from "../../domain/projection"
+import { focusDistance } from "../../domain/city-queries"
 import { PLACE_COLORS, SURFACES } from "../palette"
 import { TimeDock } from "./TimeDock"
 import { SelectionCard } from "./SelectionCard"
 import { cn } from "@/lib/utils"
+import { stopStatus } from "../../application/explorer-state"
 
 const KINDS: PlaceKind[] = ["heritage", "food", "culture", "shop", "nature"]
 const HISTORIC = new Set(["Centro", "San Diego", "Getsemaní", "La Matuna"])
@@ -130,7 +132,7 @@ export function ExplorerPanel() {
 
 function ExploreTab({ onPick }: { onPick: () => void }) {
   const t = useTranslations("city3d")
-  const { places, state, dispatch, camera, model } = useExplorer()
+  const { places, state, dispatch, camera, model, placeBuilding } = useExplorer()
   const visible = places.filter((p) => state.kinds.includes(p.kind))
   const counts = Object.fromEntries(KINDS.map((k) => [k, places.filter((p) => p.kind === k).length]))
   const proj = useMemo(() => createProjection(model.origin), [model.origin])
@@ -165,10 +167,13 @@ function ExploreTab({ onPick }: { onPick: () => void }) {
             <li key={p.id}>
               <button
                 type="button"
+                data-place={p.id}
+                onMouseEnter={() => dispatch({ type: "hover", id: placeBuilding[p.id] ?? -1 })}
+                onMouseLeave={() => dispatch({ type: "hover", id: -1 })}
                 onClick={() => {
                   dispatch({ type: "select", selection: { type: "place", id: p.id } })
                   const [x, y] = proj.toLocal(p.position)
-                  camera.flyTo(x, y, { distance: 210, polar: 0.9 })
+                  camera.flyTo(x, y, { distance: focusDistance(model.buildings, placeBuilding[p.id] ?? -1), polar: 0.9 })
                   onPick()
                 }}
                 className={cn(
@@ -217,6 +222,7 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
         </p>
         <button
           type="button"
+          data-tour={state.touring ? "playing" : "paused"}
           onClick={() => {
             dispatch({ type: "tour", playing: !state.touring })
             onPick()
@@ -228,8 +234,9 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
         </button>
         <ol className="relative mt-4 space-y-1 border-l-2 border-dashed border-foreground/15 pl-4">
           {active.stops.map((s, i) => {
-            const current = state.stop === i
-            const done = i < state.stop
+            const status = stopStatus(state, i)
+            const current = status === "current"
+            const done = status === "done"
             return (
               <li key={s.id} className="relative">
                 <span
@@ -264,6 +271,7 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
         <li key={r.id}>
           <button
             type="button"
+            data-route={r.slug}
             onClick={() => {
               dispatch({ type: "route", id: r.id })
               onPick()
@@ -276,6 +284,17 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
               <span className="mt-0.5 block text-xs text-foreground/55">
                 {[r.duration, r.distance, t("stops", { count: r.stops.length })].filter(Boolean).join(" · ")}
               </span>
+              {state.visited[r.id] != null && (
+                <span data-progress={r.slug} className="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-colonial-gold">
+                  <span className="h-1 w-16 overflow-hidden rounded-full bg-foreground/10">
+                    <span
+                      className="block h-full rounded-full bg-colonial-gold"
+                      style={{ width: `${((state.visited[r.id] + 1) / r.stops.length) * 100}%` }}
+                    />
+                  </span>
+                  {t("progress", { done: Math.min(state.visited[r.id] + 1, r.stops.length), total: r.stops.length })}
+                </span>
+              )}
             </span>
           </button>
         </li>
@@ -302,6 +321,7 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
         {state.barrio >= 0 && (
           <button
             type="button"
+            data-barrio-clear
             onClick={() => {
               dispatch({ type: "barrio", index: state.barrio })
               camera.overview()
@@ -323,6 +343,7 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
                   <button
                     type="button"
                     aria-pressed={on}
+                    data-barrio-item={b.name}
                     onClick={() => {
                       dispatch({ type: "barrio", index: b.i })
                       if (!on) {

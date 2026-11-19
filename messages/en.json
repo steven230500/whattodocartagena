@@ -201,7 +201,8 @@
       "back": "All routes",
       "stops": "{count, plural, one {# stop} other {# stops}}",
       "play": "Walk the route",
-      "pause": "Pause"
+      "pause": "Pause",
+      "progress": "{done} of {total} stops"
     },
     "barrios": {
       "hint": "Tap a neighborhood to highlight it and fly there.",
@@ -222,6 +223,40 @@
       "openRoute": "Open route"
     },
     "cta": "See the city in 3D",
-    "open3d": "View in 3D"
+    "open3d": "View in 3D",
+    "recovering": "Restoring the 3D city…",
+    "landmarks": {
+      "label": "Landmark",
+      "approx": "Approximate model: proportions are for reference.",
+      "torre-reloj": {
+        "title": "Clock Tower",
+        "fact": "Main gate of the walled city since the 17th century; the clock tower was added in 1888."
+      },
+      "catedral": {
+        "title": "Cathedral of Saint Catherine of Alexandria",
+        "fact": "Construction began in 1577. The tower you see today is an early 20th-century remodel."
+      },
+      "san-pedro": {
+        "title": "Church of Saint Peter Claver",
+        "fact": "17th-century Jesuit church holding the remains of Saint Peter Claver, defender of enslaved people."
+      },
+      "trinidad": {
+        "title": "Holy Trinity Church",
+        "fact": "The heart of Getsemaní: its square has been the neighborhood's meeting point since the 17th century."
+      },
+      "castillo": {
+        "title": "San Felipe de Barajas Castle",
+        "fact": "The largest fortress Spain built in the Americas, rising on San Lázaro hill from 1657."
+      }
+    },
+    "moments": {
+      "night": "Night in the walled city: lit-up squares and music in Getsemaní.",
+      "dawn": "Dawn over the sea: the walls catch the light before the streets.",
+      "morning": "Cool morning: a good time to walk the Old Town before the heat.",
+      "noon": "High sun: look for the shade of balconies and courtyards.",
+      "afternoon": "Caribbean afternoon: the sea breeze starts to come in.",
+      "golden": "Golden hour: the light falls across the walls and façades.",
+      "dusk": "Dusk: the sky paints itself over the bay."
+    }
   }
 }
