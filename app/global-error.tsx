@@ -38,7 +38,7 @@ export default function GlobalError({
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={reset}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-white rounded-lg font-medium hover:bg-coral-dark transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-ink rounded-lg font-medium hover:bg-coral-dark transition-colors"
               >
                 Recargar página
               </button>

@@ -20,7 +20,7 @@ export function SelectionCard({ className }: { className?: string }) {
     <button
       type="button"
       onClick={() => dispatch({ type: "select", selection: null })}
-      className="absolute right-2 top-2 rounded-full p-1.5 text-foreground/60 hover:bg-foreground/5 hover:text-foreground"
+      className="absolute right-2 top-2 rounded-full p-1.5 text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
       aria-label={t("close")}
     >
       <X className="h-4 w-4" />
@@ -45,7 +45,7 @@ export function SelectionCard({ className }: { className?: string }) {
           <h3 className="font-serif text-lg font-bold leading-tight">{p.name}</h3>
           {p.subtitle && <p className="mt-1 line-clamp-3 text-sm text-foreground/70">{p.subtitle}</p>}
           {p.href && (
-            <Link href={p.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-coral hover:underline">
+            <Link href={p.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-coral-ink hover:underline">
               {t("details")} <ArrowRight className="h-4 w-4" />
             </Link>
           )}
@@ -62,12 +62,12 @@ export function SelectionCard({ className }: { className?: string }) {
         <article data-card="building" className={cn("relative rounded-2xl bg-card p-4 pr-10 text-card-foreground shadow-xl", className)}>
           {close}
           <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-colonial-gold">
-            <span className="h-2 w-2 rounded-full bg-colonial-gold" />
+            <span className="h-2 w-2 rounded-full bg-colonial-gold text-ink" />
             {tl("label")}
           </p>
           <h3 className="font-serif text-lg font-bold leading-tight">{tl(`${b.landmark}.title`)}</h3>
           <p className="mt-1 text-sm text-foreground/75">{tl(`${b.landmark}.fact`)}</p>
-          <p className="mt-2 text-[11px] text-foreground/45">{tl("approx")}</p>
+          <p className="mt-2 text-[11px] text-foreground/70">{tl("approx")}</p>
         </article>
       )
     }
@@ -76,7 +76,7 @@ export function SelectionCard({ className }: { className?: string }) {
     return (
       <article data-card="building" className={cn("relative rounded-2xl bg-card p-4 pr-10 text-card-foreground shadow-xl", className)}>
         {close}
-        <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/50">{t("building")}</p>
+        <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/70">{t("building")}</p>
         <h3 className="font-serif text-lg font-bold leading-tight">{b.name ?? (barrio ? t("in", { barrio }) : t("building"))}</h3>
         <p className="mt-1 text-sm text-foreground/70">{t("floors", { n: floors })}</p>
       </article>
@@ -114,7 +114,7 @@ export function SelectionCard({ className }: { className?: string }) {
         </button>
         <Link
           href={`/routes/${route.slug}`}
-          className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-coral hover:underline"
+          className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-coral-ink hover:underline"
         >
           {t("openRoute")} <ArrowRight className="h-4 w-4" />
         </Link>

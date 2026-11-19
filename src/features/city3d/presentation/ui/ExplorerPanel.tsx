@@ -150,12 +150,12 @@ function ExploreTab({ onPick }: { onPick: () => void }) {
               onClick={() => dispatch({ type: "toggleKind", kind: k })}
               className={cn(
                 "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                on ? "border-foreground/20 bg-card" : "border-transparent bg-foreground/5 text-foreground/45",
+                on ? "border-foreground/20 bg-card" : "border-transparent bg-foreground/5 text-foreground/70",
               )}
             >
               <span className="h-2 w-2 rounded-full" style={{ background: on ? PLACE_COLORS[k] : "currentColor" }} />
               {t(`kinds.${k}`)}
-              <span className="tabular-nums text-foreground/45">{counts[k]}</span>
+              <span className="tabular-nums text-foreground/70">{counts[k]}</span>
             </button>
           )
         })}
@@ -178,13 +178,13 @@ function ExploreTab({ onPick }: { onPick: () => void }) {
                 }}
                 className={cn(
                   "flex w-full items-center gap-3 py-2.5 text-left transition-colors",
-                  selected ? "text-coral" : "hover:text-coral",
+                  selected ? "text-coral-ink" : "hover:text-coral-ink",
                 )}
               >
                 <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: PLACE_COLORS[p.kind] }} />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-medium">{p.name}</span>
-                  {p.subtitle && <span className="line-clamp-2 text-xs text-foreground/55">{p.subtitle}</span>}
+                  {p.subtitle && <span className="line-clamp-2 text-xs text-foreground/70">{p.subtitle}</span>}
                 </span>
                 <ChevronRight className="h-4 w-4 shrink-0 text-foreground/30" aria-hidden />
               </button>
@@ -201,7 +201,7 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
   const { routes, state, dispatch, camera } = useExplorer()
   const active = routes.find((r) => r.id === state.routeId)
 
-  if (!routes.length) return <p className="text-sm text-foreground/60">{t("empty")}</p>
+  if (!routes.length) return <p className="text-sm text-foreground/70">{t("empty")}</p>
 
   if (active) {
     return (
@@ -212,12 +212,12 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
             dispatch({ type: "route", id: null })
             camera.overview()
           }}
-          className="mb-2 inline-flex items-center gap-1 text-xs font-medium text-foreground/60 hover:text-foreground"
+          className="mb-2 inline-flex items-center gap-1 text-xs font-medium text-foreground/70 hover:text-foreground"
         >
           <ChevronLeft className="h-3.5 w-3.5" /> {t("back")}
         </button>
         <h2 className="font-serif text-xl font-bold leading-tight">{active.title}</h2>
-        <p className="mt-1 text-xs text-foreground/60">
+        <p className="mt-1 text-xs text-foreground/70">
           {[active.duration, active.distance, t("stops", { count: active.stops.length })].filter(Boolean).join(" · ")}
         </p>
         <button
@@ -227,7 +227,7 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
             dispatch({ type: "tour", playing: !state.touring })
             onPick()
           }}
-          className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-coral px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-coral-dark"
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-coral px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-coral-dark"
         >
           {state.touring ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
           {state.touring ? t("pause") : t("play")}
@@ -251,10 +251,10 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
                   }}
                   className={cn(
                     "w-full rounded-lg px-2 py-2 text-left text-sm transition-colors",
-                    current ? "bg-coral/10 font-semibold text-coral" : "hover:bg-foreground/5",
+                    current ? "bg-coral/10 font-semibold text-coral-ink" : "hover:bg-foreground/5",
                   )}
                 >
-                  <span className="mr-1.5 tabular-nums text-foreground/45">{i + 1}.</span>
+                  <span className="mr-1.5 tabular-nums text-foreground/70">{i + 1}.</span>
                   {s.title}
                 </button>
               </li>
@@ -278,17 +278,17 @@ function RoutesTab({ onPick }: { onPick: () => void }) {
             }}
             className="group flex w-full items-start gap-3 rounded-xl border border-foreground/10 bg-card p-3 text-left transition-colors hover:border-coral/50"
           >
-            <Footprints className="mt-0.5 h-4 w-4 shrink-0 text-coral" aria-hidden />
+            <Footprints className="mt-0.5 h-4 w-4 shrink-0 text-coral-ink" aria-hidden />
             <span className="min-w-0">
-              <span className="block font-medium leading-snug group-hover:text-coral">{r.title}</span>
-              <span className="mt-0.5 block text-xs text-foreground/55">
+              <span className="block font-medium leading-snug group-hover:text-coral-ink">{r.title}</span>
+              <span className="mt-0.5 block text-xs text-foreground/70">
                 {[r.duration, r.distance, t("stops", { count: r.stops.length })].filter(Boolean).join(" · ")}
               </span>
               {state.visited[r.id] != null && (
                 <span data-progress={r.slug} className="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-colonial-gold">
                   <span className="h-1 w-16 overflow-hidden rounded-full bg-foreground/10">
                     <span
-                      className="block h-full rounded-full bg-colonial-gold"
+                      className="block h-full rounded-full bg-colonial-gold text-ink"
                       style={{ width: `${((state.visited[r.id] + 1) / r.stops.length) * 100}%` }}
                     />
                   </span>
@@ -317,7 +317,7 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
   return (
     <div className="space-y-5">
       <div className="flex items-start justify-between gap-3">
-        <p className="text-sm text-foreground/60">{t("hint")}</p>
+        <p className="text-sm text-foreground/70">{t("hint")}</p>
         {state.barrio >= 0 && (
           <button
             type="button"
@@ -326,7 +326,7 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
               dispatch({ type: "barrio", index: state.barrio })
               camera.overview()
             }}
-            className="shrink-0 rounded-full border border-coral px-3 py-1 text-xs font-semibold text-coral hover:bg-coral/10"
+            className="shrink-0 rounded-full border border-coral px-3 py-1 text-xs font-semibold text-coral-ink hover:bg-coral/10"
           >
             {t("clear")}
           </button>
@@ -334,7 +334,7 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
       </div>
       {groups.map((g) => (
         <div key={g.title}>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/45">{g.title}</h3>
+          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/70">{g.title}</h3>
           <ul className="divide-y divide-foreground/10">
             {g.list.map((b) => {
               const on = state.barrio === b.i
@@ -353,11 +353,11 @@ function BarriosTab({ onPick }: { onPick: () => void }) {
                     }}
                     className={cn(
                       "flex w-full items-center justify-between py-2.5 text-left text-sm transition-colors",
-                      on ? "font-semibold text-coral" : "hover:text-coral",
+                      on ? "font-semibold text-coral-ink" : "hover:text-coral-ink",
                     )}
                   >
                     <span className="font-serif text-base">{b.name}</span>
-                    <span className="flex items-center gap-1 text-xs tabular-nums text-foreground/45">
+                    <span className="flex items-center gap-1 text-xs tabular-nums text-foreground/70">
                       {t("buildings", { count: counts.get(b.i) ?? 0 })}
                       <ChevronRight className="h-4 w-4 text-foreground/30" aria-hidden />
                     </span>

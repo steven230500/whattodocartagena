@@ -54,7 +54,7 @@ export function EventDetail({ event }: EventDetailProps) {
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-16">
           <div className="text-white">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge className="bg-coral text-white">{EVENT_TYPES[event.type]}</Badge>
+              <Badge className="bg-coral text-ink">{EVENT_TYPES[event.type]}</Badge>
               <Badge variant="outline" className="border-white/30 text-white">
                 <Calendar className="w-3 h-3 mr-1" />
                 {new Date(event.startDate) > new Date() ? "Próximo" : "Pasado"}
@@ -89,7 +89,7 @@ export function EventDetail({ event }: EventDetailProps) {
                   <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre el Evento</h2>
 
                   <div className="prose prose-stone max-w-none">
-                    <p className="text-stone-dark leading-relaxed">{event.content || description}</p>
+                    <p className="text-stone-darker leading-relaxed">{event.content || description}</p>
                   </div>
 
                   {event.tags.length > 0 && (
@@ -116,7 +116,7 @@ export function EventDetail({ event }: EventDetailProps) {
                   <h3 className="font-semibold text-stone-darker mb-4">Información del Evento</h3>
 
                   <div className="space-y-3">
-                    <div className="flex items-start text-stone-dark">
+                    <div className="flex items-start text-stone-darker">
                       <Calendar className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
                         <div className="font-medium">Fecha</div>
@@ -124,7 +124,7 @@ export function EventDetail({ event }: EventDetailProps) {
                       </div>
                     </div>
 
-                    <div className="flex items-start text-stone-dark">
+                    <div className="flex items-start text-stone-darker">
                       <MapPin className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
                         <div className="font-medium">Lugar</div>
@@ -132,7 +132,7 @@ export function EventDetail({ event }: EventDetailProps) {
                       </div>
                     </div>
 
-                    <div className="flex items-start text-stone-dark">
+                    <div className="flex items-start text-stone-darker">
                       <Clock className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
                         <div className="font-medium">Tipo</div>
@@ -147,7 +147,7 @@ export function EventDetail({ event }: EventDetailProps) {
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-3">
-                    <Button className="w-full bg-coral hover:bg-coral-dark text-white">
+                    <Button className="w-full bg-coral hover:bg-coral-dark text-ink">
                       <MapPin className="w-4 h-4 mr-2" />
                       {t("cta.viewOnMap")}
                     </Button>

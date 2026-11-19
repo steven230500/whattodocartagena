@@ -76,7 +76,7 @@ export function RouteMap({ route }: RouteMapProps) {
       </div>
 
       <div className="absolute bottom-4 right-4 z-[1000]">
-        <Button className="bg-coral hover:bg-coral-dark text-white shadow-lg" onClick={openDirections}>
+        <Button className="bg-coral hover:bg-coral-dark text-ink shadow-lg" onClick={openDirections}>
           <Navigation className="w-4 h-4 mr-2" />
           Navegar
         </Button>

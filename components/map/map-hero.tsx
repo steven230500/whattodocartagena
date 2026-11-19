@@ -23,7 +23,7 @@ export async function MapHero() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/map/3d"
-              className="inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-coral-dark"
+              className="inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-ink shadow-lg transition-colors hover:bg-coral-dark"
             >
               <Box className="h-5 w-5" aria-hidden />
               {t("cta3d")}

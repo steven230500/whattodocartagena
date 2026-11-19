@@ -84,7 +84,7 @@ export function EventForm({ action, event, submitLabel }: EventFormProps) {
       <button
         type="submit"
         disabled={pending}
-        className="px-6 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+        className="px-6 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
       >
         {pending ? "Guardando..." : submitLabel}
       </button>

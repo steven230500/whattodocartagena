@@ -62,7 +62,7 @@ export function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger disabled={pending} className="rounded-full">
         <Avatar className="w-9 h-9 cursor-pointer">
-          <AvatarFallback className="bg-coral/15 text-coral font-semibold">{initial}</AvatarFallback>
+          <AvatarFallback className="bg-coral/15 text-coral-ink font-semibold">{initial}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

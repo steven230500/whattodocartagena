@@ -110,7 +110,7 @@ export function RouteForm({ action, route, submitLabel }: RouteFormProps) {
           <button
             type="button"
             onClick={addStep}
-            className="text-sm text-coral hover:underline"
+            className="text-sm text-coral-ink hover:underline"
           >
             + Agregar paso
           </button>
@@ -192,7 +192,7 @@ export function RouteForm({ action, route, submitLabel }: RouteFormProps) {
       <button
         type="submit"
         disabled={pending}
-        className="px-6 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+        className="px-6 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
       >
         {pending ? "Guardando..." : submitLabel}
       </button>

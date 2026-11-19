@@ -11,6 +11,11 @@ export function MassSchedulesGrid({ parishes }: MassSchedulesGridProps) {
   return (
     <section className="py-16 bg-[var(--color-stone-warm)]">
       <div className="container mx-auto px-4">
+        {parishes.length === 0 && (
+          <p className="mx-auto max-w-md py-12 text-center text-lg text-muted-foreground">
+            No pudimos cargar los horarios en este momento. Intenta de nuevo en unos minutos.
+          </p>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {parishes.map((parish) => (
             <ParishCard key={parish.id} parish={parish} />

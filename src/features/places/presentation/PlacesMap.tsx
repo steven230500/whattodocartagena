@@ -126,12 +126,12 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
                   onClick={() => toggleKind(k)}
                   className={cn(
                     "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                    on ? "border-foreground/20 bg-card" : "border-transparent bg-foreground/5 text-foreground/45 line-through",
+                    on ? "border-foreground/20 bg-card" : "border-transparent bg-foreground/5 text-foreground/70 line-through",
                   )}
                 >
                   <span className="h-2 w-2 rounded-full" style={{ background: on ? PLACE_COLORS[k] : "currentColor" }} />
                   {t(`kinds.${k}`)}
-                  <span className="tabular-nums text-foreground/45">{counts[k]}</span>
+                  <span className="tabular-nums text-foreground/70">{counts[k]}</span>
                 </button>
               )
             })}
@@ -184,10 +184,10 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
           </div>
           {geo.state === "error" && <p className="mt-2 text-xs text-destructive">{t("locationError")}</p>}
 
-          <p className="mt-3 flex items-center justify-between text-xs text-foreground/55" aria-live="polite">
+          <p className="mt-3 flex items-center justify-between text-xs text-foreground/70" aria-live="polite">
             <span data-result-count={rows.length}>{t("results", { count: rows.length })}</span>
             {filtered && (
-              <button type="button" onClick={() => setFilters(EMPTY_FILTERS)} className="font-semibold text-coral hover:underline">
+              <button type="button" onClick={() => setFilters(EMPTY_FILTERS)} className="font-semibold text-coral-ink hover:underline">
                 {t("clear")}
               </button>
             )}
@@ -204,13 +204,13 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
                 onClick={() => select(selectedId === r.place.id ? null : r.place.id, true)}
                 className={cn(
                   "flex w-full items-center gap-3 py-3 text-left transition-colors",
-                  selectedId === r.place.id ? "text-coral" : "hover:text-coral",
+                  selectedId === r.place.id ? "text-coral-ink" : "hover:text-coral-ink",
                 )}
               >
                 <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: PLACE_COLORS[r.place.kind] }} />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-medium">{r.place.name}</span>
-                  <span className="mt-0.5 block truncate text-xs text-foreground/55">
+                  <span className="mt-0.5 block truncate text-xs text-foreground/70">
                     <RowMeta row={r} />
                   </span>
                 </span>
@@ -219,9 +219,9 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
             </li>
           ))}
           {rows.length === 0 && (
-            <li className="py-10 text-center text-sm text-foreground/60">
+            <li className="py-10 text-center text-sm text-foreground/70">
               {t("empty")}{" "}
-              <button type="button" onClick={() => setFilters(EMPTY_FILTERS)} className="font-semibold text-coral hover:underline">
+              <button type="button" onClick={() => setFilters(EMPTY_FILTERS)} className="font-semibold text-coral-ink hover:underline">
                 {t("clear")}
               </button>
             </li>
@@ -230,9 +230,9 @@ export default function PlacesMap({ places, routeCount }: PlacesMapProps) {
 
         <Link
           href="/routes"
-          className="flex shrink-0 items-center gap-3 border-t border-border px-4 py-3 text-sm hover:text-coral md:px-5"
+          className="flex shrink-0 items-center gap-3 border-t border-border px-4 py-3 text-sm hover:text-coral-ink md:px-5"
         >
-          <Footprints className="h-4 w-4 text-coral" aria-hidden />
+          <Footprints className="h-4 w-4 text-coral-ink" aria-hidden />
           <span className="flex-1">{t("routesLink", { count: routeCount })}</span>
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Link>
@@ -290,24 +290,24 @@ function PlaceCard({ row, onClose }: { row: PlaceRow; onClose: () => void }) {
           type="button"
           onClick={onClose}
           aria-label={t("close")}
-          className="absolute right-2 top-2 rounded-full p-1.5 text-foreground/60 hover:bg-foreground/5 hover:text-foreground"
+          className="absolute right-2 top-2 rounded-full p-1.5 text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
         >
           <X className="h-4 w-4" />
         </button>
         <p className="mb-1 flex items-center gap-1.5 pr-8 text-xs font-semibold uppercase tracking-wide" style={{ color: PLACE_COLORS[place.kind] }}>
           <span className="h-2 w-2 rounded-full" style={{ background: PLACE_COLORS[place.kind] }} />
           {t(`kinds.${place.kind}`)}
-          {place.barrio && <span className="font-normal normal-case tracking-normal text-foreground/50">· {place.barrio}</span>}
+          {place.barrio && <span className="font-normal normal-case tracking-normal text-foreground/70">· {place.barrio}</span>}
         </p>
         <h3 className="pr-8 font-serif text-lg font-bold leading-tight">{place.name}</h3>
-        {st && <p className={cn("mt-1 text-sm font-medium", status?.open ? "text-forest" : "text-foreground/60")}>{st}</p>}
+        {st && <p className={cn("mt-1 text-sm font-medium", status?.open ? "text-forest" : "text-foreground/70")}>{st}</p>}
         {place.subtitle && <p className="mt-1 line-clamp-3 text-sm text-foreground/70">{place.subtitle}</p>}
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <a
             href={directions}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-coral px-3.5 py-2 text-sm font-semibold text-white hover:bg-coral-dark"
+            className="inline-flex items-center gap-1.5 rounded-full bg-coral px-3.5 py-2 text-sm font-semibold text-ink hover:bg-coral-dark"
           >
             <Navigation className="h-4 w-4" aria-hidden />
             {t("directions")}
@@ -320,7 +320,7 @@ function PlaceCard({ row, onClose }: { row: PlaceRow; onClose: () => void }) {
             {t("view3dShort")}
           </Link>
           {place.href && (
-            <Link href={place.href} className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-coral hover:underline">
+            <Link href={place.href} className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-coral-ink hover:underline">
               {t("details")} <ArrowRight className="h-4 w-4" />
             </Link>
           )}

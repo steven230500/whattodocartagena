@@ -39,8 +39,8 @@ export function TimeDock({ className, compact = false }: { className?: string; c
           className={cn(
             "flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors",
             state.live
-              ? "border border-coral bg-coral text-white"
-              : "border border-coral text-coral hover:bg-coral/10",
+              ? "border border-coral bg-coral text-ink"
+              : "border border-coral text-coral-ink hover:bg-coral/10",
           )}
           aria-pressed={state.live}
           data-live={state.live ? "on" : "off"}

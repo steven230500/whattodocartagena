@@ -42,7 +42,7 @@ export function EventsGrid({ events }: EventsGridProps) {
             <button
               onClick={() => setShowUpcoming(true)}
               className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                showUpcoming ? "bg-coral text-white" : "text-stone-darker hover:bg-stone-light"
+                showUpcoming ? "bg-coral text-ink" : "text-stone-darker hover:bg-stone-light"
               }`}
             >
               {t("events.upcoming")}
@@ -50,7 +50,7 @@ export function EventsGrid({ events }: EventsGridProps) {
             <button
               onClick={() => setShowUpcoming(false)}
               className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                !showUpcoming ? "bg-coral text-white" : "text-stone-darker hover:bg-stone-light"
+                !showUpcoming ? "bg-coral text-ink" : "text-stone-darker hover:bg-stone-light"
               }`}
             >
               {t("events.past")}
@@ -74,7 +74,7 @@ export function EventsGrid({ events }: EventsGridProps) {
                 : "No hay eventos pasados que coincidan con los filtros seleccionados."}
             </p>
             {showUpcoming && (
-              <Link href="/plans" className="mt-4 inline-flex items-center gap-1 font-semibold text-coral-dark hover:underline">
+              <Link href="/plans" className="mt-4 inline-flex items-center gap-1 font-semibold text-coral-ink hover:underline">
                 Mira los planes de esta semana →
               </Link>
             )}

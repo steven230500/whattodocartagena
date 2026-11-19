@@ -1,27 +1,47 @@
+import { getLocale } from "next-intl/server"
 import { publicPageMetadata } from "@/lib/seo"
+import { Header } from "@/components/navigation/header"
+import { HomeHero } from "@/components/home/home-hero"
+import { OpenNow } from "@/components/home/open-now"
+import { WalkingRoutes } from "@/components/home/walking-routes"
+import { ThisWeek } from "@/components/home/this-week"
+import { City3DTeaser } from "@/components/home/city-3d-teaser"
+import { HistoryPreview } from "@/components/sections/history-preview"
+import { getBusinesses } from "@/lib/api/businesses"
+import { getRoutes } from "@/lib/api/routes"
+import { getPlans } from "@/lib/api/plans"
+import { getEvents } from "@/lib/api/events"
+import { placesFromCommerces } from "@/features/places"
 
 export const generateMetadata = () => publicPageMetadata("")
 
-import { Header } from "@/components/navigation/header"
-import { HeroSection } from "@/components/sections/hero-section"
-import { FeaturesGrid } from "@/components/sections/features-grid"
-import { HistoryPreview } from "@/components/sections/history-preview"
-import { CallToAction } from "@/components/sections/call-to-action"
-import { getRoutes } from "@/lib/api/routes"
-
 export const dynamic = "force-dynamic"
 
+/**
+ * Inicio "qué hacer hoy" (DESIGN.md: resolver en menos de 10 s qué hacer ahora):
+ * abierto ahora, rutas a pie, la semana, la ciudad en 3D y una sola franja de historia.
+ * Si la API falla, cada sección se oculta en vez de romper la página.
+ */
 export default async function HomePage() {
-  const routes = await getRoutes()
+  const locale = await getLocale()
+  const [commerces, routes, plans, events] = await Promise.all([
+    getBusinesses().catch(() => []),
+    getRoutes().catch(() => []),
+    getPlans().catch(() => []),
+    getEvents().catch(() => []),
+  ])
+  const now = new Date().getTime()
 
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <HeroSection routeCount={routes.length} />
-        <FeaturesGrid />
+        <HomeHero />
+        <OpenNow places={placesFromCommerces(commerces, locale)} />
+        <WalkingRoutes routes={routes} />
+        <ThisWeek plans={plans} events={events} now={now} />
+        <City3DTeaser />
         <HistoryPreview />
-        <CallToAction />
       </main>
     </div>
   )

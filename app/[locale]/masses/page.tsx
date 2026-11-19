@@ -10,7 +10,8 @@ import { getParishes } from "@/lib/api/parishes"
 export const dynamic = "force-dynamic"
 
 export default async function MisasPage() {
-  const parishes = await getParishes()
+  // si la API falla, la página muestra su estado vacío en vez de la pantalla de error
+  const parishes = await getParishes().catch(() => [])
 
   return (
     <div className="min-h-screen">

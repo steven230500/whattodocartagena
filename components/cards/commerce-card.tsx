@@ -28,7 +28,7 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-4 left-4">
-          <Badge className="bg-colonial-gold text-white">{COMMERCE_TYPES[commerce.type]}</Badge>
+          <Badge className="bg-colonial-gold text-ink">{COMMERCE_TYPES[commerce.type]}</Badge>
         </div>
         <div className="absolute top-4 right-4 flex items-center gap-2">
           {commerce.priceHint && (
@@ -47,14 +47,14 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
             {commerce.name}
           </h3>
         </div>
-        <div className="flex items-center text-stone-dark text-sm">
+        <div className="flex items-center text-stone-darker text-sm">
           <MapPin className="w-4 h-4 mr-1" />
           <span>{commerce.barrio}</span>
         </div>
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-stone-dark text-sm mb-4 line-clamp-2">{commerce.description}</p>
+        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{commerce.description}</p>
 
         {/* Tags */}
         {commerce.tags.length > 0 && (
@@ -75,13 +75,13 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
         {/* Contact Info */}
         <div className="space-y-2 mb-4">
           {commerce.hours && (
-            <div className="flex items-center text-stone-dark text-xs">
+            <div className="flex items-center text-stone-darker text-xs">
               <Clock className="w-3 h-3 mr-2" />
               <span>{commerce.hours}</span>
             </div>
           )}
           {commerce.contact.phone && (
-            <div className="flex items-center text-stone-dark text-xs">
+            <div className="flex items-center text-stone-darker text-xs">
               <Phone className="w-3 h-3 mr-2" />
               <span>{commerce.contact.phone}</span>
             </div>
@@ -90,7 +90,7 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Button asChild className="flex-1 bg-colonial-gold hover:bg-colonial-gold-dark text-white text-sm">
+          <Button asChild className="flex-1 bg-colonial-gold hover:bg-colonial-gold-dark text-ink text-sm">
             <Link href={`/businesses/${commerce.slug}`}>{t("cta.viewDetails")}</Link>
           </Button>
           <Button asChild variant="outline" size="sm" className="bg-transparent">

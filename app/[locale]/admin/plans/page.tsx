@@ -16,7 +16,7 @@ export default async function AdminPlansPage() {
           <h1 className="font-serif text-3xl font-bold text-foreground">Planes</h1>
           <Link
             href="/admin/plans/new"
-            className="px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors"
           >
             + Nuevo plan
           </Link>
@@ -41,7 +41,7 @@ export default async function AdminPlansPage() {
                     {p.price === "free" ? "Gratis" : p.priceAmount || "Pago"}
                   </td>
                   <td className="px-4 py-3 text-right space-x-3">
-                    <Link href={`/admin/plans/${p.id}/edit`} className="text-coral hover:underline">
+                    <Link href={`/admin/plans/${p.id}/edit`} className="text-coral-ink hover:underline">
                       Editar
                     </Link>
                     <DeletePlanButton id={p.id} title={p.title} />

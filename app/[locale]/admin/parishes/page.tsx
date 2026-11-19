@@ -16,7 +16,7 @@ export default async function AdminParishesPage() {
           <h1 className="font-serif text-3xl font-bold text-foreground">Parroquias</h1>
           <Link
             href="/admin/parishes/new"
-            className="px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors"
           >
             + Nueva parroquia
           </Link>
@@ -39,7 +39,7 @@ export default async function AdminParishesPage() {
                   <td className="px-4 py-3 text-muted-foreground">{p.neighborhood}</td>
                   <td className="px-4 py-3 text-muted-foreground">{p.schedules.length}</td>
                   <td className="px-4 py-3 text-right space-x-3">
-                    <Link href={`/admin/parishes/${p.id}/edit`} className="text-coral hover:underline">
+                    <Link href={`/admin/parishes/${p.id}/edit`} className="text-coral-ink hover:underline">
                       Editar
                     </Link>
                     <DeleteParishButton id={p.id} name={p.name} />

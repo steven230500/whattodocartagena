@@ -95,7 +95,7 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
       {hasActiveFilters && (
         <div className="flex flex-wrap gap-2">
           {filters.type !== "all" && (
-            <Badge variant="secondary" className="bg-coral/10 text-coral-dark">
+            <Badge variant="secondary" className="bg-coral/10 text-coral-ink">
               {EVENT_TYPES[filters.type as keyof typeof EVENT_TYPES]}
             </Badge>
           )}

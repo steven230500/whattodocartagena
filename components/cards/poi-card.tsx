@@ -14,17 +14,17 @@ export function PoiCard({ poi }: PoiCardProps) {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "historic":
-        return "bg-coral text-white"
+        return "bg-coral text-ink"
       case "food":
-        return "bg-colonial-gold text-white"
+        return "bg-colonial-gold text-ink"
       case "culture":
-        return "bg-caribbean-blue text-white"
+        return "bg-caribbean-blue text-ink"
       case "photo":
         return "bg-forest text-white"
       case "mall":
         return "bg-forest-light text-white"
       case "commerce":
-        return "bg-colonial-gold text-white"
+        return "bg-colonial-gold text-ink"
       default:
         return "bg-stone-dark text-white"
     }
@@ -64,13 +64,13 @@ export function PoiCard({ poi }: PoiCardProps) {
       </div>
 
       <CardHeader className="pb-3">
-        <h3 className="font-serif text-lg font-bold text-stone-darker group-hover:text-coral transition-colors">
+        <h3 className="font-serif text-lg font-bold text-stone-darker group-hover:text-coral-ink transition-colors">
           {poi.title}
         </h3>
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-stone-dark text-sm mb-4 line-clamp-3">{poi.excerpt}</p>
+        <p className="text-stone-darker text-sm mb-4 line-clamp-3">{poi.excerpt}</p>
 
         {/* Actions */}
         <div className="space-y-2">
@@ -83,7 +83,7 @@ export function PoiCard({ poi }: PoiCardProps) {
                   size="sm"
                   className={
                     index === 0
-                      ? "bg-coral hover:bg-coral-dark text-white"
+                      ? "bg-coral hover:bg-coral-dark text-ink"
                       : "bg-transparent text-stone-darker hover:bg-stone-light"
                   }
                   onClick={() => {
@@ -105,7 +105,7 @@ export function PoiCard({ poi }: PoiCardProps) {
 
           {(!poi.actions || poi.actions.length === 0) && (
             <div className="flex gap-2">
-              <Button className="flex-1 bg-coral hover:bg-coral-dark text-white text-sm">
+              <Button className="flex-1 bg-coral hover:bg-coral-dark text-ink text-sm">
                 <MapPin className="w-4 h-4 mr-2" />
                 Ver en Mapa
               </Button>

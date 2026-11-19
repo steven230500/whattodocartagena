@@ -76,7 +76,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
               setStatus("pending")
             })
           }}
-          className="bg-coral hover:bg-coral-dark text-white"
+          className="bg-coral hover:bg-coral-dark text-ink"
         >
           {pending ? "Enviando..." : "Enviar solicitud"}
         </Button>

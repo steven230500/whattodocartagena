@@ -1,8 +1,12 @@
 import { Link } from "@/i18n/navigation"
 import { Mail, MapPin } from "lucide-react"
+import { RampartDivider } from "@/components/ui/rampart-divider"
 
 export function Footer() {
   return (
+    <>
+    {/* el footer remata como la muralla que sostiene la página */}
+    <RampartDivider color="var(--foreground)" />
     <footer className="bg-foreground text-stone-warm border-t border-stone-warm/10">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -116,7 +120,7 @@ export function Footer() {
               href="https://stevenpatino.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-coral hover:text-coral-dark font-semibold transition-colors"
+              className="text-coral hover:text-coral-light font-semibold transition-colors"
             >
               Steven Patiño
             </a>
@@ -124,5 +128,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   )
 }

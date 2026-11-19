@@ -10,7 +10,7 @@ const historicalPeriods = [
     year: "1533",
     title: "Fundación de Cartagena",
     description: "Pedro de Heredia funda la ciudad que se convertiría en el puerto más importante del Caribe.",
-    image: "/spanish-colonial-founding-cartagena-1533.jpg",
+    image: "/aerial-view-of-cartagena-historic-center-with-wall.jpg",
   },
   {
     year: "1586-1741",
@@ -68,7 +68,7 @@ export function HistoryPreview() {
                 <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
 
                 {/* Year Badge — historia/patrimonio = colonial-gold, rol fijo */}
-                <div className="absolute top-4 left-4 bg-colonial-gold text-white px-4 py-2 rounded-full font-bold text-lg">
+                <div className="absolute top-4 left-4 bg-colonial-gold text-ink px-4 py-2 rounded-full font-bold text-lg">
                   {current.year}
                 </div>
               </div>
@@ -104,7 +104,7 @@ export function HistoryPreview() {
                         aria-current={index === currentPeriod ? "step" : undefined}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           index === currentPeriod ? "bg-coral w-8" : "bg-muted-foreground/30"
-                        }`}
+                        } text-ink`}
                       />
                     ))}
                   </div>
@@ -115,7 +115,7 @@ export function HistoryPreview() {
 
           {/* CTA */}
           <div className="text-center mt-12">
-            <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8">
+            <Button size="lg" className="bg-coral hover:bg-coral-dark text-ink px-8">
               <MapPin className="w-5 h-5 mr-2" />
               Explorar Línea de Tiempo Completa
             </Button>

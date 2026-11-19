@@ -43,7 +43,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-16">
           <div className="text-white">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge className="bg-colonial-gold text-white">{COMMERCE_TYPES[commerce.type]}</Badge>
+              <Badge className="bg-colonial-gold text-ink">{COMMERCE_TYPES[commerce.type]}</Badge>
               {commerce.priceHint && (
                 <Badge variant="outline" className="border-white/30 text-white">
                   <DollarSign className="w-3 h-3 mr-1" />
@@ -75,7 +75,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
                   <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre {commerce.name}</h2>
 
                   <div className="prose prose-stone max-w-none">
-                    <p className="text-stone-dark leading-relaxed">{commerce.content || description}</p>
+                    <p className="text-stone-darker leading-relaxed">{commerce.content || description}</p>
                   </div>
 
                   {commerce.tags && commerce.tags.length > 0 && (
@@ -103,21 +103,21 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
 
                   <div className="space-y-3">
                     {commerce.hours && (
-                      <div className="flex items-center text-stone-dark">
+                      <div className="flex items-center text-stone-darker">
                         <Clock className="w-4 h-4 mr-3 text-stone-darker" />
                         <span>{commerce.hours}</span>
                       </div>
                     )}
 
                     {commerce.contact.phone && (
-                      <div className="flex items-center text-stone-dark">
+                      <div className="flex items-center text-stone-darker">
                         <Phone className="w-4 h-4 mr-3 text-stone-darker" />
                         <span>{commerce.contact.phone}</span>
                       </div>
                     )}
 
                     {commerce.contact.web && (
-                      <div className="flex items-center text-stone-dark">
+                      <div className="flex items-center text-stone-darker">
                         <Globe className="w-4 h-4 mr-3 text-stone-darker" />
                         <a
                           href={commerce.contact.web}
@@ -131,7 +131,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
                     )}
 
                     {commerce.contact.instagram && (
-                      <div className="flex items-center text-stone-dark">
+                      <div className="flex items-center text-stone-darker">
                         <Instagram className="w-4 h-4 mr-3 text-stone-darker" />
                         <a
                           href={`https://instagram.com/${commerce.contact.instagram.replace("@", "")}`}
@@ -151,7 +151,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-3">
-                    <Button className="w-full bg-colonial-gold hover:bg-colonial-gold-dark text-white">
+                    <Button className="w-full bg-colonial-gold hover:bg-colonial-gold-dark text-ink">
                       <MapPin className="w-4 h-4 mr-2" />
                       {t("cta.viewOnMap")}
                     </Button>

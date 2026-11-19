@@ -111,7 +111,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
             </Badge>
           )}
           {filters.priceHint !== "all" && (
-            <Badge variant="secondary" className="bg-coral/10 text-coral-dark">
+            <Badge variant="secondary" className="bg-coral/10 text-coral-ink">
               {filters.priceHint}
             </Badge>
           )}

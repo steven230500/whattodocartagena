@@ -26,7 +26,7 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
           <Card className="border border-border shadow-none">
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <Trophy className="w-6 h-6 text-coral" />
+                <Trophy className="w-6 h-6 text-coral-ink" />
                 <CardTitle className="font-serif text-2xl">Logros</CardTitle>
               </div>
             </CardHeader>
@@ -76,7 +76,7 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
           <Card className="border border-border shadow-none">
             <CardHeader>
               <CardTitle className="font-serif text-2xl flex items-center space-x-2">
-                <Award className="w-6 h-6 text-coral" />
+                <Award className="w-6 h-6 text-coral-ink" />
                 <span>Logros desbloqueados</span>
               </CardTitle>
             </CardHeader>
@@ -86,7 +86,7 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
                   .filter((a) => a.unlocked)
                   .map((achievement) => (
                     <div key={achievement.id} className="flex items-start gap-4 py-5">
-                      <Trophy className="w-6 h-6 text-coral mt-1 shrink-0" />
+                      <Trophy className="w-6 h-6 text-coral-ink mt-1 shrink-0" />
                       <div className="flex-1">
                         <h4 className="font-semibold text-foreground mb-1">{achievement.title}</h4>
                         <p className="text-sm text-muted-foreground">{achievement.description}</p>

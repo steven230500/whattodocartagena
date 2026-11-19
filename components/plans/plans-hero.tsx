@@ -9,7 +9,7 @@ export function PlansHero() {
 
   return (
     <section className="relative">
-      <div className="bg-coral text-white py-16">
+      <div className="bg-coral text-ink py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-balance">{t("plans.title")}</h1>
@@ -31,7 +31,7 @@ export function PlansHero() {
           </div>
         </div>
       </div>
-      <RampartDivider color="var(--color-coral)" />
+      <RampartDivider color="var(--background)" />
     </section>
   )
 }

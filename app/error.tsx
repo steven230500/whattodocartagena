@@ -29,16 +29,16 @@ export default function Error({
 
         {/* Content */}
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance">
-          ¡Algo salió mal!
+          No pudimos cargar esta página
         </h1>
         <p className="text-lg text-muted-foreground mb-8 text-pretty max-w-md mx-auto">
-          Ocurrió un error inesperado. Nuestro equipo ha sido notificado y estamos trabajando para solucionarlo.
+          Puede ser un problema de conexión con nuestros datos. Intenta de nuevo en unos segundos o vuelve al inicio.
         </p>
 
         {/* Error details (only in development) */}
         {process.env.NODE_ENV === "development" && (
           <div className="mb-8 p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-left max-w-lg mx-auto">
-            <p className="text-sm font-mono text-destructive break-all">{error.message}</p>
+            <p className="text-sm font-mono text-red-800 break-all">{error.message}</p>
           </div>
         )}
 
@@ -46,7 +46,7 @@ export default function Error({
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
             onClick={reset}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-white rounded-lg font-medium hover:bg-coral-dark transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-ink rounded-lg font-medium hover:bg-coral-dark transition-colors"
           >
             <RefreshCw className="w-5 h-5" />
             Intentar de nuevo

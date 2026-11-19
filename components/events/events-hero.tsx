@@ -35,7 +35,7 @@ export function EventsHero() {
           <div className="mb-8" />
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
-            <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8 py-4 text-lg">
+            <Button size="lg" className="bg-coral hover:bg-coral-dark text-ink px-8 py-4 text-lg">
               <Calendar className="w-5 h-5 mr-2" />
               {t("events.upcoming")}
             </Button>

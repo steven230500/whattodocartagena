@@ -12,7 +12,7 @@ export function ClaimActions({ id, businessSlug }: { id: string; businessSlug: s
         type="button"
         disabled={pending}
         onClick={() => startTransition(() => approveClaim(id, businessSlug))}
-        className="text-coral hover:underline disabled:opacity-50"
+        className="text-coral-ink hover:underline disabled:opacity-50"
       >
         Aprobar
       </button>

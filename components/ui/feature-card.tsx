@@ -51,7 +51,7 @@ export function FeatureCard({
             <Icon className="w-6 h-6 text-white" />
           </div>
         )}
-        <CardTitle className="font-serif text-xl group-hover:text-coral transition-colors text-balance">
+        <CardTitle className="font-serif text-xl group-hover:text-coral-ink transition-colors text-balance">
           {title}
         </CardTitle>
       </CardHeader>

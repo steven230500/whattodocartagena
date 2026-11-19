@@ -34,7 +34,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                 variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category ? "bg-coral text-white hover:bg-coral-dark" : "bg-transparent"}
+                className={selectedCategory === category ? "bg-coral text-ink hover:bg-coral-dark" : "bg-transparent"}
               >
                 {category}
               </Button>
@@ -57,11 +57,13 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
+                  {/* precio con significado propio (gratis / pago), no el color de la categoría */}
                   <div className="absolute top-4 right-4">
-                    <Badge className={`${color} text-white border-0`}>{route.price}</Badge>
+                    <Badge className={`${/gratis|free/i.test(route.price) ? "bg-forest" : "bg-ink"} text-white border-0`}>{route.price}</Badge>
                   </div>
                   <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="bg-white/90 text-foreground">
+                    <Badge variant="secondary" className="bg-white/90 text-foreground gap-1.5">
+                      <span className={`h-2 w-2 rounded-full ${color}`} aria-hidden />
                       {route.category}
                     </Badge>
                   </div>
@@ -77,7 +79,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                 </div>
 
                 <CardHeader className="pb-3">
-                  <CardTitle className="font-serif text-xl group-hover:text-coral transition-colors">
+                  <CardTitle className="font-serif text-xl group-hover:text-coral-ink transition-colors">
                     {title}
                   </CardTitle>
                   <p className="text-muted-foreground text-pretty">{description}</p>
@@ -113,12 +115,13 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                     </div>
                   )}
 
-                  <Link href={`/routes/${route.slug}`}>
-                    <Button size="sm" className={`${color} text-white hover:opacity-90 w-full`}>
-                      <Play className="w-4 h-4 mr-2" />
-                      {route.steps.length > 0 ? "Iniciar" : "Ver ruta"}
-                    </Button>
-                  </Link>
+                  {/* una sola acción, igual en todas las tarjetas: el coral queda para la acción principal de la página */}
+                  <Button asChild size="sm" variant="outline" className="w-full border-ink/20 bg-transparent text-ink hover:bg-ink hover:text-background">
+                    <Link href={`/routes/${route.slug}`}>
+                      <Play className="w-4 h-4 mr-2" aria-hidden />
+                      Ver ruta
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             )

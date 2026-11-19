@@ -16,7 +16,7 @@ export default async function AdminEventsPage() {
           <h1 className="font-serif text-3xl font-bold text-foreground">Eventos</h1>
           <Link
             href="/admin/events/new"
-            className="px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors"
           >
             + Nuevo evento
           </Link>
@@ -39,7 +39,7 @@ export default async function AdminEventsPage() {
                   <td className="px-4 py-3 text-muted-foreground">{e.startDate}</td>
                   <td className="px-4 py-3 text-muted-foreground">{e.venue}</td>
                   <td className="px-4 py-3 text-right space-x-3">
-                    <Link href={`/admin/events/${e.id}/edit`} className="text-coral hover:underline">
+                    <Link href={`/admin/events/${e.id}/edit`} className="text-coral-ink hover:underline">
                       Editar
                     </Link>
                     <DeleteEventButton id={e.id} title={e.title} />

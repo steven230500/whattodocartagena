@@ -14,7 +14,7 @@ export function RoutesHero() {
         <div className="max-w-2xl">
           <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6 text-balance">
             Rutas que Cuentan
-            <span className="block text-forest-light">Historias</span>
+            <span className="block text-colonial-gold">Historias</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-xl text-pretty">
             Camina por senderos históricos con audio-guías narradas por locales y descubre los secretos mejor guardados

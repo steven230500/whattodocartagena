@@ -45,13 +45,13 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+          className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
         >
           {pending ? "Creando cuenta..." : "Crear cuenta"}
         </button>
         <p className="text-sm text-muted-foreground text-center">
           ¿Ya tienes cuenta?{" "}
-          <Link href="/login" className="text-coral hover:underline">
+          <Link href="/login" className="text-coral-ink hover:underline">
             Inicia sesión
           </Link>
         </p>

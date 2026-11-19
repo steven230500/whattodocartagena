@@ -30,7 +30,7 @@ export function MassSchedulesHero() {
           </div>
         </div>
       </div>
-      <RampartDivider color="var(--color-stone)" />
+      <RampartDivider color="var(--background)" />
     </section>
   )
 }

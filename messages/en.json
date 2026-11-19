@@ -10,9 +10,43 @@
   },
   "home": {
     "hero": {
-      "title": "Discover the magic of Cartagena",
-      "subtitle": "An immersive cultural experience that takes you through 500 years of history, traditions and secrets of the Heroic City.",
-      "cta": "Start Exploration"
+      "kicker": "Cartagena de Indias · Walled city, Getsemaní and around",
+      "title": "What to do in Cartagena today",
+      "subtitle": "What's open right now, routes to explore on foot, and the city in 3D lit as it is at this moment.",
+      "ctaOpen": "See what's open",
+      "cta3d": "City in 3D",
+      "ctaRoutes": "Walking routes",
+      "cta": "See what's open"
+    },
+    "openNow": {
+      "title": "Open now",
+      "subtitle": "It's {time} in Cartagena.",
+      "subtitleNoTime": "Local businesses with up-to-date hours.",
+      "all": "See everything on the map",
+      "none": "Nothing in the directory is open at this hour. Try the routes or the 3D city.",
+      "openUntil": "Open · closes {time}",
+      "opensAt": "Opens today at {time}"
+    },
+    "routes": {
+      "title": "Walking routes",
+      "subtitle": "Walks through the walled city and its neighborhoods, every stop marked on the map.",
+      "all": "{count, plural, one {See the route} other {See all # routes}}",
+      "stops": "{count, plural, one {# stop} other {# stops}}",
+      "open": "See route",
+      "in3d": "In 3D"
+    },
+    "week": {
+      "title": "This week",
+      "subtitle": "Dated events and recurring plans: open-air cinema, champeta, markets.",
+      "plans": "All plans",
+      "events": "Events calendar",
+      "free": "Free"
+    },
+    "city3d": {
+      "title": "The walled city in 3D",
+      "body": "Explore the walls, Getsemaní and San Felipe Castle in this hour's real light. Tap a neighborhood to focus it, or pick a route and follow it street by street.",
+      "cta": "Open the 3D city",
+      "classic": "Classic map"
     },
     "features": {
       "title": "A complete experience",

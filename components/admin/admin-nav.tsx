@@ -14,7 +14,7 @@ export function AdminNav() {
   return (
     <nav className="flex gap-4 text-sm text-muted-foreground mb-6">
       {LINKS.map((l) => (
-        <Link key={l.href} href={l.href} className="hover:text-coral hover:underline">
+        <Link key={l.href} href={l.href} className="hover:text-coral-ink hover:underline">
           {l.label}
         </Link>
       ))}

@@ -16,7 +16,7 @@ export default async function AdminRoutesPage() {
           <h1 className="font-serif text-3xl font-bold text-foreground">Rutas</h1>
           <Link
             href="/admin/routes/new"
-            className="px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors"
           >
             + Nueva ruta
           </Link>
@@ -39,7 +39,7 @@ export default async function AdminRoutesPage() {
                   <td className="px-4 py-3 text-muted-foreground">{r.category}</td>
                   <td className="px-4 py-3 text-muted-foreground">{r.steps.length}</td>
                   <td className="px-4 py-3 text-right space-x-3">
-                    <Link href={`/admin/routes/${r.id}/edit`} className="text-coral hover:underline">
+                    <Link href={`/admin/routes/${r.id}/edit`} className="text-coral-ink hover:underline">
                       Editar
                     </Link>
                     <DeleteRouteButton id={r.id} title={r.title} />

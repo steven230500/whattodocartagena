@@ -1,23 +1,23 @@
 /**
- * Signature motif (DESIGN.md): silueta de las almenas de la muralla,
- * usada con disciplina como divisor de sección en vez de un border-b genérico.
+ * Firma visual (DESIGN.md): la silueta de las almenas de la muralla.
+ * Proporción fija (merlón de 28 px, hueco de 16 px, 12 px de alto) a cualquier
+ * ancho, y siempre del color de la superficie que cierra: así se lee como el
+ * borde de esa superficie y no como un adorno suelto.
  */
 export function RampartDivider({
   className = "",
-  color = "var(--color-stone)",
+  color = "var(--background)",
 }: {
   className?: string
   color?: string
 }) {
+  const mask =
+    "linear-gradient(#000 0 0) bottom / 100% 5px no-repeat, repeating-linear-gradient(90deg, #000 0 28px, transparent 28px 44px)"
   return (
     <div
       aria-hidden="true"
-      className={`h-4 w-full ${className}`}
-      style={{
-        backgroundColor: color,
-        clipPath:
-          "polygon(0% 100%,0% 40%,8% 40%,8% 0%,16% 0%,16% 40%,24% 40%,24% 0%,32% 0%,32% 40%,40% 40%,40% 0%,48% 0%,48% 40%,56% 40%,56% 0%,64% 0%,64% 40%,72% 40%,72% 0%,80% 0%,80% 40%,88% 40%,88% 0%,96% 0%,96% 40%,100% 40%,100% 100%)",
-      }}
+      className={`h-3 w-full ${className}`}
+      style={{ backgroundColor: color, WebkitMask: mask, mask }}
     />
   )
 }

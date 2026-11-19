@@ -38,7 +38,7 @@ export default async function MyBusinessPage() {
                     className="flex items-center justify-between p-4 border border-border rounded-lg"
                   >
                     <span className="font-medium text-foreground">{b.name}</span>
-                    <Link href={`/my-business/${b.id}/edit`} className="text-coral hover:underline text-sm">
+                    <Link href={`/my-business/${b.id}/edit`} className="text-coral-ink hover:underline text-sm">
                       Editar
                     </Link>
                   </div>
@@ -78,7 +78,7 @@ export default async function MyBusinessPage() {
           {businesses.length === 0 && claims.length === 0 && (
             <p className="text-muted-foreground">
               Todavía no reclamaste ningún negocio. Buscá tu negocio en{" "}
-              <Link href="/businesses" className="text-coral hover:underline">
+              <Link href="/businesses" className="text-coral-ink hover:underline">
                 el listado de comercios
               </Link>{" "}
               y reclamalo desde su página.

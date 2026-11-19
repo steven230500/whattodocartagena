@@ -22,7 +22,7 @@ export function StatsCard({ title, value, description, icon: Icon, color = "bg-c
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <p className="text-sm font-medium text-muted-foreground mb-1">{title}</p>
-            <p className="text-2xl font-bold text-foreground group-hover:text-coral transition-colors">{value}</p>
+            <p className="text-2xl font-bold text-foreground group-hover:text-coral-ink transition-colors">{value}</p>
             {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
             {trend && (
               <div className="flex items-center mt-2">

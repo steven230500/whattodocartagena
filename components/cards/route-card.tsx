@@ -77,7 +77,7 @@ export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false
 
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <CardTitle className="font-serif text-xl group-hover:text-coral transition-colors text-balance">
+          <CardTitle className="font-serif text-xl group-hover:text-coral-ink transition-colors text-balance">
             {route.title}
           </CardTitle>
           <div className="flex items-center space-x-1">

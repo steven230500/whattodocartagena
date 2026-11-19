@@ -62,7 +62,7 @@ export function Header() {
             <div className="flex items-center space-x-2">
               <SearchButton />
               <LanguageToggle currentLocale={currentLocale} onLocaleChange={handleLocaleChange} />
-              <Button asChild size="sm" className="bg-coral hover:bg-coral-dark text-white">
+              <Button asChild size="sm" className="bg-coral hover:bg-coral-dark text-ink">
                 <Link href="/plans">{currentLocale === "es" ? "Planes para locales" : "Local Plans"}</Link>
               </Button>
               <UserMenu />

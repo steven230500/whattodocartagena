@@ -45,7 +45,7 @@ export function EventCard({ event }: EventCardProps) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-4 left-4">
-          <Badge className="bg-coral text-white">{EVENT_TYPES[event.type]}</Badge>
+          <Badge className="bg-coral text-ink">{EVENT_TYPES[event.type]}</Badge>
         </div>
         <div className="absolute top-4 right-4">
           <Badge variant="outline" className="bg-white/90 text-stone-darker border-white/50">
@@ -57,16 +57,16 @@ export function EventCard({ event }: EventCardProps) {
 
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <h3 className="font-serif text-xl font-bold text-stone-darker group-hover:text-coral transition-colors">
+          <h3 className="font-serif text-xl font-bold text-stone-darker group-hover:text-coral-ink transition-colors">
             {event.title}
           </h3>
         </div>
         <div className="space-y-1">
-          <div className="flex items-center text-stone-dark text-sm">
+          <div className="flex items-center text-stone-darker text-sm">
             <Calendar className="w-4 h-4 mr-1" />
             <span>{formatDateRange()}</span>
           </div>
-          <div className="flex items-center text-stone-dark text-sm">
+          <div className="flex items-center text-stone-darker text-sm">
             <MapPin className="w-4 h-4 mr-1" />
             <span>{event.venue}</span>
           </div>
@@ -74,7 +74,7 @@ export function EventCard({ event }: EventCardProps) {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-stone-dark text-sm mb-4 line-clamp-2">{event.description}</p>
+        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{event.description}</p>
 
         {/* Tags */}
         {event.tags.length > 0 && (
@@ -95,7 +95,7 @@ export function EventCard({ event }: EventCardProps) {
         {/* Actions */}
         <div className="flex gap-2">
           <Link href={`/events/${event.slug}`} className="flex-1">
-            <Button className="w-full bg-coral hover:bg-coral-dark text-white text-sm">{t("cta.viewDetails")}</Button>
+            <Button className="w-full bg-coral hover:bg-coral-dark text-ink text-sm">{t("cta.viewDetails")}</Button>
           </Link>
           <Button variant="outline" size="sm" className="bg-transparent">
             <Navigation className="w-4 h-4" />

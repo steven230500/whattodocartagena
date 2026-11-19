@@ -43,13 +43,13 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+          className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
         >
           {pending ? "Entrando..." : "Entrar"}
         </button>
         <p className="text-sm text-muted-foreground text-center">
           ¿No tienes cuenta?{" "}
-          <Link href="/register" className="text-coral hover:underline">
+          <Link href="/register" className="text-coral-ink hover:underline">
             Regístrate
           </Link>
         </p>

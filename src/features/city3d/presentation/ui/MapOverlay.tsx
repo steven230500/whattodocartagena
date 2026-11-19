@@ -125,7 +125,7 @@ function StopPin({ index }: { index: number }) {
         data-state={status}
         className={cn(
           "pointer-events-auto absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 font-semibold shadow-[0_2px_10px_rgba(0,0,0,.45)] transition-all",
-          active ? "h-9 w-9 border-white text-sm text-white" : "h-7 w-7 text-xs",
+          active ? "h-9 w-9 border-white text-sm text-ink" : "h-7 w-7 text-xs",
           !active && (done ? "border-white text-white" : "border-[#2A1F1A] text-[#2A1F1A]"),
         )}
         style={{ background: active ? SURFACES.route : done ? SURFACES.routeDone : "#FEF7ED" }}

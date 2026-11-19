@@ -39,7 +39,7 @@ export function CommerceHero({ count = 0 }: CommerceHeroProps) {
           <p className="text-sm text-white/60 mb-8">{count} comercios en el directorio</p>
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
-            <Button size="lg" className="bg-coral hover:bg-coral-dark text-white px-8 py-4 text-lg">
+            <Button size="lg" className="bg-coral hover:bg-coral-dark text-ink px-8 py-4 text-lg">
               <MapPin className="w-5 h-5 mr-2" />
               {t("cta.viewOnMap")}
             </Button>

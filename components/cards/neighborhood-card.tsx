@@ -64,7 +64,7 @@ export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardPr
       </div>
 
       <CardHeader className="pb-3">
-        <CardTitle className="font-serif text-lg group-hover:text-coral transition-colors">
+        <CardTitle className="font-serif text-lg group-hover:text-coral-ink transition-colors">
           {neighborhood.name}
         </CardTitle>
         <p className="text-sm text-muted-foreground text-pretty">{neighborhood.description}</p>

@@ -105,7 +105,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
             </div>
           </div>
         ) : (
-          <p className="px-6 pt-6 text-xs font-semibold uppercase tracking-wide text-coral-dark">
+          <p className="px-6 pt-6 text-xs font-semibold uppercase tracking-wide text-coral-ink">
             Paso {currentStep + 1} de {route.steps.length}
           </p>
         )}
@@ -131,7 +131,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
             {/* Progress Bar */}
             <div className="w-full bg-muted rounded-full h-2 mb-4">
               <div
-                className="bg-coral h-2 rounded-full transition-all duration-300"
+                className="bg-coral h-2 rounded-full transition-all duration-300 text-ink"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -218,7 +218,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
               <div className="flex items-center space-x-4">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                    index === currentStep ? "bg-coral text-white" : "bg-muted text-muted-foreground"
+                    index === currentStep ? "bg-coral text-ink" : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {index + 1}
@@ -227,7 +227,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                   <h4 className="font-medium text-foreground">{step.title}</h4>
                   <p className="text-sm text-muted-foreground">{step.duration}</p>
                 </div>
-                {index === currentStep && isPlaying && <div className="w-2 h-2 bg-coral rounded-full animate-pulse" />}
+                {index === currentStep && isPlaying && <div className="w-2 h-2 bg-coral rounded-full animate-pulse text-ink" />}
               </div>
             </CardContent>
           </Card>

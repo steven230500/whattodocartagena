@@ -14,7 +14,7 @@ const timelineEvents = [
     subtitle: "Pedro de Heredia establece la ciudad",
     description:
       "El conquistador español Pedro de Heredia funda Cartagena de Indias el 1 de junio de 1533, estableciendo uno de los puertos más importantes del Nuevo Mundo. La ciudad se convierte rápidamente en el principal punto de entrada y salida de riquezas hacia España.",
-    image: "/spanish-colonial-founding-cartagena-1533.jpg",
+    image: "/aerial-view-of-cartagena-historic-center-with-wall.jpg",
     icon: Crown,
     category: "Fundación",
     keyFacts: [
@@ -46,7 +46,7 @@ const timelineEvents = [
     subtitle: "Victoria heroica contra los ingleses",
     description:
       "La ciudad resiste heroicamente el asedio de la flota inglesa comandada por Edward Vernon. Blas de Lezo, el almirante español, defiende exitosamente la ciudad en una de las batallas navales más importantes de la historia colonial americana.",
-    image: "/placeholder.svg?key=siege1741",
+    image: "/cartagena-city-walls-fortifications.jpg",
     icon: Sword,
     category: "Defensa",
     keyFacts: [
@@ -78,7 +78,7 @@ const timelineEvents = [
     subtitle: "Resistencia durante la Reconquista española",
     description:
       "Pablo Morillo sitia la ciudad durante 106 días. La población resiste heroicamente hasta que el hambre y las enfermedades obligan a la rendición. Miles de cartageneros mueren defendiendo la libertad, consolidando el espíritu heroico de la ciudad.",
-    image: "/placeholder.svg?key=morillo1815",
+    image: "/castillo-san-felipe-fortress-cartagena.jpg",
     icon: Users,
     category: "Resistencia",
     keyFacts: [
@@ -150,7 +150,7 @@ export function InteractiveTimeline() {
               variant={activeEvent === index ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveEvent(index)}
-              className={activeEvent === index ? "bg-colonial-gold hover:bg-colonial-gold-dark text-white" : ""}
+              className={activeEvent === index ? "bg-colonial-gold hover:bg-colonial-gold-dark text-ink" : ""}
             >
               {event.year}
             </Button>
@@ -188,7 +188,7 @@ export function InteractiveTimeline() {
 
                       <h3 className="font-serif text-3xl font-bold text-foreground mb-2">{event.title}</h3>
 
-                      <p className="text-lg text-coral font-medium mb-4">{event.subtitle}</p>
+                      <p className="text-lg text-coral-ink font-medium mb-4">{event.subtitle}</p>
 
                       <p className="text-muted-foreground mb-6 text-pretty leading-relaxed">{event.description}</p>
 
@@ -197,13 +197,13 @@ export function InteractiveTimeline() {
                         <h4 className="font-semibold text-foreground mb-3">Datos Clave:</h4>
                         {event.keyFacts.map((fact, factIndex) => (
                           <div key={factIndex} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-coral mt-2 flex-shrink-0" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-coral mt-2 flex-shrink-0 text-ink" />
                             <p className="text-sm text-muted-foreground">{fact}</p>
                           </div>
                         ))}
                       </div>
 
-                      <Button className="bg-colonial-gold hover:bg-colonial-gold-dark text-white self-start">
+                      <Button className="bg-colonial-gold hover:bg-colonial-gold-dark text-ink self-start">
                         <MapPin className="w-4 h-4 mr-2" />
                         Ver en el Mapa
                       </Button>
@@ -219,7 +219,7 @@ export function InteractiveTimeline() {
                       <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
 
                       {/* Year Badge */}
-                      <div className="absolute top-4 right-4 bg-colonial-gold text-white px-4 py-2 rounded-full font-bold text-xl">
+                      <div className="absolute top-4 right-4 bg-colonial-gold text-ink px-4 py-2 rounded-full font-bold text-xl">
                         {event.year}
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export function InteractiveTimeline() {
         <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
           <div className="w-1 h-32 bg-muted rounded-full overflow-hidden">
             <div
-              className="w-full bg-coral transition-all duration-300 rounded-full"
+              className="w-full bg-coral transition-all duration-300 rounded-full text-ink"
               style={{ height: `${scrollProgress * 100}%` }}
             />
           </div>

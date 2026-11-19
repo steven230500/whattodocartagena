@@ -10,9 +10,43 @@
   },
   "home": {
     "hero": {
-      "title": "Descubre la magia de Cartagena",
-      "subtitle": "Una experiencia cultural inmersiva que te lleva a través de 500 años de historia, tradiciones y secretos de la Ciudad Heroica.",
-      "cta": "Comenzar Exploración"
+      "kicker": "Cartagena de Indias · Ciudad amurallada, Getsemaní y alrededores",
+      "title": "Qué hacer hoy en Cartagena",
+      "subtitle": "Lo que está abierto ahora, rutas para recorrerla a pie y la ciudad en 3D con la luz de este momento.",
+      "ctaOpen": "Ver qué está abierto",
+      "cta3d": "Ciudad en 3D",
+      "ctaRoutes": "Rutas a pie",
+      "cta": "Ver qué está abierto"
+    },
+    "openNow": {
+      "title": "Abierto ahora",
+      "subtitle": "Son las {time} en Cartagena.",
+      "subtitleNoTime": "Negocios locales con horario actualizado.",
+      "all": "Ver todo en el mapa",
+      "none": "A esta hora no hay nada abierto en el directorio. Mira las rutas o la ciudad en 3D.",
+      "openUntil": "Abierto · cierra {time}",
+      "opensAt": "Abre hoy a las {time}"
+    },
+    "routes": {
+      "title": "Rutas a pie",
+      "subtitle": "Recorridos por la ciudad amurallada y sus barrios, con cada parada marcada en el mapa.",
+      "all": "{count, plural, one {Ver la ruta} other {Ver las # rutas}}",
+      "stops": "{count, plural, one {# parada} other {# paradas}}",
+      "open": "Ver ruta",
+      "in3d": "En 3D"
+    },
+    "week": {
+      "title": "Esta semana",
+      "subtitle": "Eventos con fecha y planes que se repiten: cine al aire libre, champeta, mercados.",
+      "plans": "Todos los planes",
+      "events": "Agenda de eventos",
+      "free": "Gratis"
+    },
+    "city3d": {
+      "title": "La ciudad amurallada en 3D",
+      "body": "Recorre la muralla, Getsemaní y el Castillo San Felipe con la luz real de esta hora. Toca un barrio para enfocarlo o elige una ruta y síguela calle por calle.",
+      "cta": "Abrir la ciudad en 3D",
+      "classic": "Mapa clásico"
     },
     "features": {
       "title": "Una experiencia completa",

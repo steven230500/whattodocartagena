@@ -144,7 +144,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
             <div className="space-y-3">
               <Link
                 href="/plans"
-                className="flex items-center justify-center w-full px-4 py-3 bg-coral hover:bg-coral-dark text-white rounded-xl font-medium transition-colors"
+                className="flex items-center justify-center w-full px-4 py-3 bg-coral hover:bg-coral-dark text-ink rounded-xl font-medium transition-colors"
                 onClick={onClose}
               >
                 Planes para locales

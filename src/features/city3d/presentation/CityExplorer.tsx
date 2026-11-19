@@ -103,7 +103,7 @@ export default function CityExplorer({
                     setStatus({ kind: "loading" })
                     setAttempt((a) => a + 1)
                   }}
-                  className="mt-4 rounded-full bg-coral px-5 py-2 text-sm font-semibold"
+                  className="mt-4 rounded-full bg-coral px-5 py-2 text-sm font-semibold text-ink"
                 >
                   {t("retry")}
                 </button>
@@ -112,7 +112,7 @@ export default function CityExplorer({
             {status.kind === "no-webgl" && (
               <>
                 <p className="font-serif text-xl">{t("noWebgl")}</p>
-                <Link href="/map" className="mt-4 inline-block rounded-full bg-coral px-5 py-2 text-sm font-semibold">
+                <Link href="/map" className="mt-4 inline-block rounded-full bg-coral px-5 py-2 text-sm font-semibold text-ink">
                   {t("classic")}
                 </Link>
               </>

@@ -15,7 +15,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: #6b605a; /* gris cálido: 5,7:1 sobre crema (antes 4,45) */
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -46,7 +46,12 @@
   /* Cartagena-inspired color palette */
   --color-coral: #ff6b47;
   --color-coral-light: #ff8a6b;
-  --color-coral-dark: #e55a42;
+  /* hover del coral: con texto tinta pasa AA (4,97:1) */
+  --color-coral-dark: #f2603c;
+  /* coral para TEXTO sobre fondos claros: 4,6:1 sobre crema (el coral puro da 2,7:1) */
+  --color-coral-ink: #c9421c;
+  /* tinta: texto sobre rellenos coral / dorado / azul caribe (blanco no pasa AA) */
+  --color-ink: #2a1f1a;
 
   --color-caribbean-blue: #0ea5e9;
   --color-caribbean-blue-light: #38bdf8;

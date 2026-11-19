@@ -28,7 +28,7 @@ export function AchievementsGrid({ achievements }: AchievementsGridProps) {
                 <CardHeader>
                   <CardTitle className="font-serif text-lg flex items-center space-x-2">
                     {achievement.unlocked ? (
-                      <Icon className="w-5 h-5 text-coral" />
+                      <Icon className="w-5 h-5 text-coral-ink" />
                     ) : (
                       <Lock className="w-5 h-5 text-muted-foreground" />
                     )}

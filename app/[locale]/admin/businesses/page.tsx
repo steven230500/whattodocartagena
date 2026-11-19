@@ -16,7 +16,7 @@ export default async function AdminBusinessesPage() {
           <h1 className="font-serif text-3xl font-bold text-foreground">Comercios</h1>
           <Link
             href="/admin/businesses/new"
-            className="px-4 py-2 bg-coral hover:bg-coral-dark text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors"
           >
             + Nuevo comercio
           </Link>
@@ -39,7 +39,7 @@ export default async function AdminBusinessesPage() {
                   <td className="px-4 py-3 text-muted-foreground">{b.barrio}</td>
                   <td className="px-4 py-3 text-muted-foreground">{b.contact.phone || "—"}</td>
                   <td className="px-4 py-3 text-right space-x-3">
-                    <Link href={`/admin/businesses/${b.id}/edit`} className="text-coral hover:underline">
+                    <Link href={`/admin/businesses/${b.id}/edit`} className="text-coral-ink hover:underline">
                       Editar
                     </Link>
                     <DeleteBusinessButton id={b.id} name={b.name} />

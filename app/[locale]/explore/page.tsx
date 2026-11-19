@@ -9,8 +9,8 @@ import { Search } from "lucide-react"
 type Tag = "gold" | "coral" | "neutral"
 
 const TAG_STYLES: Record<Tag, { label: string; text: string; ring: string }> = {
-  gold: { label: "bg-colonial-gold", text: "text-white", ring: "ring-colonial-gold" },
-  coral: { label: "bg-coral", text: "text-white", ring: "ring-coral" },
+  gold: { label: "bg-colonial-gold", text: "text-ink", ring: "ring-colonial-gold" },
+  coral: { label: "bg-coral", text: "text-ink", ring: "ring-coral" },
   neutral: { label: "bg-stone-darker", text: "text-white", ring: "ring-stone-darker" },
 }
 
@@ -163,7 +163,6 @@ export default function ExploraPage() {
           </div>
         </div>
 
-        <RampartDivider color="var(--color-stone)" />
       </main>
     </div>
   )

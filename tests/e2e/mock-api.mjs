@@ -44,6 +44,27 @@ const routes = [
   },
 ]
 
+const plans = [
+  {
+    id: "p1", title: "Cine al aire libre E2E", description: "Película en el parque", type: "cultural", price: "free",
+    price_amount: null, date: "Primer viernes del mes", time: "7:00 PM", location: "Parque Centenario", neighborhood: "Centro",
+  },
+  {
+    id: "p2", title: "Noche de salsa E2E", description: "Salsa en vivo", type: "nightlife", price: "paid",
+    price_amount: "$50.000 COP", date: "Viernes y sábados", time: "9:00 PM", location: "Café Havana", neighborhood: "Getsemaní",
+  },
+]
+
+// un evento que siempre cae en los próximos días, para la sección "Esta semana"
+const inTwoDays = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10)
+const events = [
+  {
+    id: "ev1", title: "Festival E2E", title_en: "E2E Festival", slug: "festival-e2e", start_date: inTwoDays, end_date: null,
+    type: "festival", venue: "Plaza de la Aduana", related_business_id: null, lat: 10.4226, lng: -75.5497, image: "",
+    tags: [], description: "Festival de prueba", description_en: null, content: null,
+  },
+]
+
 const state = { progressPuts: [], savedProgress: { "r-e2e": 1 } }
 
 const json = (res, status, body) => {
@@ -72,6 +93,13 @@ http
     }
     if (path === "/api/businesses") return json(res, 200, businesses)
     if (path === "/api/routes") return json(res, 200, routes)
+    if (path === "/api/plans") return json(res, 200, plans)
+    if (path === "/api/events") return json(res, 200, events)
+    const eventMatch = path.match(/^\/api\/events\/([^/]+)$/)
+    if (eventMatch) {
+      const e = events.find((x) => x.slug === eventMatch[1])
+      return e ? json(res, 200, e) : json(res, 404, { error: "not found" })
+    }
     const routeMatch = path.match(/^\/api\/routes\/([^/]+)$/)
     if (routeMatch) {
       const r = routes.find((x) => x.slug === routeMatch[1])
