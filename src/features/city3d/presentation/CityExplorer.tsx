@@ -1,0 +1,167 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
+import { Compass, Map as MapIcon, RotateCcw } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
+import type { CityModel } from "../domain/city-model"
+import type { ExplorerPlace, ExplorerRoute } from "../domain/explorer"
+import { cartagenaMinutes } from "../domain/sun"
+import { loadCity } from "../infrastructure/load-city"
+import { ExplorerProvider, useExplorer } from "./state"
+import { Crenellation, ExplorerPanel } from "./ui/ExplorerPanel"
+import { SelectionCard } from "./ui/SelectionCard"
+import { MapOverlay } from "./ui/MapOverlay"
+import { TimeDock } from "./ui/TimeDock"
+
+const CityCanvas = dynamic(() => import("./scene/CityCanvas"), { ssr: false })
+
+export interface CityExplorerProps {
+  places: ExplorerPlace[]
+  routes: ExplorerRoute[]
+  initialRouteId?: string
+}
+
+type Status = { kind: "loading" } | { kind: "ready"; model: CityModel } | { kind: "error" } | { kind: "no-webgl" }
+
+function hasWebGL() {
+  try {
+    const c = document.createElement("canvas")
+    return !!(c.getContext("webgl2") || c.getContext("webgl"))
+  } catch {
+    return false
+  }
+}
+
+export default function CityExplorer({ places, routes, initialRouteId }: CityExplorerProps) {
+  const t = useTranslations("city3d")
+  const [status, setStatus] = useState<Status>({ kind: "loading" })
+  const [attempt, setAttempt] = useState(0)
+  const [reducedMotion, setReducedMotion] = useState(false)
+
+  useEffect(() => {
+    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    if (!hasWebGL()) {
+      setStatus({ kind: "no-webgl" })
+      return
+    }
+    let alive = true
+    setStatus({ kind: "loading" })
+    loadCity()
+      .then((model) => alive && setStatus({ kind: "ready", model }))
+      .catch(() => alive && setStatus({ kind: "error" }))
+    return () => {
+      alive = false
+    }
+  }, [attempt])
+
+  return (
+    <div className="relative h-[calc(100dvh-4rem)] w-full overflow-hidden bg-[#1a2547] max-md:h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom))]">
+      {status.kind === "ready" ? (
+        <ExplorerProvider
+          model={status.model}
+          places={places}
+          routes={routes}
+          initialRouteId={initialRouteId}
+          reducedMotion={reducedMotion}
+        >
+          <ExplorerLayout />
+        </ExplorerProvider>
+      ) : (
+        <div className="absolute inset-0 grid place-items-center bg-[radial-gradient(ellipse_at_center,#2c3f7a_0%,#141d38_70%)] px-6 text-center text-white">
+          <div className="w-full max-w-xs">
+            <Crenellation className="mx-auto mb-5 w-40 bg-[#FFD9A8]" />
+            {status.kind === "loading" && <p className="animate-pulse font-serif text-xl">{t("loading")}</p>}
+            {status.kind === "error" && (
+              <>
+                <p className="font-serif text-xl">{t("error")}</p>
+                <button
+                  type="button"
+                  onClick={() => setAttempt((a) => a + 1)}
+                  className="mt-4 rounded-full bg-coral px-5 py-2 text-sm font-semibold"
+                >
+                  {t("retry")}
+                </button>
+              </>
+            )}
+            {status.kind === "no-webgl" && (
+              <>
+                <p className="font-serif text-xl">{t("noWebgl")}</p>
+                <Link href="/map" className="mt-4 inline-block rounded-full bg-coral px-5 py-2 text-sm font-semibold">
+                  {t("classic")}
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ExplorerLayout() {
+  const t = useTranslations("city3d")
+  const { state, dispatch, camera } = useExplorer()
+
+  // reloj en vivo: avanza con la hora real de Cartagena
+  useEffect(() => {
+    if (!state.live) return
+    const id = window.setInterval(() => dispatch({ type: "live", minutes: cartagenaMinutes(new Date()) }), 30_000)
+    return () => window.clearInterval(id)
+  }, [state.live, dispatch])
+
+  return (
+    <>
+      <div className="absolute inset-0">
+        <CityCanvas />
+      </div>
+      <MapOverlay />
+
+      <ExplorerPanel />
+
+      {/* controles de cámara */}
+      <div className="absolute right-3 top-3 z-10 flex flex-col overflow-hidden rounded-full border border-foreground/10 bg-background text-foreground shadow-md md:right-4 md:top-4">
+        <button
+          type="button"
+          onClick={() => {
+            dispatch({ type: "select", selection: null })
+            camera.overview()
+          }}
+          className="grid h-10 w-10 place-items-center hover:bg-foreground/5"
+          aria-label={t("overview")}
+          title={t("overview")}
+        >
+          <RotateCcw className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => camera.flyTo(-350, 100, { distance: 900, polar: 0.2, azimuth: 0 })}
+          className="grid h-10 w-10 place-items-center hover:bg-foreground/5"
+          aria-label={t("north")}
+          title={t("north")}
+        >
+          <Compass className="h-4 w-4" />
+        </button>
+        <Link
+          href="/map"
+          className="grid h-10 w-10 place-items-center hover:bg-foreground/5"
+          aria-label={t("classic")}
+          title={t("classic")}
+        >
+          <MapIcon className="h-4 w-4" />
+        </Link>
+      </div>
+
+      {/* escritorio: hora abajo y selección a la derecha */}
+      <div className="absolute bottom-4 left-[392px] right-4 z-10 mx-auto hidden max-w-xl rounded-2xl bg-background/95 px-4 py-3 text-foreground shadow-xl md:block">
+        <TimeDock />
+      </div>
+      {state.selection && <SelectionCard className="absolute right-16 top-4 z-10 hidden w-80 md:block" />}
+
+      <p className="pointer-events-none absolute left-3 top-3 z-10 rounded-full bg-background/85 px-2.5 py-1 text-[10px] text-foreground/70 md:left-auto md:right-4 md:top-auto md:bottom-1.5 md:text-[11px]">
+        <span className="hidden md:inline">{t("hintMouse")} · </span>© OpenStreetMap contributors
+      </p>
+    </>
+  )
+}

@@ -9,95 +9,11 @@ import { LayerToggle } from "@/components/map/layer-toggle";
 import { MapFilters } from "@/components/map/map-filters";
 import { MapLegend } from "@/components/map/map-legend";
 import type { BasePoint, PoiType } from "./types";
+import { REAL_POIS } from "@/lib/map/curated-pois";
 import type { Commerce } from "@/lib/types/commerce";
 import { Info, Navigation } from "lucide-react";
 
 const LeafletCanvas = dynamic(() => import("./leaflet-canvas"), { ssr: false });
-
-/** POIs reales (lat/lng) */
-const REAL_POIS: BasePoint[] = [
-  {
-    id: "torre-del-reloj",
-    name: "Torre del Reloj",
-    description: "Entrada principal al Centro Histórico de Cartagena.",
-    category: "Monumento",
-    rating: 4.7,
-    coords: { lat: 10.4236, lng: -75.5469 },
-    type: "historic",
-  },
-  {
-    id: "plaza-santo-domingo",
-    name: "Plaza Santo Domingo",
-    description: "Plaza icónica con la escultura de Botero y cafés alrededor.",
-    category: "Plaza",
-    rating: 4.7,
-    coords: { lat: 10.4229, lng: -75.5531 },
-    type: "photo",
-  },
-  {
-    id: "castillo-san-felipe",
-    name: "Castillo San Felipe",
-    description: "La fortaleza más grande construida por España en América.",
-    category: "Fortaleza",
-    rating: 4.8,
-    coords: { lat: 10.4221, lng: -75.5353 },
-    type: "historic",
-  },
-  {
-    id: "las-bovedas",
-    name: "Las Bóvedas",
-    description: "Antiguos almacenes coloniales, hoy mercado artesanal.",
-    category: "Mercado artesanal",
-    rating: 4.6,
-    coords: { lat: 10.4297, lng: -75.5466 },
-    type: "culture",
-  },
-  {
-    id: "teatro-heredia",
-    name: "Teatro Adolfo Mejía (Heredia)",
-    description: "Principal escenario cultural de la ciudad.",
-    category: "Teatro",
-    rating: 4.7,
-    coords: { lat: 10.4230, lng: -75.5520 },
-    type: "culture",
-  },
-  {
-    id: "museo-oro-zenu",
-    name: "Museo del Oro Zenú",
-    description: "Orfebrería prehispánica de la cultura Zenú.",
-    category: "Museo",
-    rating: 4.6,
-    coords: { lat: 10.4237, lng: -75.5529 },
-    type: "culture",
-  },
-  {
-    id: "getsemani",
-    name: "Barrio Getsemaní",
-    description: "Arte callejero, vida nocturna y calles coloridas.",
-    category: "Barrio",
-    rating: 4.8,
-    coords: { lat: 10.4227, lng: -75.5472 },
-    type: "photo",
-  },
-  {
-    id: "la-cevicheria",
-    name: "La Cevichería",
-    description: "Ceviches famosos en el corazón amurallado.",
-    category: "Mariscos",
-    rating: 4.7,
-    coords: { lat: 10.4234, lng: -75.5512 },
-    type: "food",
-  },
-  {
-    id: "rest-1621",
-    name: "Restaurante 1621",
-    description: "Alta cocina caribeña en ambiente colonial.",
-    category: "Gourmet",
-    rating: 4.8,
-    coords: { lat: 10.4231, lng: -75.5524 },
-    type: "food",
-  },
-];
 
 interface RealInteractiveMapProps {
   commerces: Commerce[];

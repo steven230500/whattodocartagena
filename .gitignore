@@ -25,3 +25,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# datos crudos de OSM del pipeline 3D (se regeneran con scripts/city3d/build.mjs --fetch)
+scripts/city3d/.cache/

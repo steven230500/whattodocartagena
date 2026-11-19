@@ -160,5 +160,68 @@
     "visit": "Visitar",
     "getDirections": "Cómo llegar",
     "viewDetails": "Ver detalles"
+  },
+  "city3d": {
+    "title": "Cartagena viva",
+    "subtitle": "La ciudad amurallada en 3D, con la luz de este momento. Toca un edificio, un lugar o una ruta.",
+    "loading": "Levantando la ciudad…",
+    "error": "No pudimos cargar la ciudad 3D.",
+    "retry": "Reintentar",
+    "noWebgl": "Tu navegador no puede mostrar 3D. Usa el mapa clásico.",
+    "classic": "Mapa clásico",
+    "overview": "Vista general",
+    "north": "Vista desde arriba con el norte arriba",
+    "expand": "Abrir panel",
+    "collapse": "Cerrar panel",
+    "hintTouch": "Un dedo mueve · dos dedos giran y acercan",
+    "hintMouse": "Arrastra para mover · clic derecho para girar · rueda para acercar",
+    "tabs": {
+      "explore": "Explorar",
+      "routes": "Rutas",
+      "barrios": "Barrios"
+    },
+    "time": {
+      "label": "Hora del día",
+      "live": "En vivo",
+      "dawn": "Amanecer",
+      "noon": "Mediodía",
+      "sunset": "Atardecer",
+      "night": "Noche",
+      "backLive": "Volver a la hora real"
+    },
+    "kinds": {
+      "heritage": "Patrimonio",
+      "food": "Comer",
+      "culture": "Cultura",
+      "shop": "Comercio",
+      "nature": "Naturaleza"
+    },
+    "routes": {
+      "empty": "Todavía no hay rutas con paradas ubicadas.",
+      "back": "Todas las rutas",
+      "stops": "{count, plural, one {# parada} other {# paradas}}",
+      "play": "Recorrer la ruta",
+      "pause": "Pausar"
+    },
+    "barrios": {
+      "hint": "Toca un barrio para resaltarlo y volar hasta él.",
+      "historic": "Ciudad amurallada",
+      "others": "Alrededores",
+      "buildings": "{count, plural, one {# edificio} other {# edificios}}",
+      "clear": "Ver toda la ciudad"
+    },
+    "selection": {
+      "close": "Cerrar",
+      "details": "Ver detalles",
+      "building": "Edificio",
+      "in": "Edificio en {barrio}",
+      "floors": "≈ {n, plural, one {# piso} other {# pisos}} (estimado)",
+      "stop": "Parada {n} de {total}",
+      "prev": "Parada anterior",
+      "next": "Siguiente parada",
+      "openRoute": "Abrir ruta"
+    },
+    "cta": "Ver la ciudad en 3D",
+    "open3d": "Ver en 3D"
   }
 }

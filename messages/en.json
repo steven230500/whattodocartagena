@@ -160,5 +160,68 @@
     "visit": "Visit",
     "getDirections": "Get directions",
     "viewDetails": "View details"
+  },
+  "city3d": {
+    "title": "Living Cartagena",
+    "subtitle": "The walled city in 3D, lit as it is right now. Tap a building, a place or a route.",
+    "loading": "Raising the city…",
+    "error": "We couldn't load the 3D city.",
+    "retry": "Try again",
+    "noWebgl": "Your browser can't display 3D. Use the classic map.",
+    "classic": "Classic map",
+    "overview": "Overview",
+    "north": "Top-down view, north up",
+    "expand": "Open panel",
+    "collapse": "Close panel",
+    "hintTouch": "One finger pans · two fingers rotate and zoom",
+    "hintMouse": "Drag to pan · right-click to rotate · scroll to zoom",
+    "tabs": {
+      "explore": "Explore",
+      "routes": "Routes",
+      "barrios": "Neighborhoods"
+    },
+    "time": {
+      "label": "Time of day",
+      "live": "Live",
+      "dawn": "Dawn",
+      "noon": "Noon",
+      "sunset": "Sunset",
+      "night": "Night",
+      "backLive": "Back to real time"
+    },
+    "kinds": {
+      "heritage": "Heritage",
+      "food": "Eat",
+      "culture": "Culture",
+      "shop": "Shops",
+      "nature": "Nature"
+    },
+    "routes": {
+      "empty": "No routes with mapped stops yet.",
+      "back": "All routes",
+      "stops": "{count, plural, one {# stop} other {# stops}}",
+      "play": "Walk the route",
+      "pause": "Pause"
+    },
+    "barrios": {
+      "hint": "Tap a neighborhood to highlight it and fly there.",
+      "historic": "Walled city",
+      "others": "Surroundings",
+      "buildings": "{count, plural, one {# building} other {# buildings}}",
+      "clear": "Show whole city"
+    },
+    "selection": {
+      "close": "Close",
+      "details": "See details",
+      "building": "Building",
+      "in": "Building in {barrio}",
+      "floors": "≈ {n, plural, one {# floor} other {# floors}} (estimated)",
+      "stop": "Stop {n} of {total}",
+      "prev": "Previous stop",
+      "next": "Next stop",
+      "openRoute": "Open route"
+    },
+    "cta": "See the city in 3D",
+    "open3d": "View in 3D"
   }
 }

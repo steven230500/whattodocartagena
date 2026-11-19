@@ -3,12 +3,15 @@
 import { useState } from "react"
 import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { Navigation, Locate } from "lucide-react"
+import { Navigation, Locate, Box } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 const RouteLeafletCanvas = dynamic(() => import("./route-leaflet-canvas"), { ssr: false })
 
 interface RouteMapProps {
   route: {
+    slug?: string
     steps: Array<{
       id: string
       title: string
@@ -18,6 +21,7 @@ interface RouteMapProps {
 }
 
 export function RouteMap({ route }: RouteMapProps) {
+  const t = useTranslations("city3d")
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const steps = route.steps.filter(
@@ -54,6 +58,16 @@ export function RouteMap({ route }: RouteMapProps) {
   return (
     <div className="relative h-[420px] lg:h-full bg-muted/20">
       <RouteLeafletCanvas steps={steps} userLocation={userLocation} />
+
+      {route.slug && (
+        <Link
+          href={{ pathname: "/map/3d", query: { route: route.slug } }}
+          className="absolute top-4 left-14 z-[1000] inline-flex items-center gap-1.5 rounded-full bg-foreground px-3 py-2 text-sm font-semibold text-background shadow-lg hover:bg-foreground/90"
+        >
+          <Box className="h-4 w-4" aria-hidden />
+          {t("open3d")}
+        </Link>
+      )}
 
       <div className="absolute top-4 right-4 flex flex-col space-y-2 z-[1000]">
         <Button size="sm" variant="outline" onClick={getCurrentLocation} className="bg-white/95 backdrop-blur-sm">

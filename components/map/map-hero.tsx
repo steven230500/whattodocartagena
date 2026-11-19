@@ -1,6 +1,11 @@
 "use client";
 
+import { Box } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+
 export function MapHero() {
+  const t = useTranslations("city3d");
   return (
     <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-16">
       <div
@@ -22,6 +27,13 @@ export function MapHero() {
             Descubre la ciudad a través de mapas interactivos que revelan su historia,
             gastronomía, cultura y secretos mejor guardados.
           </p>
+          <Link
+            href="/map/3d"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-coral-dark"
+          >
+            <Box className="h-5 w-5" aria-hidden />
+            {t("cta")}
+          </Link>
         </div>
       </div>
     </section>
