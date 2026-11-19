@@ -49,6 +49,7 @@ export const ALL_KINDS: PlaceKind[] = ["heritage", "food", "culture", "shop", "n
 export function initialState(opts: {
   minutes: number
   routeId?: string
+  placeId?: string
   progress?: Record<string, number>
 }): ExplorerState {
   const visited = { ...(opts.progress ?? {}) }
@@ -62,7 +63,7 @@ export function initialState(opts: {
     touring: false,
     stop: opts.routeId ? (visited[opts.routeId] ?? 0) : 0,
     visited,
-    selection: null,
+    selection: !opts.routeId && opts.placeId ? { type: "place", id: opts.placeId } : null,
     hover: -1,
   }
 }

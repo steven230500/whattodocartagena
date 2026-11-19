@@ -35,11 +35,5 @@ export const SURFACES = {
   routeDone: "#f59e0b", // dorado colonial: progreso / patrimonio
 }
 
-/** Color de los pines por tipo (roles fijos de DESIGN.md). */
-export const PLACE_COLORS = {
-  heritage: "#f59e0b",
-  food: "#ff6b47",
-  culture: "#0ea5e9",
-  shop: "#a855f7",
-  nature: "#166534",
-} as const
+/** Color de los pines por tipo: compartido con el mapa 2D. */
+export { PLACE_COLORS } from "@/features/places/presentation/palette"

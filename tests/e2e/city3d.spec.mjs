@@ -32,8 +32,8 @@ test.beforeEach(async ({ request }) => {
 
 test("la ciudad carga con los lugares de la app y sin errores", async ({ page }) => {
   const errors = await openCity(page)
-  // 9 POIs curados + 2 negocios de la API
-  await expect(page.locator("[data-pin]")).toHaveCount(11)
+  // 6 sitios curados + 2 negocios de la API
+  await expect(page.locator("[data-pin]")).toHaveCount(8)
   await expect(page.locator('[data-barrio="Getsemaní"]')).toBeAttached()
   await expect(page.getByText("© OpenStreetMap contributors")).toBeVisible()
   expect(errors).toEqual([])
@@ -62,10 +62,10 @@ test("los filtros por tipo ocultan y devuelven los pines", async ({ page }, test
   const food = page.getByRole("button", { name: /^Comer/ })
   await food.click()
   await expect(food).toHaveAttribute("aria-pressed", "false")
-  // 2 restaurantes curados + Café E2E
-  await expect(page.locator("[data-pin]")).toHaveCount(8)
+  // el único lugar de comida es Café E2E
+  await expect(page.locator("[data-pin]")).toHaveCount(7)
   await food.click()
-  await expect(page.locator("[data-pin]")).toHaveCount(11)
+  await expect(page.locator("[data-pin]")).toHaveCount(8)
 })
 
 test("la hora del día cambia la luz y la frase, y vuelve a la hora real", async ({ page }, testInfo) => {
@@ -202,6 +202,12 @@ test("sin WebGL ofrece el mapa clásico", async ({ page }) => {
   await page.goto("/map/3d")
   await expect(page.locator('[data-city3d][data-status="no-webgl"]')).toBeAttached({ timeout: 60_000 })
   await expect(page.getByRole("link", { name: "Mapa clásico" })).toHaveAttribute("href", "/map")
+})
+
+test("el enlace directo a un lugar lo abre ya elegido", async ({ page }) => {
+  await openCity(page, "/map/3d?place=biz-galeria-e2e")
+  await expect(page.locator('[data-pin="biz-galeria-e2e"]')).toHaveAttribute("data-state", "selected")
+  await expect(page.locator('[data-card="place"]').filter({ visible: true })).toContainText("Galería E2E")
 })
 
 test("en inglés la interfaz está traducida", async ({ page }) => {

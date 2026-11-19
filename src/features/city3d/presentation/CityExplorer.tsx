@@ -22,6 +22,8 @@ export interface CityExplorerProps {
   places: ExplorerPlace[]
   routes: ExplorerRoute[]
   initialRouteId?: string
+  /** lugar a abrir al entrar (enlace "Ver en 3D" del mapa 2D) */
+  initialPlaceId?: string
   /** parada guardada por ruta (usuario con sesión) */
   progress?: Record<string, number>
   /** server action para guardar el avance; sin sesión no hace nada */
@@ -39,7 +41,14 @@ function hasWebGL() {
   }
 }
 
-export default function CityExplorer({ places, routes, initialRouteId, progress, saveProgress }: CityExplorerProps) {
+export default function CityExplorer({
+  places,
+  routes,
+  initialRouteId,
+  initialPlaceId,
+  progress,
+  saveProgress,
+}: CityExplorerProps) {
   const t = useTranslations("city3d")
   // componente solo de cliente (ssr: false): window existe desde el primer render
   const [webgl] = useState(hasWebGL)
@@ -70,6 +79,7 @@ export default function CityExplorer({ places, routes, initialRouteId, progress,
           places={places}
           routes={routes}
           initialRouteId={initialRouteId}
+          initialPlaceId={initialPlaceId}
           progress={progress}
           saveProgress={saveProgress}
           reducedMotion={reducedMotion}

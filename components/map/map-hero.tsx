@@ -1,41 +1,43 @@
-"use client";
+import { ArrowDown, Box } from "lucide-react"
+import { getTranslations } from "next-intl/server"
+import { Link } from "@/i18n/navigation"
 
-import { Box } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-
-export function MapHero() {
-  const t = useTranslations("city3d");
+/**
+ * Hero del mapa: foto real a sangre, texto a la izquierda sobre degradado,
+ * y dos salidas claras: la ciudad en 3D o bajar al mapa.
+ */
+export async function MapHero() {
+  const t = await getTranslations("map.hero")
   return (
-    <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative flex min-h-[46vh] items-end overflow-hidden pt-16 md:min-h-[52vh]">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/aerial-view-of-cartagena-historic-center-with-wall.jpg')`,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 text-white">
-        <div className="max-w-2xl">
-          <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-            <span className="block">Encuentra todo lo que necesitas</span>
-            <span className="block text-caribbean-blue">en Cartagena</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-xl">
-            Descubre la ciudad a través de mapas interactivos que revelan su historia,
-            gastronomía, cultura y secretos mejor guardados.
-          </p>
-          <Link
-            href="/map/3d"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-coral-dark"
-          >
-            <Box className="h-5 w-5" aria-hidden />
-            {t("cta")}
-          </Link>
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/aerial-view-of-cartagena-historic-center-with-wall.jpg')" }}
+        aria-hidden
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#2A1F1A]/90 via-[#2A1F1A]/55 to-transparent" aria-hidden />
+      <div className="container relative z-10 mx-auto px-4 pb-10 text-white md:pb-14">
+        <div className="max-w-xl">
+          <h1 className="font-serif text-4xl font-bold leading-tight md:text-6xl">{t("title")}</h1>
+          <p className="mt-3 text-lg text-white/85 md:text-xl">{t("subtitle")}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/map/3d"
+              className="inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-coral-dark"
+            >
+              <Box className="h-5 w-5" aria-hidden />
+              {t("cta3d")}
+            </Link>
+            <a
+              href="#mapa"
+              className="inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              <ArrowDown className="h-5 w-5" aria-hidden />
+              {t("ctaMap")}
+            </a>
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

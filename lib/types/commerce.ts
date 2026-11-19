@@ -62,11 +62,3 @@ export interface POI {
     type: "link" | "route" | "commerce"
   }>
 }
-
-export interface MapLayer {
-  id: string
-  label: string
-  color: string
-  icon: string
-  active?: boolean
-}

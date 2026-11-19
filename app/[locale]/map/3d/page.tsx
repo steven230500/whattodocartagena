@@ -5,26 +5,27 @@ import { getBusinesses } from "@/lib/api/businesses"
 import { getRoutes } from "@/lib/api/routes"
 import { getRouteProgress } from "@/lib/api/route-progress"
 import { saveRouteProgress } from "@/app/actions/route-progress"
-import { REAL_POIS } from "@/lib/map/curated-pois"
-import { LazyCityExplorer, placesFromCommerces, placesFromPois, routesForExplorer } from "@/features/city3d"
+import { CURATED_POIS } from "@/lib/map/curated-pois"
+import { appPlaces } from "@/features/places"
+import { LazyCityExplorer, routesForExplorer } from "@/features/city3d"
 
 export const dynamic = "force-dynamic"
 
 export const generateMetadata = () => publicPageMetadata("map/3d")
 
 interface Map3DPageProps {
-  searchParams: Promise<{ route?: string }>
+  searchParams: Promise<{ route?: string; place?: string }>
 }
 
 export default async function Map3DPage({ searchParams }: Map3DPageProps) {
-  const [{ route: routeSlug }, locale] = await Promise.all([searchParams, getLocale()])
+  const [{ route: routeSlug, place: placeId }, locale] = await Promise.all([searchParams, getLocale()])
   // si la API falla, la ciudad 3D igual carga (sin negocios / rutas)
   const [commerces, routes] = await Promise.all([
     getBusinesses().catch(() => []),
     getRoutes().catch(() => []),
   ])
 
-  const places = [...placesFromPois(REAL_POIS), ...placesFromCommerces(commerces, locale)]
+  const places = appPlaces(CURATED_POIS, commerces, locale)
   const explorerRoutes = routesForExplorer(routes, locale)
   const initialRouteId = routeSlug ? explorerRoutes.find((r) => r.slug === routeSlug)?.id : undefined
 
@@ -43,6 +44,7 @@ export default async function Map3DPage({ searchParams }: Map3DPageProps) {
           places={places}
           routes={explorerRoutes}
           initialRouteId={initialRouteId}
+          initialPlaceId={!initialRouteId && places.some((p) => p.id === placeId) ? placeId : undefined}
           progress={progress}
           saveProgress={saveRouteProgress}
         />

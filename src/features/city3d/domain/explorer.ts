@@ -2,19 +2,12 @@
  * Lo que el explorador 3D necesita de la app, desacoplado de los tipos de la API.
  * La página adapta Commerce / Route a estas formas.
  */
-import type { LatLng } from "./projection"
+import type { LatLng, Place } from "@/features/places/domain/place"
 
-export type PlaceKind = "heritage" | "food" | "culture" | "shop" | "nature"
+export type { PlaceKind } from "@/features/places/domain/place"
 
-export interface ExplorerPlace {
-  id: string
-  name: string
-  kind: PlaceKind
-  position: LatLng
-  subtitle?: string
-  image?: string
-  href?: string
-}
+/** Los lugares del 3D son los mismos de la app (features/places). */
+export type ExplorerPlace = Place
 
 export interface ExplorerRouteStop {
   id: string

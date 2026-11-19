@@ -48,6 +48,7 @@ export function ExplorerProvider({
   places,
   routes,
   initialRouteId,
+  initialPlaceId,
   progress,
   saveProgress,
   reducedMotion,
@@ -57,13 +58,14 @@ export function ExplorerProvider({
   places: ExplorerPlace[]
   routes: ExplorerRoute[]
   initialRouteId?: string
+  initialPlaceId?: string
   progress?: Record<string, number>
   saveProgress?: SaveProgress
   reducedMotion: boolean
   children: ReactNode
 }) {
   const [state, dispatch] = useReducer(reducer, undefined, () =>
-    initialState({ minutes: cartagenaMinutes(new Date()), routeId: initialRouteId, progress }),
+    initialState({ minutes: cartagenaMinutes(new Date()), routeId: initialRouteId, placeId: initialPlaceId, progress }),
   )
   const controls = useRef<CameraControls | null>(null)
   const [anchors] = useState(() => new AnchorRegistry())

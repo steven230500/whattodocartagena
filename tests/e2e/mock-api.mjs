@@ -9,13 +9,13 @@ const businesses = [
   {
     id: "b1", name: "Café E2E", slug: "cafe-e2e", type: "food", subtype: "cafe", barrio: "Centro",
     lat: 10.4243, lng: -75.5517, image: "", tags: [], description: "Café de prueba frente a la plaza.",
-    description_en: "Test café by the square.", hours: null, price_hint: "$", phone: null, web: null,
+    description_en: "Test café by the square.", hours: "08:00 - 18:00", price_hint: "$", phone: null, web: null,
     email: null, instagram: null, owner_id: null,
   },
   {
     id: "b2", name: "Galería E2E", slug: "galeria-e2e", type: "culture", subtype: "galeria", barrio: "Getsemaní",
     lat: 10.4207, lng: -75.5458, image: "", tags: [], description: "Galería de prueba en Getsemaní.",
-    description_en: null, hours: null, price_hint: null, phone: null, web: null, email: null, instagram: null,
+    description_en: null, hours: "Mié-Dom 10:00-19:00", price_hint: null, phone: null, web: null, email: null, instagram: null,
     owner_id: null,
   },
 ]

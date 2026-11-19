@@ -11,6 +11,7 @@ import { SkyAndLight } from "./SkyAndLight"
 import { RouteLayer } from "./RouteLayer"
 import { AnchorSync, ViewOffset } from "./Sync"
 import { cartagenaDateAt, paletteFor, sunPosition } from "../../domain/sun"
+import { focusDistance } from "../../domain/city-queries"
 
 const { ACTION } = CameraControlsImpl
 
@@ -112,13 +113,18 @@ export default function CityCanvas({ onReady, onContextLost, onContextRestored }
 
 /** Corre dentro del Canvas, cuando CameraControls ya está montado. */
 function InitialView({ boundary, onReady }: { boundary: THREE.Box3; onReady: () => void }) {
-  const { controls, state } = useExplorer()
+  const { controls, state, places, projection, placeBuilding, model, camera } = useExplorer()
   useEffect(() => {
     const c = controls.current
     if (!c) return
     c.setBoundary(boundary)
     c.boundaryFriction = 0.2
-    if (!state.routeId) onReady()
+    const sel = state.selection
+    const place = sel?.type === "place" ? places.find((p) => p.id === sel.id) : undefined
+    if (place) {
+      const [x, y] = projection.toLocal(place.position)
+      camera.flyTo(x, y, { distance: focusDistance(model.buildings, placeBuilding[place.id] ?? -1), polar: 0.9 })
+    } else if (!state.routeId) onReady()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return null

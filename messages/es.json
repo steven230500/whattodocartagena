@@ -51,18 +51,39 @@
     }
   },
   "map": {
+    "section": "Mapa de lugares",
     "hero": {
-      "title": "Explora Cartagena",
-      "subtitle": "Descubre lugares históricos, gastronómicos y culturales con nuestro mapa interactivo"
+      "title": "Mapa de Cartagena",
+      "subtitle": "Monumentos, museos, comida y comercio local en un solo mapa. Filtra, mira qué está abierto y llega caminando.",
+      "cta3d": "Ver la ciudad en 3D",
+      "ctaMap": "Ir al mapa"
     },
-    "layers": {
-      "historical": "Sitios Históricos",
-      "gastronomy": "Gastronomía",
+    "panelTitle": "Qué hay cerca",
+    "search": "Buscar un lugar",
+    "barrio": "Barrio",
+    "allBarrios": "Todos los barrios",
+    "openNow": "Abierto ahora",
+    "nearMe": "Cerca de mí",
+    "locating": "Buscando…",
+    "locationError": "No pudimos obtener tu ubicación. Revisa el permiso del navegador.",
+    "results": "{count, plural, =0 {Ningún lugar} one {# lugar} other {# lugares}}",
+    "clear": "Limpiar filtros",
+    "empty": "Ningún lugar coincide con estos filtros.",
+    "routesLink": "{count, plural, =0 {Rutas a pie} one {# ruta a pie para recorrerla} other {# rutas a pie para recorrerla}}",
+    "view3d": "Ver en 3D",
+    "view3dShort": "En 3D",
+    "directions": "Cómo llegar",
+    "details": "Ver detalles",
+    "close": "Cerrar",
+    "openUntil": "Abierto · cierra {time}",
+    "closedOpensAt": "Cerrado · abre {time}",
+    "closedToday": "Cerrado por hoy",
+    "kinds": {
+      "heritage": "Patrimonio",
+      "food": "Comer",
       "culture": "Cultura",
-      "photography": "Spots Fotográficos",
-      "commerce": "Comercios",
-      "mall": "Centros Comerciales",
-      "historic": "Sitios Históricos"
+      "shop": "Comercio",
+      "nature": "Naturaleza"
     }
   },
   "routes": {

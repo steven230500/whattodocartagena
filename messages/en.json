@@ -51,18 +51,39 @@
     }
   },
   "map": {
+    "section": "Places map",
     "hero": {
-      "title": "Explore Cartagena",
-      "subtitle": "Discover historical, gastronomic and cultural places with our interactive map"
+      "title": "Map of Cartagena",
+      "subtitle": "Landmarks, museums, food and local shops on one map. Filter, see what's open and walk there.",
+      "cta3d": "See the city in 3D",
+      "ctaMap": "Go to the map"
     },
-    "layers": {
-      "historical": "Historical Sites",
-      "gastronomy": "Gastronomy",
+    "panelTitle": "What's nearby",
+    "search": "Search a place",
+    "barrio": "Neighborhood",
+    "allBarrios": "All neighborhoods",
+    "openNow": "Open now",
+    "nearMe": "Near me",
+    "locating": "Locating…",
+    "locationError": "We couldn't get your location. Check your browser permission.",
+    "results": "{count, plural, =0 {No places} one {# place} other {# places}}",
+    "clear": "Clear filters",
+    "empty": "No places match these filters.",
+    "routesLink": "{count, plural, =0 {Walking routes} one {# walking route to explore it} other {# walking routes to explore it}}",
+    "view3d": "View in 3D",
+    "view3dShort": "In 3D",
+    "directions": "Directions",
+    "details": "See details",
+    "close": "Close",
+    "openUntil": "Open · closes {time}",
+    "closedOpensAt": "Closed · opens {time}",
+    "closedToday": "Closed for today",
+    "kinds": {
+      "heritage": "Heritage",
+      "food": "Eat",
       "culture": "Culture",
-      "photography": "Photo Spots",
-      "commerce": "Commerce",
-      "mall": "Shopping Malls",
-      "historic": "Historical Sites"
+      "shop": "Shops",
+      "nature": "Nature"
     }
   },
   "routes": {

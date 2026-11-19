@@ -203,3 +203,8 @@
   outline-offset: 4px;
   border-radius: 999px;
 }
+
+/* Mapa 2D: tonos del mapa base de OSM llevados a la paleta crema del sitio */
+.places-tiles {
+  filter: saturate(0.55) sepia(0.12) brightness(1.03);
+}
