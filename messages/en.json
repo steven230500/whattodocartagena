@@ -490,10 +490,8 @@
       "titleLine2": "Living history",
       "subtitle": "From its Spanish founding to becoming a UNESCO World Heritage Site, discover the moments that shaped Cartagena's identity."
     },
-    "title": "Interactive timeline",
-    "subtitle": "Journey through the most important moments in Cartagena's history.",
-    "keyFacts": "Key facts:",
-    "viewOnMap": "View on map",
+    "title": "Six moments that made Cartagena",
+    "subtitle": "From the Spanish founding to World Heritage, in the order they happened.",
     "events": {
       "founding": {
         "category": "Founding",
@@ -502,7 +500,9 @@
         "description": "Spanish conquistador Pedro de Heredia founds Cartagena de Indias on June 1, 1533, establishing one of the most important ports in the New World. The city quickly becomes the main gateway for wealth flowing to and from Spain.",
         "fact1": "First major city founded on Colombia's Caribbean coast",
         "fact2": "Named after Cartagena, Spain",
-        "fact3": "Strategic natural harbor for trade"
+        "fact3": "Strategic natural harbor for trade",
+        "caption": "The historic center today, seen from the air.",
+        "imageAlt": "Aerial view of Cartagena's walled historic center"
       },
       "walls": {
         "category": "Fortification",
@@ -511,7 +511,9 @@
         "description": "Over more than 150 years, the imposing walls surrounding the city are built. Designed by Spanish military engineers, these fortifications protect Cartagena from constant attacks by pirates, privateers and enemy fleets.",
         "fact1": "Over 11 kilometers of defensive walls",
         "fact2": "Withstood multiple sieges",
-        "fact3": "Masterpiece of colonial military engineering"
+        "fact3": "Masterpiece of colonial military engineering",
+        "caption": "The city walls, today.",
+        "imageAlt": "Cartagena's coral-stone city walls"
       },
       "siege1741": {
         "category": "Defense",
@@ -520,16 +522,20 @@
         "description": "The city heroically withstands the siege of the British fleet commanded by Admiral Edward Vernon. Spanish Admiral Blas de Lezo successfully defends the city in one of the largest naval battles in the colonial history of the Americas.",
         "fact1": "British fleet of 186 ships defeated",
         "fact2": "Blas de Lezo, hero of the defense",
-        "fact3": "Victory that shaped the colonial balance of power"
+        "fact3": "Victory that shaped the colonial balance of power",
+        "caption": "The fortifications that defended the city, today.",
+        "imageAlt": "Fortifications along Cartagena's city wall"
       },
       "independence": {
         "category": "Independence",
-        "title": "Independence - Heroic City",
+        "title": "Independence: the Heroic City",
         "subtitle": "First to declare full independence",
         "description": "Cartagena becomes the first city in present-day Colombia to declare absolute independence from Spain on November 11, 1811. This bold act earns it the title of \"Heroic City\" and sparks the independence movement across the region.",
         "fact1": "First independent city in Colombia",
         "fact2": "Official title of \"Heroic City\"",
-        "fact3": "Cradle of liberty in the Americas"
+        "fact3": "Cradle of liberty in the Americas",
+        "caption": "The Old Town and Bocagrande, today.",
+        "imageAlt": "Colonial houses in the Old Town with Bocagrande's towers behind"
       },
       "morillo": {
         "category": "Resistance",
@@ -538,7 +544,9 @@
         "description": "Pablo Morillo besieges the city for 106 days. The population resists heroically until hunger and disease force a surrender. Thousands of residents die defending their freedom, cementing the city's heroic spirit.",
         "fact1": "106 days of heroic resistance",
         "fact2": "Thousands of martyrs for freedom",
-        "fact3": "Resistance that inspired the Americas"
+        "fact3": "Resistance that inspired the Americas",
+        "caption": "The city wall, today.",
+        "imageAlt": "A stretch of Cartagena's city wall with a sentry box"
       },
       "unesco": {
         "category": "Heritage",
@@ -547,9 +555,13 @@
         "description": "UNESCO declares the historic center of Cartagena a Cultural World Heritage Site, recognizing its outstanding universal value. Its walls, fortifications and colonial architecture are preserved for future generations.",
         "fact1": "UNESCO World Heritage recognition",
         "fact2": "Preservation of colonial heritage",
-        "fact3": "World-class cultural destination"
+        "fact3": "World-class cultural destination",
+        "caption": "A street in the historic center, today.",
+        "imageAlt": "Colonial street with wooden balconies in the historic center"
       }
-    }
+    },
+    "indexLabel": "History chapters",
+    "in3d": "See it in the 3D city"
   },
   "routePlayer": {
     "emptySteps": "There are no stops loaded for this route yet. Check back soon — we're finishing it.",

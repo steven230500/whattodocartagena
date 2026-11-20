@@ -490,10 +490,8 @@
       "titleLine2": "Historia viva",
       "subtitle": "Desde la fundación española hasta convertirse en Patrimonio de la Humanidad, descubre los momentos que forjaron la identidad cartagenera."
     },
-    "title": "Línea de tiempo interactiva",
-    "subtitle": "Navega a través de los momentos más importantes de la historia cartagenera.",
-    "keyFacts": "Datos clave:",
-    "viewOnMap": "Ver en el mapa",
+    "title": "Seis momentos que hicieron a Cartagena",
+    "subtitle": "De la fundación española a Patrimonio de la Humanidad, en el orden en que pasaron.",
     "events": {
       "founding": {
         "category": "Fundación",
@@ -502,7 +500,9 @@
         "description": "El conquistador español Pedro de Heredia funda Cartagena de Indias el 1 de junio de 1533, estableciendo uno de los puertos más importantes del Nuevo Mundo. La ciudad se convierte rápidamente en el principal punto de entrada y salida de riquezas hacia España.",
         "fact1": "Primera ciudad fundada en la costa caribeña colombiana",
         "fact2": "Nombrada en honor a Cartagena, España",
-        "fact3": "Puerto natural estratégico para el comercio"
+        "fact3": "Puerto natural estratégico para el comercio",
+        "caption": "El centro histórico hoy, visto desde el aire.",
+        "imageAlt": "Vista aérea del centro histórico amurallado de Cartagena"
       },
       "walls": {
         "category": "Fortificación",
@@ -511,7 +511,9 @@
         "description": "Durante más de 150 años se construyen las imponentes murallas que rodean la ciudad. Estas fortificaciones, diseñadas por ingenieros militares españoles, protegen Cartagena de los constantes ataques de piratas, corsarios y flotas enemigas.",
         "fact1": "Más de 11 kilómetros de murallas",
         "fact2": "Resistieron múltiples asedios",
-        "fact3": "Obra maestra de ingeniería militar colonial"
+        "fact3": "Obra maestra de ingeniería militar colonial",
+        "caption": "Las murallas, hoy.",
+        "imageAlt": "Murallas de piedra coralina de Cartagena"
       },
       "siege1741": {
         "category": "Defensa",
@@ -520,16 +522,20 @@
         "description": "La ciudad resiste heroicamente el asedio de la flota inglesa comandada por Edward Vernon. Blas de Lezo, el almirante español, defiende exitosamente la ciudad en una de las batallas navales más importantes de la historia colonial americana.",
         "fact1": "Flota inglesa de 186 navíos derrotada",
         "fact2": "Blas de Lezo, héroe de la defensa",
-        "fact3": "Victoria que cambió el equilibrio colonial"
+        "fact3": "Victoria que cambió el equilibrio colonial",
+        "caption": "Las fortificaciones que defendieron la ciudad, hoy.",
+        "imageAlt": "Fortificaciones de la muralla de Cartagena"
       },
       "independence": {
         "category": "Independencia",
-        "title": "Independencia - Ciudad Heroica",
+        "title": "Independencia: Ciudad Heroica",
         "subtitle": "Primera en declarar la independencia",
         "description": "Cartagena se convierte en la primera ciudad de Colombia en declarar su independencia absoluta de España el 11 de noviembre de 1811. Este acto heroico le otorga el título de \"Ciudad Heroica\" y marca el inicio de la lucha independentista en la región.",
         "fact1": "Primera ciudad independiente de Colombia",
         "fact2": "Título oficial de \"Ciudad Heroica\"",
-        "fact3": "Cuna de la libertad americana"
+        "fact3": "Cuna de la libertad americana",
+        "caption": "El Centro y Bocagrande, hoy.",
+        "imageAlt": "Casas coloniales del Centro con los edificios de Bocagrande al fondo"
       },
       "morillo": {
         "category": "Resistencia",
@@ -538,7 +544,9 @@
         "description": "Pablo Morillo sitia la ciudad durante 106 días. La población resiste heroicamente hasta que el hambre y las enfermedades obligan a la rendición. Miles de cartageneros mueren defendiendo la libertad, consolidando el espíritu heroico de la ciudad.",
         "fact1": "106 días de sitio heroico",
         "fact2": "Miles de mártires por la libertad",
-        "fact3": "Resistencia que inspiró a toda América"
+        "fact3": "Resistencia que inspiró a toda América",
+        "caption": "La muralla, hoy.",
+        "imageAlt": "Tramo de la muralla de Cartagena con una garita"
       },
       "unesco": {
         "category": "Patrimonio",
@@ -547,9 +555,13 @@
         "description": "La UNESCO declara el centro histórico de Cartagena como Patrimonio Cultural de la Humanidad, reconociendo su excepcional valor universal. Las murallas, fortificaciones y arquitectura colonial son preservadas para las futuras generaciones.",
         "fact1": "Reconocimiento mundial UNESCO",
         "fact2": "Preservación del patrimonio colonial",
-        "fact3": "Destino turístico de clase mundial"
+        "fact3": "Destino turístico de clase mundial",
+        "caption": "Una calle del centro histórico, hoy.",
+        "imageAlt": "Calle colonial con balcones de madera en el centro histórico"
       }
-    }
+    },
+    "indexLabel": "Capítulos de la historia",
+    "in3d": "Verlo en la ciudad 3D"
   },
   "routePlayer": {
     "emptySteps": "Todavía no hay pasos cargados para esta ruta. Vuelve pronto — la estamos completando.",
