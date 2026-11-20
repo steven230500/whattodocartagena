@@ -288,5 +288,36 @@
       "dusk": "Cae la tarde: el cielo se pinta sobre la bahía."
     },
     "canvasLabel": "Mapa 3D de la ciudad amurallada de Cartagena"
+  },
+  "pageHeaders": {
+    "routes": {
+      "title": "Rutas a pie",
+      "subtitle": "Recorridos por la ciudad amurallada y sus barrios, con cada parada en el mapa.",
+      "meta": "{count, plural, one {# ruta} other {# rutas}}",
+      "cta3d": "Verlas en el mapa 3D"
+    },
+    "businesses": {
+      "title": "Comercios locales",
+      "subtitle": "Restaurantes, artesanos y tiendas de Cartagena, con horario y cómo llegar.",
+      "meta": "{count, plural, one {# comercio en el directorio} other {# comercios en el directorio}}",
+      "map": "Ver en el mapa",
+      "open": "Qué está abierto ahora"
+    },
+    "events": {
+      "title": "Eventos",
+      "subtitle": "Festivales, conciertos y ferias con fecha en Cartagena.",
+      "meta": "{count, plural, =0 {Sin eventos próximos publicados} one {# evento publicado} other {# eventos publicados}}",
+      "plans": "Planes de esta semana"
+    },
+    "plans": {
+      "title": "Planes para locales",
+      "subtitle": "Lo que se repite cada semana: cine al aire libre, champeta, mercados y más.",
+      "meta": "Actualizado cada semana · Gratis y pagos"
+    },
+    "masses": {
+      "title": "Horarios de misas",
+      "subtitle": "Misas en las principales parroquias de Cartagena, por día.",
+      "meta": "Actualizado cada mes"
+    }
   }
 }

@@ -288,5 +288,36 @@
       "dusk": "Dusk: the sky paints itself over the bay."
     },
     "canvasLabel": "3D map of Cartagena's walled city"
+  },
+  "pageHeaders": {
+    "routes": {
+      "title": "Walking routes",
+      "subtitle": "Walks through the walled city and its neighborhoods, with every stop on the map.",
+      "meta": "{count, plural, one {# route} other {# routes}}",
+      "cta3d": "See them on the 3D map"
+    },
+    "businesses": {
+      "title": "Local businesses",
+      "subtitle": "Restaurants, artisans and shops in Cartagena, with hours and directions.",
+      "meta": "{count, plural, one {# business in the directory} other {# businesses in the directory}}",
+      "map": "See them on the map",
+      "open": "What's open now"
+    },
+    "events": {
+      "title": "Events",
+      "subtitle": "Festivals, concerts and fairs with a date in Cartagena.",
+      "meta": "{count, plural, =0 {No upcoming events published} one {# published event} other {# published events}}",
+      "plans": "This week's plans"
+    },
+    "plans": {
+      "title": "Plans for locals",
+      "subtitle": "What repeats every week: open-air cinema, champeta, markets and more.",
+      "meta": "Updated weekly · Free and paid"
+    },
+    "masses": {
+      "title": "Mass times",
+      "subtitle": "Masses at Cartagena's main parishes, by day.",
+      "meta": "Updated monthly"
+    }
   }
 }
