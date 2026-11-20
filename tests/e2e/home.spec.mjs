@@ -41,8 +41,9 @@ test("rutas a pie y la semana enlazan a su detalle", async ({ page }) => {
 
   const week = page.locator("section", { has: page.getByRole("heading", { name: "Esta semana" }) })
   await expect(week.getByRole("link", { name: /Festival E2E/ })).toHaveAttribute("href", "/events/festival-e2e")
-  await expect(week.getByRole("link", { name: /Cine al aire libre E2E/ })).toContainText("Gratis")
-  await expect(week.getByRole("link", { name: /Noche de salsa E2E/ })).toContainText("$50.000 COP")
+  // los planes recurrentes (datos sin verificar) no se muestran en el inicio
+  await expect(week.getByText("Cine al aire libre E2E")).toHaveCount(0)
+  await expect(week.getByText("Noche de salsa E2E")).toHaveCount(0)
 })
 
 test("la franja del 3D lleva al mapa 3D", async ({ page }) => {

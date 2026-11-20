@@ -74,10 +74,8 @@
     },
     "week": {
       "title": "This week",
-      "subtitle": "Dated events and recurring plans: open-air cinema, champeta, markets.",
-      "plans": "All plans",
-      "events": "Events calendar",
-      "free": "Free"
+      "subtitle": "Events with a date in the next seven days.",
+      "events": "Events calendar"
     },
     "city3d": {
       "title": "The walled city in 3D",

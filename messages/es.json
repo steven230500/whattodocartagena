@@ -74,10 +74,8 @@
     },
     "week": {
       "title": "Esta semana",
-      "subtitle": "Eventos con fecha y planes que se repiten: cine al aire libre, champeta, mercados.",
-      "plans": "Todos los planes",
-      "events": "Agenda de eventos",
-      "free": "Gratis"
+      "subtitle": "Eventos con fecha en los próximos siete días.",
+      "events": "Agenda de eventos"
     },
     "city3d": {
       "title": "La ciudad amurallada en 3D",
