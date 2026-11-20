@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { Navigation, Locate, Box } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { Box, ExternalLink, Locate } from "lucide-react"
+import { useFormatter, useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
+import { loadStreetRouter, walkingMinutes, type WalkingRoute } from "@/features/city3d"
+import { googleMapsPlaceUrl, googleMapsWalkingRouteUrl } from "@/lib/maps/google-maps"
 
 const RouteLeafletCanvas = dynamic(() => import("./route-leaflet-canvas"), { ssr: false })
 
@@ -20,32 +22,40 @@ interface RouteMapProps {
   }
 }
 
+type LocatedStep = { id: string; title: string; coordinates: { lat: number; lng: number } }
+
 export function RouteMap({ route }: RouteMapProps) {
   const t = useTranslations("city3d")
   const tr = useTranslations("routePlayer.map")
+  const format = useFormatter()
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [walk, setWalk] = useState<WalkingRoute | null>(null)
 
-  const steps = route.steps.filter(
-    (s): s is typeof s & { coordinates: { lat: number; lng: number } } => s.coordinates != null,
+  const steps = useMemo(
+    () => route.steps.filter((s): s is typeof s & LocatedStep => s.coordinates != null),
+    [route.steps],
   )
 
-  const getCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
-        },
-        (error) => {
-          console.error("Error getting location:", error)
-        },
-      )
+  // el camino por calles reales (mismo grafo de OSM que la ciudad 3D); mientras
+  // carga, o si falla, queda la línea recta punteada entre paradas
+  useEffect(() => {
+    if (steps.length < 2) return
+    let alive = true
+    loadStreetRouter()
+      .then((router) => {
+        if (alive) setWalk(router.route(steps.map((s) => s.coordinates)))
+      })
+      .catch(() => {})
+    return () => {
+      alive = false
     }
-  }
+  }, [steps])
 
-  const openDirections = () => {
-    const first = steps[0]
-    if (!first) return
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${first.coordinates.lat},${first.coordinates.lng}`, "_blank")
+  const getCurrentLocation = () => {
+    navigator.geolocation?.getCurrentPosition(
+      (position) => setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude }),
+      (error) => console.error("Error getting location:", error),
+    )
   }
 
   if (steps.length === 0) {
@@ -56,9 +66,23 @@ export function RouteMap({ route }: RouteMapProps) {
     )
   }
 
+  const googleUrl = googleMapsWalkingRouteUrl(steps.map((s) => s.coordinates))!
+  const distance =
+    walk && walk.meters >= 1000
+      ? `${format.number(walk.meters / 1000, { maximumFractionDigits: 1 })} km`
+      : walk
+        ? `${format.number(Math.round(walk.meters / 10) * 10)} m`
+        : null
+
   return (
-    <div className="relative h-[420px] lg:h-full bg-muted/20">
-      <RouteLeafletCanvas steps={steps} userLocation={userLocation} />
+    <div className="relative h-[480px] lg:h-full bg-muted/20" data-route-map>
+      <RouteLeafletCanvas
+        steps={steps}
+        path={walk?.path ?? null}
+        userLocation={userLocation}
+        placeUrl={googleMapsPlaceUrl}
+        placeLabel={tr("openStop")}
+      />
 
       {route.slug && (
         <Link
@@ -76,31 +100,29 @@ export function RouteMap({ route }: RouteMapProps) {
         </Button>
       </div>
 
-      <div className="absolute bottom-4 right-4 z-[1000]">
-        <Button className="bg-coral hover:bg-coral-dark text-ink shadow-lg" onClick={openDirections}>
-          <Navigation className="w-4 h-4 mr-2" />
-          {tr("navigate")}
-        </Button>
-      </div>
-
-      <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg z-[1000]">
-        <h4 className="font-semibold text-sm mb-2">{tr("legend")}</h4>
-        <div className="space-y-1 text-xs">
-          <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-foreground rounded-full" />
-            <span>{tr("routeSteps")}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-3 h-1 bg-coral" />
-            <span>{tr("suggestedPath")}</span>
-          </div>
-          {userLocation && (
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full" />
-              <span>{tr("yourLocation")}</span>
-            </div>
+      <div className="absolute inset-x-3 bottom-3 z-[1000] flex flex-col gap-3 rounded-xl bg-background/95 p-3 shadow-lg backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0 text-sm" aria-live="polite">
+          {walk && distance ? (
+            <>
+              <p className="font-semibold tabular-nums" data-walk-summary>
+                {tr("walkSummary", { distance, minutes: walkingMinutes(walk.meters) })}
+              </p>
+              <p className="text-xs text-foreground/70">{tr("byStreets", { count: steps.length })}</p>
+            </>
+          ) : (
+            <p className="font-semibold">{tr("stops", { count: steps.length })}</p>
           )}
         </div>
+        <a
+          href={googleUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-coral px-4 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:bg-coral-dark active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          {steps.length > 1 ? tr("googleRoute") : tr("googleDirections")}
+          <ExternalLink className="h-4 w-4" aria-hidden />
+          <span className="sr-only">{tr("newTab")}</span>
+        </a>
       </div>
     </div>
   )

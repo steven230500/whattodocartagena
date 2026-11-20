@@ -573,14 +573,17 @@
     "nextStop": "Next stop",
     "routeSteps": "Route stops",
     "map": {
-      "emptyLocations": "No mapped locations have been loaded for this route yet.",
+      "emptyLocations": "No locations have been added to this route yet.",
       "showMyLocation": "Show my location",
-      "navigate": "Navigate",
-      "legend": "Legend",
-      "routeSteps": "Route stops",
-      "suggestedPath": "Suggested path",
-      "yourLocation": "Your location"
-    }
+      "walkSummary": "{distance} · {minutes} min walk",
+      "byStreets": "Along the streets, through all {count} stops in order",
+      "stops": "{count, plural, one {# stop} other {# stops}}",
+      "googleRoute": "Full route in Google Maps",
+      "googleDirections": "Directions in Google Maps",
+      "newTab": "(opens in a new tab)",
+      "openStop": "Open in Google Maps"
+    },
+    "openInMaps": "See this stop in Google Maps"
   },
   "explore": {
     "title": "What to do in Cartagena?",

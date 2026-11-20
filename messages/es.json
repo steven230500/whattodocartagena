@@ -575,12 +575,15 @@
     "map": {
       "emptyLocations": "Todavía no hay ubicaciones cargadas para esta ruta.",
       "showMyLocation": "Mostrar mi ubicación",
-      "navigate": "Navegar",
-      "legend": "Leyenda",
-      "routeSteps": "Pasos de la ruta",
-      "suggestedPath": "Camino sugerido",
-      "yourLocation": "Tu ubicación"
-    }
+      "walkSummary": "{distance} · {minutes} min a pie",
+      "byStreets": "Por calles, pasando por las {count} paradas en orden",
+      "stops": "{count, plural, one {# parada} other {# paradas}}",
+      "googleRoute": "Ruta completa en Google Maps",
+      "googleDirections": "Cómo llegar en Google Maps",
+      "newTab": "(se abre en otra pestaña)",
+      "openStop": "Abrir en Google Maps"
+    },
+    "openInMaps": "Ver esta parada en Google Maps"
   },
   "explore": {
     "title": "¿Qué hacer en Cartagena?",

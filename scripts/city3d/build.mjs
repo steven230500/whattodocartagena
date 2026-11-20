@@ -586,6 +586,12 @@ async function main() {
   }
   fs.mkdirSync(path.dirname(OUT), { recursive: true })
   fs.writeFileSync(OUT, JSON.stringify(out))
+  // grafo peatonal solo (para trazar rutas por calles en el mapa 2D sin cargar el modelo 3D)
+  const STREETS_OUT = path.join(path.dirname(OUT), "streets.json")
+  fs.writeFileSync(
+    STREETS_OUT,
+    JSON.stringify({ v: 1, attribution: out.attribution, origin: ORIGIN, scale: 0.1, graph: out.graph }),
+  )
   const kb = (fs.statSync(OUT).size / 1024).toFixed(0)
   console.log(
     `ok → ${path.relative(process.cwd(), OUT)} (${kb} KB): ${buildings.length} edificios, ${walls.length} murallas, ` +

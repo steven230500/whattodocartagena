@@ -4,7 +4,8 @@ import { useState, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Play, Pause, SkipForward, SkipBack, MapPin, Clock, Volume2 } from "lucide-react"
+import { Play, Pause, SkipForward, SkipBack, MapPin, Clock, Volume2, ExternalLink } from "lucide-react"
+import { googleMapsPlaceUrl } from "@/lib/maps/google-maps"
 import { saveRouteProgress } from "@/app/actions/route-progress"
 import { useLocale, useTranslations } from "next-intl"
 
@@ -23,6 +24,7 @@ interface RoutePlayerProps {
       audioUrl?: string
       duration?: string
       image?: string
+      coordinates?: { lat: number; lng: number }
     }>
   }
   routeId?: string
@@ -116,7 +118,22 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
         </CardHeader>
 
         <CardContent>
-          <p className="text-muted-foreground mb-6 text-pretty">{currentStepData.description}</p>
+          <div className="mb-6">
+          <p className="text-muted-foreground text-pretty">{currentStepData.description}</p>
+          {currentStepData.coordinates && (
+            <a
+              href={googleMapsPlaceUrl(currentStepData.coordinates)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-coral-ink hover:underline"
+            >
+              <MapPin className="h-4 w-4" aria-hidden />
+              {t("openInMaps")}
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+              <span className="sr-only">{t("map.newTab")}</span>
+            </a>
+          )}
+          </div>
 
           {/* Audio Player */}
           {hasAudio ? (
