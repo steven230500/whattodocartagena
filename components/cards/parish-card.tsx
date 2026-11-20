@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Clock, Phone } from "lucide-react"
+import { useTranslations } from "next-intl"
 import type { Parish } from "@/lib/types/parish"
 
 interface ParishCardProps {
@@ -8,6 +9,8 @@ interface ParishCardProps {
 }
 
 export function ParishCard({ parish }: ParishCardProps) {
+  const t = useTranslations("mass")
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <CardHeader className="bg-foreground text-stone-warm">
@@ -30,7 +33,7 @@ export function ParishCard({ parish }: ParishCardProps) {
           <div className="pt-4 border-t border-[var(--color-stone)]">
             <div className="flex items-center gap-2 mb-3">
               <Clock className="w-4 h-4 text-[var(--color-coral)]" />
-              <span className="font-semibold text-[var(--color-stone-darker)]">Horarios de Misas</span>
+              <span className="font-semibold text-[var(--color-stone-darker)]">{t("schedules")}</span>
             </div>
             <div className="space-y-2">
               {parish.schedules.map((schedule, index) => (

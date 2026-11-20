@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -31,6 +32,16 @@ interface RouteCardProps {
 }
 
 export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false }: RouteCardProps) {
+  const t = useTranslations()
+  const difficultyLabel =
+    route.difficulty === "Fácil"
+      ? t("common.easy")
+      : route.difficulty === "Moderado"
+        ? t("common.moderate")
+        : route.difficulty === "Difícil"
+          ? t("common.hard")
+          : route.difficulty
+
   return (
     <Card className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden">
       {/* Route Image */}
@@ -59,7 +70,7 @@ export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false
           <div className="absolute bottom-4 left-4">
             <div className="flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
               <Headphones className="w-3 h-3 text-white" />
-              <span className="text-xs text-white">Audio</span>
+              <span className="text-xs text-white">{t("routes.audio")}</span>
             </div>
           </div>
         )}
@@ -69,7 +80,7 @@ export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false
           <div className="absolute bottom-4 right-4">
             <div className="flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
               <div className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-xs text-white">Offline</span>
+              <span className="text-xs text-white">{t("routes.offline")}</span>
             </div>
           </div>
         )}
@@ -117,13 +128,13 @@ export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false
                   : "bg-red-50 text-red-700 border-red-200"
             }`}
           >
-            {route.difficulty}
+            {difficultyLabel}
           </Badge>
         </div>
 
         {/* Highlights */}
         <div className="mb-4">
-          <h4 className="text-sm font-semibold mb-2">Puntos Destacados:</h4>
+          <h4 className="text-sm font-semibold mb-2">{t("routes.highlights")}</h4>
           <div className="flex flex-wrap gap-1">
             {route.highlights.slice(0, 3).map((highlight, index) => (
               <Badge key={index} variant="outline" className="text-xs bg-transparent">
@@ -142,7 +153,7 @@ export function RouteCard({ route, onStart, onToggleFavorite, isFavorite = false
         <div className="flex space-x-2">
           <Button size="sm" className={`${route.color} text-white hover:opacity-90 flex-1`} onClick={onStart}>
             <Play className="w-4 h-4 mr-2" />
-            Iniciar
+            {t("routes.start")}
           </Button>
           <Button size="sm" variant="outline" className="bg-transparent" onClick={onToggleFavorite}>
             <Heart className={`w-4 h-4 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />

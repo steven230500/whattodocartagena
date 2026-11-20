@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play, Pause, SkipForward, SkipBack, MapPin, Clock, Volume2 } from "lucide-react"
 import { saveRouteProgress } from "@/app/actions/route-progress"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 interface RoutePlayerProps {
   route: {
@@ -31,6 +31,7 @@ interface RoutePlayerProps {
 
 export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
   const locale = useLocale()
+  const t = useTranslations("routePlayer")
   const title = locale === "en" && route.titleEn ? route.titleEn : route.title
   const description = locale === "en" && route.descriptionEn ? route.descriptionEn : route.description
   const startStep = Math.min(Math.max(initialStep ?? 0, 0), Math.max(route.steps.length - 1, 0))
@@ -100,13 +101,13 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
             <img src={currentStepData.image} alt={currentStepData.title} className="w-full h-full object-cover rounded-t-lg" />
             <div className="absolute top-4 right-4">
               <Badge className="bg-foreground text-background border-0">
-                Paso {currentStep + 1} de {route.steps.length}
+                {t("stepOf", { current: currentStep + 1, total: route.steps.length })}
               </Badge>
             </div>
           </div>
         ) : (
           <p className="px-6 pt-6 text-xs font-semibold uppercase tracking-wide text-coral-ink">
-            Paso {currentStep + 1} de {route.steps.length}
+            {t("stepOf", { current: currentStep + 1, total: route.steps.length })}
           </p>
         )}
 
@@ -123,7 +124,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
                 <Volume2 className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm font-medium">Audio Guía</span>
+                <span className="text-sm font-medium">{t("audioGuide")}</span>
               </div>
               <span className="text-sm text-muted-foreground">{currentStepData.duration}</span>
             </div>
@@ -144,7 +145,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                 onClick={prevStep}
                 disabled={currentStep === 0}
                 className="bg-transparent"
-                aria-label="Paso anterior"
+                aria-label={t("prevStep")}
               >
                 <SkipBack className="w-4 h-4" />
               </Button>
@@ -153,7 +154,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                 size="sm"
                 onClick={togglePlay}
                 className="bg-coral hover:bg-coral-dark text-foreground w-12 h-12 rounded-full"
-                aria-label={isPlaying ? "Pausar audio" : "Escuchar audio"}
+                aria-label={isPlaying ? t("pauseAudio") : t("playAudio")}
               >
                 {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
               </Button>
@@ -164,7 +165,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
                 onClick={nextStep}
                 disabled={currentStep === route.steps.length - 1}
                 className="bg-transparent"
-                aria-label="Paso siguiente"
+                aria-label={t("nextStep")}
               >
                 <SkipForward className="w-4 h-4" />
               </Button>
@@ -173,10 +174,10 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
           ) : (
             <div className="mb-4 flex items-center justify-between gap-3">
               <Button variant="outline" size="sm" onClick={prevStep} disabled={currentStep === 0}>
-                <SkipBack className="mr-1.5 h-4 w-4" aria-hidden /> Anterior
+                <SkipBack className="mr-1.5 h-4 w-4" aria-hidden /> {t("previous")}
               </Button>
               <Button size="sm" onClick={nextStep} disabled={currentStep === route.steps.length - 1} className="bg-foreground text-background hover:bg-foreground/90">
-                Siguiente parada <SkipForward className="ml-1.5 h-4 w-4" aria-hidden />
+                {t("nextStop")} <SkipForward className="ml-1.5 h-4 w-4" aria-hidden />
               </Button>
             </div>
           )}
@@ -205,7 +206,7 @@ export function RoutePlayer({ route, routeId, initialStep }: RoutePlayerProps) {
 
       {/* Steps List */}
       <div className="space-y-3">
-        <h3 className="font-semibold text-foreground mb-4">Pasos de la Ruta</h3>
+        <h3 className="font-semibold text-foreground mb-4">{t("routeSteps")}</h3>
         {route.steps.map((step, index) => (
           <Card
             key={step.id}

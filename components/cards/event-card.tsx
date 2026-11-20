@@ -4,10 +4,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Navigation, Share2 } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import type { Event } from "@/lib/types/commerce"
-import { EVENT_TYPES } from "@/lib/map/layers"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 interface EventCardProps {
   event: Event
@@ -15,10 +14,13 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   const t = useTranslations()
+  const locale = useLocale()
+  const title = locale === "en" && event.titleEn ? event.titleEn : event.title
+  const description = locale === "en" && event.descriptionEn ? event.descriptionEn : event.description
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString("es-ES", {
+    return date.toLocaleDateString(locale === "en" ? "en-US" : "es-CO", {
       month: "short",
       day: "numeric",
     })
@@ -41,16 +43,16 @@ export function EventCard({ event }: EventCardProps) {
       <div className="relative h-48 overflow-hidden">
         <img
           src={event.image || "/placeholder.svg"}
-          alt={event.title}
+          alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-4 left-4">
-          <Badge className="bg-coral text-ink">{EVENT_TYPES[event.type]}</Badge>
+          <Badge className="bg-coral text-ink">{t(`events.types.${event.type}`)}</Badge>
         </div>
         <div className="absolute top-4 right-4">
           <Badge variant="outline" className="bg-white/90 text-stone-darker border-white/50">
             <Calendar className="w-3 h-3 mr-1" />
-            {isUpcoming ? "Próximo" : "Pasado"}
+            {isUpcoming ? t("events.status.upcoming") : t("events.status.past")}
           </Badge>
         </div>
       </div>
@@ -58,7 +60,7 @@ export function EventCard({ event }: EventCardProps) {
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <h3 className="font-serif text-xl font-bold text-stone-darker group-hover:text-coral-ink transition-colors">
-            {event.title}
+            {title}
           </h3>
         </div>
         <div className="space-y-1">
@@ -74,7 +76,7 @@ export function EventCard({ event }: EventCardProps) {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{event.description}</p>
+        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{description}</p>
 
         {/* Tags */}
         {event.tags.length > 0 && (

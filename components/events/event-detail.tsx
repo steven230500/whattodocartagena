@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Calendar, Clock, Navigation, Share2 } from "lucide-react"
-import { useTranslations } from "next-intl"
-import { useLocale } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import type { Event } from "@/lib/types/commerce"
-import { EVENT_TYPES } from "@/lib/map/layers"
 
 interface EventDetailProps {
   event: Event
@@ -21,7 +19,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString("es-ES", {
+    return date.toLocaleDateString(locale === "en" ? "en-US" : "es-CO", {
       weekday: "long",
       year: "numeric",
       month: "long",
@@ -54,10 +52,10 @@ export function EventDetail({ event }: EventDetailProps) {
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-16">
           <div className="text-white">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge className="bg-coral text-ink">{EVENT_TYPES[event.type]}</Badge>
+              <Badge className="bg-coral text-ink">{t(`events.types.${event.type}`)}</Badge>
               <Badge variant="outline" className="border-white/30 text-white">
                 <Calendar className="w-3 h-3 mr-1" />
-                {new Date(event.startDate) > new Date() ? "Próximo" : "Pasado"}
+                {new Date(event.startDate) > new Date() ? t("events.status.upcoming") : t("events.status.past")}
               </Badge>
             </div>
 
@@ -86,7 +84,7 @@ export function EventDetail({ event }: EventDetailProps) {
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre el Evento</h2>
+                  <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">{t("events.detail.about")}</h2>
 
                   <div className="prose prose-stone max-w-none">
                     <p className="text-stone-darker leading-relaxed">{event.content || description}</p>
@@ -94,7 +92,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
                   {event.tags.length > 0 && (
                     <div className="mt-8">
-                      <h3 className="font-semibold text-stone-darker mb-3">Categorías:</h3>
+                      <h3 className="font-semibold text-stone-darker mb-3">{t("events.detail.categories")}</h3>
                       <div className="flex flex-wrap gap-2">
                         {event.tags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="bg-stone-light text-stone-darker">
@@ -113,13 +111,13 @@ export function EventDetail({ event }: EventDetailProps) {
               {/* Event Info */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-stone-darker mb-4">Información del Evento</h3>
+                  <h3 className="font-semibold text-stone-darker mb-4">{t("events.detail.info")}</h3>
 
                   <div className="space-y-3">
                     <div className="flex items-start text-stone-darker">
                       <Calendar className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
-                        <div className="font-medium">Fecha</div>
+                        <div className="font-medium">{t("events.detail.date")}</div>
                         <div className="text-sm">{formatDateRange()}</div>
                       </div>
                     </div>
@@ -127,7 +125,7 @@ export function EventDetail({ event }: EventDetailProps) {
                     <div className="flex items-start text-stone-darker">
                       <MapPin className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
-                        <div className="font-medium">Lugar</div>
+                        <div className="font-medium">{t("events.detail.venue")}</div>
                         <div className="text-sm">{event.venue}</div>
                       </div>
                     </div>
@@ -135,8 +133,8 @@ export function EventDetail({ event }: EventDetailProps) {
                     <div className="flex items-start text-stone-darker">
                       <Clock className="w-4 h-4 mr-3 text-stone-darker mt-1" />
                       <div>
-                        <div className="font-medium">Tipo</div>
-                        <div className="text-sm">{EVENT_TYPES[event.type]}</div>
+                        <div className="font-medium">{t("events.detail.type")}</div>
+                        <div className="text-sm">{t(`events.types.${event.type}`)}</div>
                       </div>
                     </div>
                   </div>
@@ -159,7 +157,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
                     <Button variant="outline" className="w-full bg-transparent">
                       <Share2 className="w-4 h-4 mr-2" />
-                      Compartir Evento
+                      {t("events.detail.share")}
                     </Button>
                   </div>
                 </CardContent>
@@ -169,9 +167,9 @@ export function EventDetail({ event }: EventDetailProps) {
               {event.relatedCommerce && (
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-stone-darker mb-4">Comercio Relacionado</h3>
+                    <h3 className="font-semibold text-stone-darker mb-4">{t("events.detail.relatedCommerce")}</h3>
                     <Button variant="outline" className="w-full bg-transparent">
-                      Ver Comercio
+                      {t("events.detail.viewCommerce")}
                     </Button>
                   </CardContent>
                 </Card>

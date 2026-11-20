@@ -1,12 +1,49 @@
 {
   "nav": {
+    "home": "Inicio",
     "history": "Historia",
     "map": "Mapa",
     "routes": "Rutas",
+    "explore": "Explora",
     "culture": "Cultura",
     "collectibles": "Coleccionables",
     "commerce": "Comercios",
-    "events": "Eventos"
+    "events": "Eventos",
+    "brandName": "Cartagena",
+    "brandTagline": "Viva",
+    "search": "Buscar",
+    "localPlans": "Planes para locales",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "quickActions": "Acciones rápidas",
+    "navigation": "Navegación",
+    "needHelp": "¿Necesitas ayuda?",
+    "contactUs": "Contáctanos",
+    "login": "Iniciar sesión",
+    "favorites": "Favoritos",
+    "achievements": "Logros",
+    "myBusiness": "Mi negocio",
+    "logout": "Cerrar sesión",
+    "comingSoon": "(Próximamente)",
+    "groups": {
+      "livingCulture": "Cultura viva",
+      "agenda": "Agenda",
+      "localCommerce": "Comercio local",
+      "usefulServices": "Servicios útiles",
+      "shortcuts": "Atajos"
+    },
+    "items": {
+      "culture": "Cultura",
+      "gastronomy": "Gastronomía",
+      "events": "Eventos",
+      "localPlans": "Planes para locales",
+      "businesses": "Comercios",
+      "shoppingCenters": "Centros comerciales",
+      "massSchedules": "Horarios de misas",
+      "city3d": "Ciudad en 3D",
+      "todayNearYou": "Hoy cerca de ti",
+      "freeThisWeekend": "Gratis este fin de semana"
+    }
   },
   "home": {
     "hero": {
@@ -55,7 +92,101 @@
       "subtitle": "Descubre los momentos que forjaron la identidad de Cartagena de Indias"
     },
     "timeline": {
-      "title": "Línea de Tiempo Histórica"
+      "title": "Línea de tiempo histórica"
+    },
+    "preview": {
+      "title": "Viaja a través del tiempo",
+      "subtitle": "Los momentos clave que forjaron la identidad de Cartagena.",
+      "periodLabel": "Período histórico",
+      "prevPeriod": "Período anterior",
+      "nextPeriod": "Período siguiente",
+      "periodOf": "Período {current} de {total}",
+      "exploreTimeline": "Explorar línea de tiempo completa",
+      "periods": {
+        "founding": {
+          "title": "Fundación de Cartagena",
+          "description": "Pedro de Heredia funda la ciudad que se convertiría en el puerto más importante del Caribe."
+        },
+        "walls": {
+          "title": "Construcción de las murallas",
+          "description": "Se construyen las fortificaciones que protegerían la ciudad de piratas y enemigos."
+        },
+        "independence": {
+          "title": "Independencia - Ciudad Heroica",
+          "description": "Cartagena se declara independiente, ganándose el título de Ciudad Heroica."
+        },
+        "unesco": {
+          "title": "Patrimonio de la Humanidad",
+          "description": "UNESCO declara el centro histórico como Patrimonio de la Humanidad."
+        }
+      }
+    }
+  },
+  "timeline": {
+    "hero": {
+      "titleLine1": "500 años de",
+      "titleLine2": "Historia viva",
+      "subtitle": "Desde la fundación española hasta convertirse en Patrimonio de la Humanidad, descubre los momentos que forjaron la identidad cartagenera."
+    },
+    "title": "Línea de tiempo interactiva",
+    "subtitle": "Navega a través de los momentos más importantes de la historia cartagenera.",
+    "keyFacts": "Datos clave:",
+    "viewOnMap": "Ver en el mapa",
+    "events": {
+      "founding": {
+        "category": "Fundación",
+        "title": "Fundación de Cartagena",
+        "subtitle": "Pedro de Heredia establece la ciudad",
+        "description": "El conquistador español Pedro de Heredia funda Cartagena de Indias el 1 de junio de 1533, estableciendo uno de los puertos más importantes del Nuevo Mundo. La ciudad se convierte rápidamente en el principal punto de entrada y salida de riquezas hacia España.",
+        "fact1": "Primera ciudad fundada en la costa caribeña colombiana",
+        "fact2": "Nombrada en honor a Cartagena, España",
+        "fact3": "Puerto natural estratégico para el comercio"
+      },
+      "walls": {
+        "category": "Fortificación",
+        "title": "Construcción de las murallas",
+        "subtitle": "Fortificación contra piratas y enemigos",
+        "description": "Durante más de 150 años se construyen las imponentes murallas que rodean la ciudad. Estas fortificaciones, diseñadas por ingenieros militares españoles, protegen Cartagena de los constantes ataques de piratas, corsarios y flotas enemigas.",
+        "fact1": "Más de 11 kilómetros de murallas",
+        "fact2": "Resistieron múltiples asedios",
+        "fact3": "Obra maestra de ingeniería militar colonial"
+      },
+      "siege1741": {
+        "category": "Defensa",
+        "title": "Sitio de Cartagena",
+        "subtitle": "Victoria heroica contra los ingleses",
+        "description": "La ciudad resiste heroicamente el asedio de la flota inglesa comandada por Edward Vernon. Blas de Lezo, el almirante español, defiende exitosamente la ciudad en una de las batallas navales más importantes de la historia colonial americana.",
+        "fact1": "Flota inglesa de 186 navíos derrotada",
+        "fact2": "Blas de Lezo, héroe de la defensa",
+        "fact3": "Victoria que cambió el equilibrio colonial"
+      },
+      "independence": {
+        "category": "Independencia",
+        "title": "Independencia - Ciudad Heroica",
+        "subtitle": "Primera en declarar la independencia",
+        "description": "Cartagena se convierte en la primera ciudad de Colombia en declarar su independencia absoluta de España el 11 de noviembre de 1811. Este acto heroico le otorga el título de \"Ciudad Heroica\" y marca el inicio de la lucha independentista en la región.",
+        "fact1": "Primera ciudad independiente de Colombia",
+        "fact2": "Título oficial de \"Ciudad Heroica\"",
+        "fact3": "Cuna de la libertad americana"
+      },
+      "morillo": {
+        "category": "Resistencia",
+        "title": "Sitio de Morillo y Reconquista",
+        "subtitle": "Resistencia durante la Reconquista española",
+        "description": "Pablo Morillo sitia la ciudad durante 106 días. La población resiste heroicamente hasta que el hambre y las enfermedades obligan a la rendición. Miles de cartageneros mueren defendiendo la libertad, consolidando el espíritu heroico de la ciudad.",
+        "fact1": "106 días de sitio heroico",
+        "fact2": "Miles de mártires por la libertad",
+        "fact3": "Resistencia que inspiró a toda América"
+      },
+      "unesco": {
+        "category": "Patrimonio",
+        "title": "Patrimonio de la Humanidad",
+        "subtitle": "Reconocimiento mundial UNESCO",
+        "description": "La UNESCO declara el centro histórico de Cartagena como Patrimonio Cultural de la Humanidad, reconociendo su excepcional valor universal. Las murallas, fortificaciones y arquitectura colonial son preservadas para las futuras generaciones.",
+        "fact1": "Reconocimiento mundial UNESCO",
+        "fact2": "Preservación del patrimonio colonial",
+        "fact3": "Destino turístico de clase mundial"
+      }
     }
   },
   "map": {
@@ -92,11 +223,22 @@
       "culture": "Cultura",
       "shop": "Comercio",
       "nature": "Naturaleza"
+    },
+    "poiCard": {
+      "categories": {
+        "historic": "Histórico",
+        "food": "Gastronomía",
+        "culture": "Cultura",
+        "photo": "Fotografía",
+        "mall": "Centro comercial",
+        "commerce": "Comercio",
+        "default": "Punto de interés"
+      }
     }
   },
   "routes": {
     "hero": {
-      "title": "Rutas Caminables",
+      "title": "Rutas caminables",
       "subtitle": "Explora Cartagena a pie con nuestras rutas temáticas guiadas"
     },
     "filter": {
@@ -107,43 +249,122 @@
       "nature": "Paisajes",
       "art": "Arte",
       "fortress": "Fortalezas"
+    },
+    "availableRoutes": "Rutas disponibles",
+    "allCategories": "Todos",
+    "audio": "Audio",
+    "offline": "Offline",
+    "highlights": "Puntos destacados:",
+    "viewRoute": "Ver ruta",
+    "start": "Iniciar"
+  },
+  "routePlayer": {
+    "emptySteps": "Todavía no hay pasos cargados para esta ruta. Vuelve pronto — la estamos completando.",
+    "stepOf": "Paso {current} de {total}",
+    "audioGuide": "Audio guía",
+    "prevStep": "Paso anterior",
+    "nextStep": "Paso siguiente",
+    "playAudio": "Escuchar audio",
+    "pauseAudio": "Pausar audio",
+    "previous": "Anterior",
+    "nextStop": "Siguiente parada",
+    "routeSteps": "Pasos de la ruta",
+    "map": {
+      "emptyLocations": "Todavía no hay ubicaciones cargadas para esta ruta.",
+      "showMyLocation": "Mostrar mi ubicación",
+      "navigate": "Navegar",
+      "legend": "Leyenda",
+      "routeSteps": "Pasos de la ruta",
+      "suggestedPath": "Camino sugerido",
+      "yourLocation": "Tu ubicación"
     }
   },
   "commerce": {
-    "title": "Comercios Locales",
+    "title": "Comercios locales",
     "subtitle": "Descubre artesanos, restaurantes y tiendas auténticas de Cartagena",
     "filters": {
+      "label": "Filtros:",
       "type": "Tipo",
       "subtype": "Subtipo",
       "neighborhood": "Barrio",
       "price": "Precio",
       "all": "Todos"
     },
+    "price": {
+      "budget": "$ - Económico",
+      "moderate": "$$ - Moderado",
+      "premium": "$$$ - Premium"
+    },
     "types": {
-      "mall": "Centro Comercial",
-      "artisan": "Artesanía",
+      "mall": "Centro comercial",
+      "artisan": "Artesanías",
       "food": "Gastronomía",
       "shop": "Tienda",
-      "service": "Servicio",
-      "culture": "Cultural"
+      "service": "Servicios",
+      "culture": "Cultura"
+    },
+    "empty": "No se encontraron comercios con los filtros seleccionados.",
+    "directionsTo": "Cómo llegar a {name}",
+    "detail": {
+      "about": "Sobre {name}",
+      "features": "Características:",
+      "contactInfo": "Información de contacto",
+      "website": "Sitio web"
+    },
+    "claim": {
+      "pendingReview": "Tu solicitud para administrar este negocio está en revisión.",
+      "alreadyManaging": "Ya administras este negocio.",
+      "cta": "¿Es tu negocio? Reclámalo",
+      "placeholder": "Cuéntanos por qué este negocio es tuyo (opcional)",
+      "alreadyClaimed": "Este negocio ya tiene dueño.",
+      "error": "No se pudo enviar la solicitud. Intenta de nuevo.",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando...",
+      "cancel": "Cancelar"
     }
   },
   "events": {
     "title": "Eventos",
     "subtitle": "Descubre festivales, conciertos y eventos culturales en Cartagena",
-    "upcoming": "Próximos Eventos",
-    "past": "Eventos Pasados",
+    "upcoming": "Próximos eventos",
+    "past": "Eventos pasados",
+    "status": {
+      "upcoming": "Próximo",
+      "past": "Pasado"
+    },
+    "filters": {
+      "label": "Filtros:",
+      "type": "Tipo de evento",
+      "allTypes": "Todos los tipos",
+      "venue": "Lugar",
+      "allVenues": "Todos los lugares"
+    },
     "types": {
       "festival": "Festival",
       "concierto": "Concierto",
       "feria": "Feria",
-      "mall_event": "Evento de Centro Comercial",
-      "gastronomia": "Gastronómico",
-      "cultural": "Cultural"
+      "mall_event": "Evento en centro comercial",
+      "gastronomia": "Gastronomía",
+      "cultural": "Cultural",
+      "deportivo": "Deportivo"
+    },
+    "emptyUpcoming": "Todavía no hay eventos próximos publicados.",
+    "emptyPast": "No hay eventos pasados que coincidan con los filtros seleccionados.",
+    "seeWeekPlans": "Mira los planes de esta semana →",
+    "detail": {
+      "about": "Sobre el evento",
+      "categories": "Categorías:",
+      "info": "Información del evento",
+      "date": "Fecha",
+      "venue": "Lugar",
+      "type": "Tipo",
+      "share": "Compartir evento",
+      "relatedCommerce": "Comercio relacionado",
+      "viewCommerce": "Ver comercio"
     }
   },
   "plans": {
-    "title": "Planes para Locales",
+    "title": "Planes para locales",
     "subtitle": "Descubre las mejores actividades y eventos para disfrutar el fin de semana en Cartagena",
     "updated": "Actualizado semanalmente",
     "allNeighborhoods": "Todos los barrios",
@@ -163,25 +384,32 @@
     "price": {
       "free": "Gratis",
       "paid": "Pago"
-    }
+    },
+    "empty": "No se encontraron planes con los filtros seleccionados"
   },
   "mass": {
-    "title": "Horarios de Misas",
+    "title": "Horarios de misas",
     "subtitle": "Información actualizada de horarios de misas en las principales parroquias de Cartagena",
     "updated": "Actualizado mensualmente",
-    "mainParishes": "Principales parroquias"
+    "mainParishes": "Principales parroquias",
+    "schedules": "Horarios de misas",
+    "emptyError": "No pudimos cargar los horarios en este momento. Intenta de nuevo en unos minutos."
   },
   "common": {
     "duration": "Duración",
     "difficulty": "Dificultad",
     "points": "puntos de interés",
-    "start": "Comenzar Ruta",
+    "start": "Comenzar ruta",
     "easy": "Fácil",
     "moderate": "Moderado",
     "hard": "Difícil",
     "minutes": "min",
     "hours": "h",
-    "clearFilters": "Limpiar filtros"
+    "clearFilters": "Limpiar filtros",
+    "imageUpload": {
+      "uploadError": "No se pudo subir la imagen",
+      "uploading": "Subiendo..."
+    }
   },
   "cta": {
     "viewOnMap": "Ver en el mapa",
@@ -189,6 +417,113 @@
     "visit": "Visitar",
     "getDirections": "Cómo llegar",
     "viewDetails": "Ver detalles"
+  },
+  "explore": {
+    "title": "¿Qué hacer en Cartagena?",
+    "subtitle": "Cultura, eventos, comercio y servicios — lo que la ciudad tiene hoy, sin relleno genérico.",
+    "searchPlaceholder": "Buscar eventos, lugares, tiendas...",
+    "categoriesTitle": "Categorías",
+    "shortcuts": {
+      "todayNearYou": "Hoy cerca de ti",
+      "freeThisWeekend": "Gratis este fin de semana"
+    },
+    "categories": {
+      "culture": {
+        "title": "Cultura viva",
+        "description": "Música, arte y tradiciones afrocaribeñas que se viven en la calle, no en un museo.",
+        "cultureLink": "Cultura",
+        "gastronomyLink": "Gastronomía"
+      },
+      "agenda": {
+        "title": "Agenda",
+        "description": "Lo que pasa esta semana en la ciudad.",
+        "eventsLink": "Eventos",
+        "localPlansLink": "Planes locales"
+      },
+      "commerce": {
+        "title": "Comercio local",
+        "description": "Negocios y artesanos de Cartagena, de primera mano.",
+        "businessesLink": "Comercios",
+        "mallsLink": "Centros comerciales"
+      },
+      "services": {
+        "title": "Servicios útiles",
+        "description": "Información práctica para el día a día en la ciudad.",
+        "massesLink": "Horarios de misas"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Entrar",
+      "submitting": "Entrando...",
+      "noAccount": "¿No tienes cuenta?",
+      "registerLink": "Regístrate"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "email": "Email",
+      "password": "Contraseña",
+      "passwordHint": "Mínimo 8 caracteres.",
+      "submit": "Crear cuenta",
+      "submitting": "Creando cuenta...",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "loginLink": "Inicia sesión"
+    }
+  },
+  "achievements": {
+    "hero": {
+      "titleLine1": "Tus",
+      "titleLine2": "Logros en Cartagena",
+      "subtitle": "Se desbloquean solos a medida que exploras: completa rutas guiadas, guarda tus lugares favoritos."
+    },
+    "grid": {
+      "progress": "Progreso",
+      "unlocked": "¡Desbloqueado!"
+    },
+    "userProgress": {
+      "title": "Tu progreso",
+      "subtitle": "Sigue explorando Cartagena para desbloquear más logros.",
+      "achievementsTitle": "Logros",
+      "unlockedLabel": "Desbloqueados",
+      "routesCompletedTitle": "Rutas completadas",
+      "routesCompletedDesc": "Rutas guiadas terminadas de principio a fin.",
+      "favoritesTitle": "Favoritos",
+      "favoritesDesc": "Comercios guardados como favoritos.",
+      "unlockedListTitle": "Logros desbloqueados"
+    },
+    "neighborhoodCard": {
+      "missingData": "Error: faltan los datos del barrio",
+      "missingIcon": "Error: falta el icono para {name}",
+      "progress": "Progreso",
+      "collectibles": "Coleccionables",
+      "percentComplete": "{progress}% completo",
+      "explore": "Explorar"
+    }
+  },
+  "footer": {
+    "brand": "Cartagena Viva",
+    "description": "Tu guía cultural interactiva para descubrir la historia, tradiciones y belleza de Cartagena de Indias.",
+    "quickLinks": "Enlaces rápidos",
+    "home": "Inicio",
+    "history": "Historia",
+    "interactiveMap": "Mapa interactivo",
+    "walkingRoutes": "Rutas turísticas",
+    "explore": "Explora",
+    "discover": "Descubre",
+    "livingCulture": "Cultura viva",
+    "events": "Eventos",
+    "businesses": "Comercios",
+    "usefulServices": "Servicios útiles",
+    "contact": "Contacto",
+    "location": "Cartagena de Indias, Colombia",
+    "copyright": "© {year} Cartagena Viva. Todos los derechos reservados.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "developedBy": "Desarrollado por"
   },
   "city3d": {
     "title": "Cartagena viva",

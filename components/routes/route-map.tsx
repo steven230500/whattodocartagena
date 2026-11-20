@@ -22,6 +22,7 @@ interface RouteMapProps {
 
 export function RouteMap({ route }: RouteMapProps) {
   const t = useTranslations("city3d")
+  const tr = useTranslations("routePlayer.map")
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const steps = route.steps.filter(
@@ -50,7 +51,7 @@ export function RouteMap({ route }: RouteMapProps) {
   if (steps.length === 0) {
     return (
       <div className="h-[420px] lg:h-full flex items-center justify-center bg-muted/20 text-muted-foreground text-sm p-8 text-center">
-        Todavía no hay ubicaciones cargadas para esta ruta.
+        {tr("emptyLocations")}
       </div>
     )
   }
@@ -70,7 +71,7 @@ export function RouteMap({ route }: RouteMapProps) {
       )}
 
       <div className="absolute top-4 right-4 flex flex-col space-y-2 z-[1000]">
-        <Button size="sm" variant="outline" onClick={getCurrentLocation} className="bg-white/95 backdrop-blur-sm" aria-label="Mostrar mi ubicación">
+        <Button size="sm" variant="outline" onClick={getCurrentLocation} className="bg-white/95 backdrop-blur-sm" aria-label={tr("showMyLocation")}>
           <Locate className="w-4 h-4" />
         </Button>
       </div>
@@ -78,25 +79,25 @@ export function RouteMap({ route }: RouteMapProps) {
       <div className="absolute bottom-4 right-4 z-[1000]">
         <Button className="bg-coral hover:bg-coral-dark text-ink shadow-lg" onClick={openDirections}>
           <Navigation className="w-4 h-4 mr-2" />
-          Navegar
+          {tr("navigate")}
         </Button>
       </div>
 
       <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg z-[1000]">
-        <h4 className="font-semibold text-sm mb-2">Leyenda</h4>
+        <h4 className="font-semibold text-sm mb-2">{tr("legend")}</h4>
         <div className="space-y-1 text-xs">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-foreground rounded-full" />
-            <span>Pasos de la ruta</span>
+            <span>{tr("routeSteps")}</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-3 h-1 bg-coral" />
-            <span>Camino sugerido</span>
+            <span>{tr("suggestedPath")}</span>
           </div>
           {userLocation && (
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-blue-500 rounded-full" />
-              <span>Tu ubicación</span>
+              <span>{tr("yourLocation")}</span>
             </div>
           )}
         </div>

@@ -1,114 +1,75 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin, Users, Crown, Sword, Flag, Building } from "lucide-react"
 
-const timelineEvents = [
+const TIMELINE_EVENT_META = [
   {
     id: 1,
+    key: "founding",
     year: "1533",
-    title: "Fundación de Cartagena",
-    subtitle: "Pedro de Heredia establece la ciudad",
-    description:
-      "El conquistador español Pedro de Heredia funda Cartagena de Indias el 1 de junio de 1533, estableciendo uno de los puertos más importantes del Nuevo Mundo. La ciudad se convierte rápidamente en el principal punto de entrada y salida de riquezas hacia España.",
     image: "/aerial-view-of-cartagena-historic-center-with-wall.jpg",
     icon: Crown,
-    category: "Fundación",
-    keyFacts: [
-      "Primera ciudad fundada en la costa caribeña colombiana",
-      "Nombrada en honor a Cartagena, España",
-      "Puerto natural estratégico para el comercio",
-    ],
   },
   {
     id: 2,
+    key: "walls",
     year: "1586-1741",
-    title: "Construcción de las Murallas",
-    subtitle: "Fortificación contra piratas y enemigos",
-    description:
-      "Durante más de 150 años se construyen las imponentes murallas que rodean la ciudad. Estas fortificaciones, diseñadas por ingenieros militares españoles, protegen Cartagena de los constantes ataques de piratas, corsarios y flotas enemigas.",
     image: "/cartagena-colonial-walls-construction-fortress.jpg",
     icon: Building,
-    category: "Fortificación",
-    keyFacts: [
-      "Más de 11 kilómetros de murallas",
-      "Resistieron múltiples asedios",
-      "Obra maestra de ingeniería militar colonial",
-    ],
   },
   {
     id: 3,
+    key: "siege1741",
     year: "1741",
-    title: "Sitio de Cartagena",
-    subtitle: "Victoria heroica contra los ingleses",
-    description:
-      "La ciudad resiste heroicamente el asedio de la flota inglesa comandada por Edward Vernon. Blas de Lezo, el almirante español, defiende exitosamente la ciudad en una de las batallas navales más importantes de la historia colonial americana.",
     image: "/cartagena-city-walls-fortifications.jpg",
     icon: Sword,
-    category: "Defensa",
-    keyFacts: [
-      "Flota inglesa de 186 navíos derrotada",
-      "Blas de Lezo, héroe de la defensa",
-      "Victoria que cambió el equilibrio colonial",
-    ],
   },
   {
     id: 4,
+    key: "independence",
     year: "1811",
-    title: "Independencia - Ciudad Heroica",
-    subtitle: "Primera en declarar la independencia",
-    description:
-      'Cartagena se convierte en la primera ciudad de Colombia en declarar su independencia absoluta de España el 11 de noviembre de 1811. Este acto heroico le otorga el título de "Ciudad Heroica" y marca el inicio de la lucha independentista en la región.',
     image: "/cartagena-independence-1811-heroic-city.jpg",
     icon: Flag,
-    category: "Independencia",
-    keyFacts: [
-      "Primera ciudad independiente de Colombia",
-      'Título oficial de "Ciudad Heroica"',
-      "Cuna de la libertad americana",
-    ],
   },
   {
     id: 5,
+    key: "morillo",
     year: "1815-1821",
-    title: "Sitio de Morillo y Reconquista",
-    subtitle: "Resistencia durante la Reconquista española",
-    description:
-      "Pablo Morillo sitia la ciudad durante 106 días. La población resiste heroicamente hasta que el hambre y las enfermedades obligan a la rendición. Miles de cartageneros mueren defendiendo la libertad, consolidando el espíritu heroico de la ciudad.",
     image: "/castillo-san-felipe-fortress-cartagena.jpg",
     icon: Users,
-    category: "Resistencia",
-    keyFacts: [
-      "106 días de sitio heroico",
-      "Miles de mártires por la libertad",
-      "Resistencia que inspiró a toda América",
-    ],
   },
   {
     id: 6,
+    key: "unesco",
     year: "1984",
-    title: "Patrimonio de la Humanidad",
-    subtitle: "Reconocimiento mundial UNESCO",
-    description:
-      "La UNESCO declara el centro histórico de Cartagena como Patrimonio Cultural de la Humanidad, reconociendo su excepcional valor universal. Las murallas, fortificaciones y arquitectura colonial son preservadas para las futuras generaciones.",
     image: "/cartagena-unesco-world-heritage-historic-center.jpg",
     icon: Building,
-    category: "Patrimonio",
-    keyFacts: [
-      "Reconocimiento mundial UNESCO",
-      "Preservación del patrimonio colonial",
-      "Destino turístico de clase mundial",
-    ],
   },
-]
+] as const
 
 export function InteractiveTimeline() {
+  const t = useTranslations("timeline")
   const [activeEvent, setActiveEvent] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
   const timelineRef = useRef<HTMLDivElement>(null)
+
+  const timelineEvents = TIMELINE_EVENT_META.map((item) => ({
+    ...item,
+    title: t(`events.${item.key}.title`),
+    subtitle: t(`events.${item.key}.subtitle`),
+    description: t(`events.${item.key}.description`),
+    category: t(`events.${item.key}.category`),
+    keyFacts: [
+      t(`events.${item.key}.fact1`),
+      t(`events.${item.key}.fact2`),
+      t(`events.${item.key}.fact3`),
+    ],
+  }))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,8 +80,8 @@ export function InteractiveTimeline() {
       setScrollProgress(progress)
 
       // Update active event based on scroll position
-      const eventIndex = Math.floor(progress * timelineEvents.length)
-      setActiveEvent(Math.min(eventIndex, timelineEvents.length - 1))
+      const eventIndex = Math.floor(progress * TIMELINE_EVENT_META.length)
+      setActiveEvent(Math.min(eventIndex, TIMELINE_EVENT_META.length - 1))
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -135,10 +96,10 @@ export function InteractiveTimeline() {
         {/* Section Header */}
         <div className="max-w-2xl mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Línea de Tiempo Interactiva
+            {t("title")}
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
-            Navega a través de los momentos más importantes de la historia cartagenera.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -194,7 +155,7 @@ export function InteractiveTimeline() {
 
                       {/* Key Facts */}
                       <div className="space-y-2 mb-6">
-                        <h4 className="font-semibold text-foreground mb-3">Datos Clave:</h4>
+                        <h4 className="font-semibold text-foreground mb-3">{t("keyFacts")}</h4>
                         {event.keyFacts.map((fact, factIndex) => (
                           <div key={factIndex} className="flex items-start space-x-2">
                             <div className="w-1.5 h-1.5 rounded-full bg-coral mt-2 flex-shrink-0 text-ink" />
@@ -205,7 +166,7 @@ export function InteractiveTimeline() {
 
                       <Button className="bg-colonial-gold hover:bg-colonial-gold-dark text-ink self-start">
                         <MapPin className="w-4 h-4 mr-2" />
-                        Ver en el Mapa
+                        {t("viewOnMap")}
                       </Button>
                     </CardContent>
 

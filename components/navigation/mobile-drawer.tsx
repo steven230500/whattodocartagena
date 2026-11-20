@@ -1,6 +1,7 @@
 "use client"
 
 import { X, Map, Route } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { NAV_PRIMARY } from "@/lib/nav-config"
@@ -16,7 +17,8 @@ interface MobileDrawerProps {
   locale: Locale
 }
 
-export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
+export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  const t = useTranslations("nav")
   const [expandedItem, setExpandedItem] = useState<string | null>(null)
 
   if (!isOpen) return null
@@ -33,7 +35,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
           <div className="flex items-center space-x-3">
             <Logo />
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full w-10 h-10 p-0" aria-label="Cerrar menú">
+          <Button variant="ghost" size="sm" onClick={onClose} className="rounded-full w-10 h-10 p-0" aria-label={t("closeMenu")}>
             <X className="w-5 h-5" />
           </Button>
         </div>
@@ -42,7 +44,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
         <div className="p-4 pb-20">
           {/* Quick Actions */}
           <div className="mb-6">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Acciones rápidas</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">{t("quickActions")}</h3>
             <div className="grid grid-cols-2 gap-3">
               <Link
                 href="/map"
@@ -50,7 +52,7 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                 onClick={onClose}
               >
                 <Map className="w-6 h-6 text-caribbean-blue" />
-                <span className="text-sm font-medium">Mapa</span>
+                <span className="text-sm font-medium">{t("map")}</span>
               </Link>
               <Link
                 href="/routes"
@@ -58,22 +60,22 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                 onClick={onClose}
               >
                 <Route className="w-6 h-6 text-forest" />
-                <span className="text-sm font-medium">Rutas</span>
+                <span className="text-sm font-medium">{t("routes")}</span>
               </Link>
             </div>
           </div>
 
           {/* Main Navigation */}
           <nav className="space-y-1">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Navegación</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">{t("navigation")}</h3>
             {NAV_PRIMARY.map((item) => {
-              const label = locale === "es" ? item.label : item.labelEn
+              const label = t(item.key)
               const hasChildren = item.children && item.children.length > 0
 
               if (!hasChildren && item.href) {
                 return (
                   <Link
-                    key={item.label}
+                    key={item.key}
                     href={item.href}
                     className="flex items-center space-x-4 px-4 py-3 text-base font-medium text-foreground hover:bg-accent rounded-xl transition-colors"
                     onClick={onClose}
@@ -85,12 +87,12 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
               }
 
               if (hasChildren) {
-                const isExpanded = expandedItem === item.label
+                const isExpanded = expandedItem === item.key
 
                 return (
-                  <div key={item.label} className="rounded-xl overflow-hidden">
+                  <div key={item.key} className="rounded-xl overflow-hidden">
                     <button
-                      onClick={() => setExpandedItem(isExpanded ? null : item.label)}
+                      onClick={() => setExpandedItem(isExpanded ? null : item.key)}
                       className="w-full flex items-center justify-between px-4 py-3 text-base font-medium text-foreground hover:bg-accent transition-colors"
                     >
                       <div className="flex items-center space-x-4">
@@ -103,13 +105,13 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                     {isExpanded && (
                       <div className="bg-accent/30 px-4 py-2 space-y-1">
                         {item.children?.map((group) => {
-                          const groupLabel = locale === "es" ? group.group : group.groupEn
+                          const groupLabel = t(group.key)
                           return (
-                            <div key={group.group} className="py-2">
+                            <div key={group.key} className="py-2">
                               <h4 className="text-sm font-semibold text-foreground mb-3 px-4">{groupLabel}</h4>
                               <div className="space-y-1">
                                 {group.items.map((navItem) => {
-                                  const itemLabel = locale === "es" ? navItem.label : navItem.labelEn
+                                  const itemLabel = t(navItem.key)
                                   return (
                                     <Link
                                       key={navItem.href}
@@ -147,11 +149,11 @@ export function MobileDrawer({ isOpen, onClose, locale }: MobileDrawerProps) {
                 className="flex items-center justify-center w-full px-4 py-3 bg-coral hover:bg-coral-dark text-ink rounded-xl font-medium transition-colors"
                 onClick={onClose}
               >
-                Planes para locales
+                {t("localPlans")}
               </Link>
               <div className="text-center">
                 <p className="text-xs text-muted-foreground">
-                  ¿Necesitas ayuda? <a href="mailto:info@whattodocartagena.com" className="text-primary hover:underline">Contáctanos</a>
+                  {t("needHelp")} <a href="mailto:info@whattodocartagena.com" className="text-primary hover:underline">{t("contactUs")}</a>
                 </p>
               </div>
             </div>

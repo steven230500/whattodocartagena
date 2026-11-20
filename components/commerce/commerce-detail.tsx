@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Globe, Instagram, Clock, DollarSign, Navigation } from "lucide-react"
-import { useTranslations } from "next-intl"
-import { useLocale } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import type { Commerce } from "@/lib/types/commerce"
-import { COMMERCE_TYPES } from "@/lib/map/layers"
 import { FavoriteButton } from "@/components/business/favorite-button"
 import { ClaimBusinessButton } from "@/components/business/claim-business-button"
 import type { ClaimStatus } from "@/lib/api/business-claims"
@@ -43,7 +41,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-16">
           <div className="text-white">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge className="bg-colonial-gold text-ink">{COMMERCE_TYPES[commerce.type]}</Badge>
+              <Badge className="bg-colonial-gold text-ink">{t(`commerce.types.${commerce.type}`)}</Badge>
               {commerce.priceHint && (
                 <Badge variant="outline" className="border-white/30 text-white">
                   <DollarSign className="w-3 h-3 mr-1" />
@@ -72,7 +70,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">Sobre {commerce.name}</h2>
+                  <h2 className="font-serif text-2xl font-bold mb-6 text-stone-darker">{t("commerce.detail.about", { name: commerce.name })}</h2>
 
                   <div className="prose prose-stone max-w-none">
                     <p className="text-stone-darker leading-relaxed">{commerce.content || description}</p>
@@ -80,7 +78,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
 
                   {commerce.tags && commerce.tags.length > 0 && (
                     <div className="mt-8">
-                      <h3 className="font-semibold text-stone-darker mb-3">Características:</h3>
+                      <h3 className="font-semibold text-stone-darker mb-3">{t("commerce.detail.features")}</h3>
                       <div className="flex flex-wrap gap-2">
                         {commerce.tags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="bg-stone-light text-stone-darker">
@@ -99,7 +97,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
               {/* Contact Info */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-stone-darker mb-4">Información de Contacto</h3>
+                  <h3 className="font-semibold text-stone-darker mb-4">{t("commerce.detail.contactInfo")}</h3>
 
                   <div className="space-y-3">
                     {commerce.hours && (
@@ -125,7 +123,7 @@ export function CommerceDetail({ commerce, initialFavorited = false, claimStatus
                           rel="noopener noreferrer"
                           className="text-caribbean-blue hover:underline"
                         >
-                          Sitio Web
+                          {t("commerce.detail.website")}
                         </a>
                       </div>
                     )}

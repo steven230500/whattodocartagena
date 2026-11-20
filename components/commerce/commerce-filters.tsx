@@ -48,7 +48,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6">
       <div className="flex flex-wrap items-center gap-4 mb-4">
-        <h3 className="font-semibold text-stone-darker">Filtros:</h3>
+        <h3 className="font-semibold text-stone-darker">{t("commerce.filters.label")}</h3>
 
         <Select value={filters.type} onValueChange={(value) => updateFilter("type", value)}>
           <SelectTrigger className="w-[180px]" aria-label={t("commerce.filters.type")}>
@@ -56,9 +56,9 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("commerce.filters.all")}</SelectItem>
-            {Object.entries(COMMERCE_TYPES).map(([key, label]) => (
+            {(Object.keys(COMMERCE_TYPES) as Array<keyof typeof COMMERCE_TYPES>).map((key) => (
               <SelectItem key={key} value={key}>
-                {label}
+                {t(`commerce.types.${key}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -84,16 +84,16 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("commerce.filters.all")}</SelectItem>
-            <SelectItem value="$">$ - Económico</SelectItem>
-            <SelectItem value="$$">$$ - Moderado</SelectItem>
-            <SelectItem value="$$$">$$$ - Premium</SelectItem>
+            <SelectItem value="$">{t("commerce.price.budget")}</SelectItem>
+            <SelectItem value="$$">{t("commerce.price.moderate")}</SelectItem>
+            <SelectItem value="$$$">{t("commerce.price.premium")}</SelectItem>
           </SelectContent>
         </Select>
 
         {hasActiveFilters && (
           <Button variant="outline" size="sm" onClick={clearFilters}>
             <X className="w-4 h-4 mr-2" />
-            Limpiar Filtros
+            {t("common.clearFilters")}
           </Button>
         )}
       </div>
@@ -102,7 +102,7 @@ export function CommerceFilters({ onFilterChange }: CommerceFiltersProps) {
         <div className="flex flex-wrap gap-2">
           {filters.type !== "all" && (
             <Badge variant="secondary" className="bg-colonial-gold/10 text-colonial-gold-dark">
-              {COMMERCE_TYPES[filters.type as keyof typeof COMMERCE_TYPES]}
+              {t(`commerce.types.${filters.type as keyof typeof COMMERCE_TYPES}`)}
             </Badge>
           )}
           {filters.neighborhood !== "all" && (

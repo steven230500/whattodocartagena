@@ -1,39 +1,43 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
 
-const historicalPeriods = [
+const PERIOD_META = [
   {
+    key: "founding",
     year: "1533",
-    title: "Fundación de Cartagena",
-    description: "Pedro de Heredia funda la ciudad que se convertiría en el puerto más importante del Caribe.",
     image: "/aerial-view-of-cartagena-historic-center-with-wall.jpg",
   },
   {
+    key: "walls",
     year: "1586-1741",
-    title: "Construcción de las Murallas",
-    description: "Se construyen las fortificaciones que protegerían la ciudad de piratas y enemigos.",
     image: "/cartagena-colonial-walls-construction-fortress.jpg",
   },
   {
+    key: "independence",
     year: "1811",
-    title: "Independencia - Ciudad Heroica",
-    description: "Cartagena se declara independiente, ganándose el título de Ciudad Heroica.",
     image: "/cartagena-independence-1811-heroic-city.jpg",
   },
   {
+    key: "unesco",
     year: "1984",
-    title: "Patrimonio de la Humanidad",
-    description: "UNESCO declara el centro histórico como Patrimonio de la Humanidad.",
     image: "/cartagena-unesco-world-heritage-historic-center.jpg",
   },
-]
+] as const
 
 export function HistoryPreview() {
+  const t = useTranslations("history.preview")
   const [currentPeriod, setCurrentPeriod] = useState(0)
+
+  const historicalPeriods = PERIOD_META.map((p) => ({
+    ...p,
+    title: t(`periods.${p.key}.title`),
+    description: t(`periods.${p.key}.description`),
+  }))
 
   const nextPeriod = () => {
     setCurrentPeriod((prev) => (prev + 1) % historicalPeriods.length)
@@ -49,9 +53,9 @@ export function HistoryPreview() {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">Viaja a través del tiempo</h2>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("title")}</h2>
           <p className="text-lg text-muted-foreground text-pretty">
-            Los momentos clave que forjaron la identidad de Cartagena.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -77,7 +81,7 @@ export function HistoryPreview() {
               <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
                 <div className="flex items-center space-x-2 text-muted-foreground mb-4">
                   <Calendar className="w-4 h-4" />
-                  <span className="text-sm font-medium">Período Histórico</span>
+                  <span className="text-sm font-medium">{t("periodLabel")}</span>
                 </div>
 
                 <h3 className="font-serif text-3xl font-bold text-foreground mb-6">{current.title}</h3>
@@ -87,10 +91,10 @@ export function HistoryPreview() {
                 {/* Navigation */}
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" onClick={prevPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label="Período anterior">
+                    <Button variant="outline" size="sm" onClick={prevPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label={t("prevPeriod")}>
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
-                    <Button variant="outline" size="sm" onClick={nextPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label="Período siguiente">
+                    <Button variant="outline" size="sm" onClick={nextPeriod} className="w-10 h-10 p-0 bg-transparent" aria-label={t("nextPeriod")}>
                       <ChevronRight className="w-4 h-4" />
                     </Button>
                   </div>
@@ -100,7 +104,7 @@ export function HistoryPreview() {
                       <button
                         key={index}
                         onClick={() => setCurrentPeriod(index)}
-                        aria-label={`Período ${index + 1} de ${historicalPeriods.length}`}
+                        aria-label={t("periodOf", { current: index + 1, total: historicalPeriods.length })}
                         aria-current={index === currentPeriod ? "step" : undefined}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           index === currentPeriod ? "bg-coral w-8" : "bg-muted-foreground/30"
@@ -117,7 +121,7 @@ export function HistoryPreview() {
           <div className="text-center mt-12">
             <Button size="lg" className="bg-coral hover:bg-coral-dark text-ink px-8">
               <MapPin className="w-5 h-5 mr-2" />
-              Explorar Línea de Tiempo Completa
+              {t("exploreTimeline")}
             </Button>
           </div>
         </div>

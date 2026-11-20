@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,6 +12,9 @@ interface PoiCardProps {
 }
 
 export function PoiCard({ poi }: PoiCardProps) {
+  const t = useTranslations("map.poiCard")
+  const tCta = useTranslations("cta")
+
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "historic":
@@ -33,19 +37,19 @@ export function PoiCard({ poi }: PoiCardProps) {
   const getCategoryLabel = (category: string) => {
     switch (category) {
       case "historic":
-        return "Histórico"
+        return t("categories.historic")
       case "food":
-        return "Gastronomía"
+        return t("categories.food")
       case "culture":
-        return "Cultura"
+        return t("categories.culture")
       case "photo":
-        return "Fotografía"
+        return t("categories.photo")
       case "mall":
-        return "Centro Comercial"
+        return t("categories.mall")
       case "commerce":
-        return "Comercio"
+        return t("categories.commerce")
       default:
-        return "Punto de Interés"
+        return t("categories.default")
     }
   }
 
@@ -107,7 +111,7 @@ export function PoiCard({ poi }: PoiCardProps) {
             <div className="flex gap-2">
               <Button className="flex-1 bg-coral hover:bg-coral-dark text-ink text-sm">
                 <MapPin className="w-4 h-4 mr-2" />
-                Ver en Mapa
+                {tCta("viewOnMap")}
               </Button>
               <Button variant="outline" size="sm" className="bg-transparent">
                 <Info className="w-4 h-4" />

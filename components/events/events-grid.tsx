@@ -70,12 +70,12 @@ export function EventsGrid({ events }: EventsGridProps) {
           <div className="text-center py-16">
             <p className="text-stone-darker text-lg">
               {showUpcoming
-                ? "Todavía no hay eventos próximos publicados."
-                : "No hay eventos pasados que coincidan con los filtros seleccionados."}
+                ? t("events.emptyUpcoming")
+                : t("events.emptyPast")}
             </p>
             {showUpcoming && (
               <Link href="/plans" className="mt-4 inline-flex items-center gap-1 font-semibold text-coral-ink hover:underline">
-                Mira los planes de esta semana →
+                {t("events.seeWeekPlans")}
               </Link>
             )}
           </div>

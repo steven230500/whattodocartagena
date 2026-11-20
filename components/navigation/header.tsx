@@ -7,7 +7,7 @@ import { MegaMenu } from "@/components/navigation/mega-menu"
 import { MobileDrawer } from "@/components/navigation/mobile-drawer"
 import { SearchButton } from "@/components/navigation/search-button"
 import { Menu } from "lucide-react"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { Link, usePathname, useRouter } from "@/i18n/navigation"
 import type { Locale } from "@/i18n/routing"
 import { NAV_PRIMARY } from "@/lib/nav-config"
@@ -17,6 +17,7 @@ import { UserMenu } from "@/components/navigation/user-menu"
 export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const currentLocale = useLocale()
+  const t = useTranslations("nav")
   const router = useRouter()
   const pathname = usePathname()
 
@@ -37,11 +38,10 @@ export function Header() {
             <nav className="flex items-center space-x-6">
               {NAV_PRIMARY.map((item) => {
                 if (item.children && item.children.length > 0) {
-                  return <MegaMenu key={item.label} item={item} locale={currentLocale} />
+                  return <MegaMenu key={item.key} item={item} locale={currentLocale} />
                 }
 
                 if (item.href) {
-                  const label = currentLocale === "es" ? item.label : item.labelEn
                   return (
                     <Link
                       key={item.href}
@@ -49,7 +49,7 @@ export function Header() {
                       className="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                     >
                       {item.icon && <item.icon className="w-4 h-4" />}
-                      <span>{label}</span>
+                      <span>{t(item.key)}</span>
                     </Link>
                   )
                 }
@@ -63,7 +63,7 @@ export function Header() {
               <SearchButton />
               <LanguageToggle currentLocale={currentLocale} onLocaleChange={handleLocaleChange} />
               <Button asChild size="sm" className="bg-coral hover:bg-coral-dark text-ink">
-                <Link href="/plans">{currentLocale === "es" ? "Planes para locales" : "Local Plans"}</Link>
+                <Link href="/plans">{t("localPlans")}</Link>
               </Button>
               <UserMenu />
             </div>
@@ -85,6 +85,7 @@ export function Header() {
               size="sm"
               className="hover:bg-accent transition-colors p-2"
               onClick={() => setIsDrawerOpen(true)}
+              aria-label={t("openMenu")}
             >
               <Menu className="w-5 h-5" />
             </Button>
