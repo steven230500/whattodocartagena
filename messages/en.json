@@ -95,13 +95,8 @@
       "title": "Historical timeline"
     },
     "preview": {
-      "title": "Travel through time",
-      "subtitle": "The key moments that shaped Cartagena's identity.",
-      "periodLabel": "Historical period",
-      "prevPeriod": "Previous period",
-      "nextPeriod": "Next period",
-      "periodOf": "Period {current} of {total}",
-      "exploreTimeline": "Explore full timeline",
+      "title": "Five centuries in four dates",
+      "subtitle": "From its founding to World Heritage: the moments behind the city you walk today.",
       "periods": {
         "founding": {
           "title": "Founding of Cartagena",
@@ -112,14 +107,18 @@
           "description": "The fortifications that would protect the city from pirates and enemy fleets are built."
         },
         "independence": {
-          "title": "Independence - Heroic City",
+          "title": "Independence: the Heroic City",
           "description": "Cartagena declares independence, earning the title of Heroic City."
         },
         "unesco": {
           "title": "World Heritage Site",
           "description": "UNESCO declares the historic center a World Heritage Site."
         }
-      }
+      },
+      "imageAlt": "A stretch of Cartagena's city wall with a sentry box",
+      "imageCaption": "The city wall, today.",
+      "readAll": "Read the full history",
+      "readMore": "Read this chapter"
     }
   },
   "map": {

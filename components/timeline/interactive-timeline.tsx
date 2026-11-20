@@ -127,7 +127,8 @@ export function InteractiveTimeline() {
             return (
               <div
                 key={event.id}
-                className="mb-20"
+                id={`hito-${event.key}`}
+                className="mb-20 scroll-mt-24"
               >
                 {/* todo el contenido se lee igual; el hito activo solo se marca con el borde */}
                 <Card className={`overflow-hidden border shadow-none transition-colors duration-300 ${isActive ? "border-coral ring-2 ring-coral/20" : "border-border"}`}>

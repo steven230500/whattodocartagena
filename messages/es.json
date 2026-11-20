@@ -95,13 +95,8 @@
       "title": "Línea de tiempo histórica"
     },
     "preview": {
-      "title": "Viaja a través del tiempo",
-      "subtitle": "Los momentos clave que forjaron la identidad de Cartagena.",
-      "periodLabel": "Período histórico",
-      "prevPeriod": "Período anterior",
-      "nextPeriod": "Período siguiente",
-      "periodOf": "Período {current} de {total}",
-      "exploreTimeline": "Explorar línea de tiempo completa",
+      "title": "Cinco siglos en cuatro fechas",
+      "subtitle": "De la fundación a Patrimonio de la Humanidad: los momentos que explican la ciudad que caminas hoy.",
       "periods": {
         "founding": {
           "title": "Fundación de Cartagena",
@@ -112,14 +107,18 @@
           "description": "Se construyen las fortificaciones que protegerían la ciudad de piratas y enemigos."
         },
         "independence": {
-          "title": "Independencia - Ciudad Heroica",
+          "title": "Independencia: Ciudad Heroica",
           "description": "Cartagena se declara independiente, ganándose el título de Ciudad Heroica."
         },
         "unesco": {
           "title": "Patrimonio de la Humanidad",
           "description": "UNESCO declara el centro histórico como Patrimonio de la Humanidad."
         }
-      }
+      },
+      "imageAlt": "Tramo de la muralla de Cartagena con una garita",
+      "imageCaption": "La muralla, hoy.",
+      "readAll": "Leer la historia completa",
+      "readMore": "Leer este capítulo"
     }
   },
   "map": {

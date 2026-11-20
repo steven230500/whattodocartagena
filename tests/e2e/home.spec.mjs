@@ -56,3 +56,14 @@ test("en inglés el inicio está traducido", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Open now" })).toBeVisible()
   await expect(page.getByRole("heading", { name: "Walking routes" })).toBeVisible()
 })
+
+test("la historia muestra los cuatro hitos y cada uno lleva a su capítulo", async ({ page }) => {
+  await openHome(page)
+  const section = page.locator("section", { has: page.getByRole("heading", { name: "Cinco siglos en cuatro fechas" }) })
+  const milestones = section.locator("ol > li")
+  await expect(milestones).toHaveCount(4)
+  await expect(milestones.first().getByRole("link")).toHaveAttribute("href", "/history#hito-founding")
+  await expect(section.getByRole("link", { name: "Leer la historia completa" })).toHaveAttribute("href", "/history")
+  // ya no hay carrusel con flechas
+  await expect(section.getByRole("button")).toHaveCount(0)
+})
