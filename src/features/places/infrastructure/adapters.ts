@@ -10,6 +10,7 @@ const COMMERCE_KIND: Record<Commerce["type"], PlaceKind> = {
   food: "food",
   culture: "culture",
   artisan: "shop",
+  bar: "food", // "Comer y beber"
   shop: "shop",
   mall: "shop",
   service: "shop",

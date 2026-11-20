@@ -11,7 +11,7 @@ export interface Coordinates {
   lng: number;
 }
 
-export type CommerceType = "mall" | "artisan" | "food" | "shop" | "service" | "culture";
+export type CommerceType = "mall" | "artisan" | "food" | "bar" | "shop" | "service" | "culture";
 
 export interface Commerce {
   id: string;

@@ -1,9 +1,12 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
 import { Heart } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { toast } from "sonner"
 import { toggleFavorite } from "@/app/actions/favorites"
+import { toggleLocalFavorite, useLocalFavorites } from "@/lib/favorites/local-favorites"
+import { useRouter } from "@/i18n/navigation"
 
 interface FavoriteButtonProps {
   slug: string
@@ -11,35 +14,53 @@ interface FavoriteButtonProps {
   className?: string
 }
 
+/**
+ * Con cuenta, el favorito se guarda en el servidor. Sin cuenta, se guarda en el
+ * teléfono y se avisa que al iniciar sesión pasa a la cuenta (antes mandaba a
+ * un login sin explicación).
+ */
 export function FavoriteButton({ slug, initialFavorited, className = "" }: FavoriteButtonProps) {
-  const [favorited, setFavorited] = useState(initialFavorited)
+  const t = useTranslations("favorites")
+  const local = useLocalFavorites()
+  // estado de servidor cuando hay sesión; null = sin sesión o todavía sin saberlo
+  const [server, setServer] = useState<boolean | null>(initialFavorited ? true : null)
   const [pending, startTransition] = useTransition()
   const router = useRouter()
+  const favorited = server ?? local.includes(slug)
 
   return (
     <button
       type="button"
-      aria-label={favorited ? "Quitar de favoritos" : "Agregar a favoritos"}
+      aria-label={favorited ? t("remove") : t("add")}
+      aria-pressed={favorited}
       disabled={pending}
       onClick={(e) => {
         e.preventDefault()
+        const before = server
         const next = !favorited
-        setFavorited(next) // optimista
+        if (before !== null) setServer(next) // optimista con sesión
         startTransition(async () => {
           const result = await toggleFavorite(slug, favorited)
           if (result === "unauthorized") {
-            router.push("/login")
+            setServer(null)
+            const saved = toggleLocalFavorite(slug)
+            toast(saved ? t("savedLocal") : t("removedLocal"), {
+              description: saved ? t("savedLocalHint") : undefined,
+              action: saved ? { label: t("seeAll"), onClick: () => router.push("/favorites") } : undefined,
+            })
             return
           }
           if (result === "error") {
-            setFavorited(!next) // revierte si falló
+            setServer(before) // revierte
+            toast.error(t("error"))
+            return
           }
+          setServer(next)
         })
       }}
-      aria-pressed={favorited}
-      className={`inline-flex items-center justify-center rounded-full bg-white/90 hover:bg-white p-2 shadow-sm transition-colors disabled:opacity-50 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full bg-white/90 p-2 shadow-sm transition-colors hover:bg-white disabled:opacity-50 ${className}`}
     >
-      <Heart className={`w-4 h-4 ${favorited ? "fill-coral text-coral" : "text-stone-darker"}`} />
+      <Heart className={`h-4 w-4 ${favorited ? "fill-coral text-coral" : "text-stone-darker"}`} />
     </button>
   )
 }

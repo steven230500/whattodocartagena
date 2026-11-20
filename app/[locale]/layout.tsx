@@ -3,6 +3,8 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import { MobileBottomNav } from "@/components/navigation/mobile-bottom-nav"
 import { Footer } from "@/components/navigation/footer"
+import { Toaster } from "@/components/ui/sonner"
+import { FavoritesSync } from "@/components/business/favorites-sync"
 
 export default async function LocaleLayout({
   children,
@@ -20,6 +22,9 @@ export default async function LocaleLayout({
         <Footer />
       </div>
       <MobileBottomNav />
+      {/* avisos breves (p. ej. favorito guardado); en celular por encima de la barra inferior */}
+      <Toaster position="bottom-center" mobileOffset={{ bottom: 88 }} />
+      <FavoritesSync />
     </NextIntlClientProvider>
   )
 }

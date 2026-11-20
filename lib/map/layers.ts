@@ -4,6 +4,7 @@ import type { Event } from "@/lib/types/commerce";
 export const COMMERCE_TYPES = {
   food: "Gastronomía",
   artisan: "Artesanías",
+  bar: "Bares y vida nocturna",
   mall: "Centro comercial",
   service: "Servicios",
   shop: "Tienda",

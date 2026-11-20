@@ -65,7 +65,7 @@ const events = [
   },
 ]
 
-const state = { progressPuts: [], savedProgress: { "r-e2e": 1 } }
+const state = { progressPuts: [], savedProgress: { "r-e2e": 1 }, favorites: [] }
 
 const json = (res, status, body) => {
   res.writeHead(status, { "content-type": "application/json" })
@@ -89,9 +89,27 @@ http
     if (path === "/__reset") {
       state.progressPuts = []
       state.savedProgress = { "r-e2e": 1 }
+      state.favorites = []
       return json(res, 200, state)
     }
     if (path === "/api/businesses") return json(res, 200, businesses)
+    const bizMatch = path.match(/^\/api\/businesses\/([^/]+)$/)
+    if (bizMatch) {
+      const b = businesses.find((x) => x.slug === bizMatch[1])
+      return b ? json(res, 200, b) : json(res, 404, { error: "not found" })
+    }
+    if (path === "/api/me/favorites") {
+      if (!authed) return json(res, 401, { error: "unauthorized" })
+      return json(res, 200, businesses.filter((b) => state.favorites.includes(b.id)).map((b) => ({ id: b.id, slug: b.slug })))
+    }
+    const favMatch = path.match(/^\/api\/me\/favorites\/([^/]+)$/)
+    if (favMatch) {
+      if (!authed) return json(res, 401, { error: "unauthorized" })
+      const id = favMatch[1]
+      if (req.method === "POST" && !state.favorites.includes(id)) state.favorites.push(id)
+      if (req.method === "DELETE") state.favorites = state.favorites.filter((x) => x !== id)
+      return json(res, 200, { ok: true })
+    }
     if (path === "/api/routes") return json(res, 200, routes)
     if (path === "/api/plans") return json(res, 200, plans)
     if (path === "/api/events") return json(res, 200, events)

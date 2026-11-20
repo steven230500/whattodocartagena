@@ -2,6 +2,7 @@
 
 import { useActionState } from "react"
 import type { AdminBusiness } from "@/lib/api/admin/businesses"
+import { COMMERCE_TYPES } from "@/lib/map/layers"
 import type { BusinessFormState } from "@/app/[locale]/admin/businesses/actions"
 import { ImageUploadField } from "@/components/forms/image-upload-field"
 
@@ -22,7 +23,25 @@ export function BusinessForm({ action, business, submitLabel }: BusinessFormProp
       </div>
 
       <div className="grid grid-cols-3 gap-4">
-        <Field label="Tipo" name="type" defaultValue={business?.type} required />
+        <div>
+          <label htmlFor="type" className="block text-sm font-medium text-muted-foreground mb-1">
+            Tipo
+          </label>
+          {/* lista cerrada: un tipo mal escrito dejaba el negocio sin categoría en filtros y mapas */}
+          <select
+            id="type"
+            name="type"
+            defaultValue={business?.type ?? "food"}
+            required
+            className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground"
+          >
+            {Object.entries(COMMERCE_TYPES).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </div>
         <Field label="Subtipo" name="subtype" defaultValue={business?.subtype} />
         <Field label="Barrio" name="barrio" defaultValue={business?.barrio} required />
       </div>

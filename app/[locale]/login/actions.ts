@@ -26,5 +26,7 @@ export async function login(_prevState: LoginFormState | undefined, formData: Fo
     maxAge: 60 * 60 * 24 * 7, // 7 días, igual que el JWT
   })
 
-  redirect("/")
+  // vuelve a la página desde la que se pidió iniciar sesión (solo rutas internas)
+  const next = String(formData.get("next") ?? "")
+  redirect(/^\/(?!\/)[\w\-/]*$/.test(next) ? next : "/")
 }

@@ -88,7 +88,7 @@
     "closedToday": "Cerrado por hoy",
     "kinds": {
       "heritage": "Patrimonio",
-      "food": "Comer",
+      "food": "Comer y beber",
       "culture": "Cultura",
       "shop": "Comercio",
       "nature": "Naturaleza"
@@ -125,7 +125,8 @@
       "food": "Gastronomía",
       "shop": "Tienda",
       "service": "Servicio",
-      "culture": "Cultural"
+      "culture": "Cultural",
+      "bar": "Bar y vida nocturna"
     }
   },
   "events": {
@@ -220,7 +221,7 @@
     },
     "kinds": {
       "heritage": "Patrimonio",
-      "food": "Comer",
+      "food": "Comer y beber",
       "culture": "Cultura",
       "shop": "Comercio",
       "nature": "Naturaleza"
@@ -319,5 +320,29 @@
       "subtitle": "Misas en las principales parroquias de Cartagena, por día.",
       "meta": "Actualizado cada mes"
     }
+  },
+  "favorites": {
+    "title": "Mis favoritos",
+    "add": "Agregar a favoritos",
+    "remove": "Quitar de favoritos",
+    "savedLocal": "Guardado en este teléfono",
+    "removedLocal": "Quitado de tus favoritos",
+    "savedLocalHint": "Inicia sesión para tenerlo en todos tus dispositivos.",
+    "seeAll": "Ver favoritos",
+    "error": "No pudimos guardar el favorito. Intenta de nuevo.",
+    "synced": "{count, plural, one {Pasamos # favorito de este teléfono a tu cuenta} other {Pasamos # favoritos de este teléfono a tu cuenta}}",
+    "localNotice": "Tus favoritos se guardan en este teléfono. Inicia sesión y los pasamos a tu cuenta para verlos en cualquier dispositivo.",
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta",
+    "emptyLocal": "Todavía no guardaste ningún comercio. Toca el corazón en uno que te guste.",
+    "empty": "Todavía no marcaste ningún comercio como favorito.",
+    "browse": "Ver comercios"
+  },
+  "achievementsPage": {
+    "guestTitle": "Empieza a sumar logros",
+    "guestBody": "Cada ruta que recorres y cada barrio que conoces suma a tu progreso. Inicia sesión para empezar a guardarlo.",
+    "login": "Iniciar sesión",
+    "explore": "Ver rutas a pie",
+    "loadError": "No pudimos cargar tu progreso. Intenta de nuevo."
   }
 }

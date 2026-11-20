@@ -1,12 +1,14 @@
 "use client"
 
 import { useActionState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Link } from "@/i18n/navigation"
 import { Header } from "@/components/navigation/header"
 import { login } from "./actions"
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, undefined)
+  const next = useSearchParams().get("next") ?? ""
 
   return (
     <>
@@ -39,6 +41,7 @@ export default function LoginPage() {
             className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-coral"
           />
         </div>
+        <input type="hidden" name="next" value={next} />
         {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
         <button
           type="submit"

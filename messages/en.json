@@ -88,7 +88,7 @@
     "closedToday": "Closed for today",
     "kinds": {
       "heritage": "Heritage",
-      "food": "Eat",
+      "food": "Eat & drink",
       "culture": "Culture",
       "shop": "Shops",
       "nature": "Nature"
@@ -125,7 +125,8 @@
       "food": "Food",
       "shop": "Shop",
       "service": "Service",
-      "culture": "Cultural"
+      "culture": "Cultural",
+      "bar": "Bar & nightlife"
     }
   },
   "events": {
@@ -220,7 +221,7 @@
     },
     "kinds": {
       "heritage": "Heritage",
-      "food": "Eat",
+      "food": "Eat & drink",
       "culture": "Culture",
       "shop": "Shops",
       "nature": "Nature"
@@ -319,5 +320,29 @@
       "subtitle": "Masses at Cartagena's main parishes, by day.",
       "meta": "Updated monthly"
     }
+  },
+  "favorites": {
+    "title": "My favorites",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "savedLocal": "Saved on this phone",
+    "removedLocal": "Removed from your favorites",
+    "savedLocalHint": "Sign in to have it on all your devices.",
+    "seeAll": "See favorites",
+    "error": "We couldn't save that favorite. Please try again.",
+    "synced": "{count, plural, one {Moved # favorite from this phone to your account} other {Moved # favorites from this phone to your account}}",
+    "localNotice": "Your favorites are saved on this phone. Sign in and we'll move them to your account so you can see them on any device.",
+    "login": "Sign in",
+    "register": "Create account",
+    "emptyLocal": "You haven't saved any place yet. Tap the heart on one you like.",
+    "empty": "You haven't marked any business as a favorite yet.",
+    "browse": "Browse businesses"
+  },
+  "achievementsPage": {
+    "guestTitle": "Start earning achievements",
+    "guestBody": "Every route you walk and every neighborhood you discover adds to your progress. Sign in to start saving it.",
+    "login": "Sign in",
+    "explore": "See walking routes",
+    "loadError": "We couldn't load your progress. Please try again."
   }
 }

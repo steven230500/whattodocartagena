@@ -1,7 +1,7 @@
 export interface Commerce {
   name: string
   slug: string
-  type: "mall" | "artisan" | "food" | "shop" | "service" | "culture"
+  type: "mall" | "artisan" | "food" | "bar" | "shop" | "service" | "culture"
   subtype: string
   barrio: string
   coords: {
