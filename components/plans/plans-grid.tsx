@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { PlanCard } from "@/components/cards/plan-card"
 import { PlanFilters } from "./plan-filters"
 import type { Plan } from "@/lib/types/plan"
@@ -10,6 +11,7 @@ interface PlansGridProps {
 }
 
 export function PlansGrid({ plans }: PlansGridProps) {
+  const t = useTranslations("plans")
   const [filteredPlans, setFilteredPlans] = useState<Plan[]>(plans)
 
   return (
@@ -26,7 +28,7 @@ export function PlansGrid({ plans }: PlansGridProps) {
         {filteredPlans.length === 0 && (
           <div className="text-center py-12">
             <p className="text-[var(--color-stone-dark)] text-lg">
-              No se encontraron planes con los filtros seleccionados
+              {t("empty")}
             </p>
           </div>
         )}

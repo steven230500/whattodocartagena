@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe, Check } from "lucide-react"
@@ -19,6 +20,7 @@ const LANGUAGES = [
 ]
 
 export function LanguageToggle({ currentLocale, onLocaleChange }: LanguageToggleProps) {
+  const t = useTranslations("nav")
   const [isOpen, setIsOpen] = useState(false)
 
   const handleLanguageSelect = (locale: Locale) => {
@@ -52,7 +54,7 @@ export function LanguageToggle({ currentLocale, onLocaleChange }: LanguageToggle
               <div className="flex items-center gap-2 flex-1 min-w-0">
                 <span className="text-lg">{language.flag}</span>
                 <span className="truncate">{language.label}</span>
-                {!language.available && <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">(Próximamente)</span>}
+                {!language.available && <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">{t("comingSoon")}</span>}
               </div>
               {currentLocale === language.code && <Check className="w-4 h-4 flex-shrink-0" />}
             </button>

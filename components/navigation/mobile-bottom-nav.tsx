@@ -1,18 +1,18 @@
 "use client"
 
 import { NAV_MOBILE_BOTTOM } from "@/lib/nav-config"
-import { useLocale } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Link, usePathname } from "@/i18n/navigation"
 
 export function MobileBottomNav() {
   const pathname = usePathname()
-  const locale = useLocale()
+  const t = useTranslations("nav")
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-card/95 backdrop-blur-md border-t border-border shadow-lg safe-area-pb">
       <div className="flex items-center justify-around h-16 px-1">
         {NAV_MOBILE_BOTTOM.map((item) => {
-          const label = locale === "es" ? item.label : item.labelEn
+          const label = t(item.key)
           const isActive = pathname === item.href
           const Icon = item.icon!
 

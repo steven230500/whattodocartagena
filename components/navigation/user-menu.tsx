@@ -1,9 +1,8 @@
 "use client"
 
-import Link from "next/link"
-
 import { useEffect, useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { Link, useRouter } from "@/i18n/navigation"
 import { Heart, LogOut, Trophy, Store } from "lucide-react"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
@@ -22,6 +21,7 @@ interface SessionUser {
 }
 
 export function UserMenu() {
+  const t = useTranslations("nav")
   const [user, setUser] = useState<SessionUser | null | undefined>(undefined)
   const [pending, startTransition] = useTransition()
   const router = useRouter()
@@ -51,7 +51,7 @@ export function UserMenu() {
         href="/login"
         className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-2"
       >
-        Iniciar sesión
+        {t("login")}
       </Link>
     )
   }
@@ -71,19 +71,19 @@ export function UserMenu() {
         <DropdownMenuItem asChild>
           <Link href="/favorites" className="flex items-center gap-2 cursor-pointer">
             <Heart className="w-4 h-4" />
-            Favoritos
+            {t("favorites")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/achievements" className="flex items-center gap-2 cursor-pointer">
             <Trophy className="w-4 h-4" />
-            Logros
+            {t("achievements")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/my-business" className="flex items-center gap-2 cursor-pointer">
             <Store className="w-4 h-4" />
-            Mi negocio
+            {t("myBusiness")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -99,7 +99,7 @@ export function UserMenu() {
           className="flex items-center gap-2 cursor-pointer text-destructive"
         >
           <LogOut className="w-4 h-4" />
-          Cerrar sesión
+          {t("logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

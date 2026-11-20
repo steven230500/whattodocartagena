@@ -2,11 +2,13 @@
 
 import { useActionState } from "react"
 import { useSearchParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Header } from "@/components/navigation/header"
 import { login } from "./actions"
 
 export default function LoginPage() {
+  const t = useTranslations("auth.login")
   const [state, formAction, pending] = useActionState(login, undefined)
   const next = useSearchParams().get("next") ?? ""
 
@@ -15,10 +17,10 @@ export default function LoginPage() {
     <Header />
     <div className="min-h-screen flex items-center justify-center bg-background px-4 md:pt-16">
       <form action={formAction} className="w-full max-w-sm space-y-4 border border-border rounded-lg p-8 bg-card">
-        <h1 className="font-serif text-2xl font-bold text-foreground">Iniciar sesión</h1>
+        <h1 className="font-serif text-2xl font-bold text-foreground">{t("title")}</h1>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
-            Email
+            {t("email")}
           </label>
           <input
             id="email"
@@ -31,7 +33,7 @@ export default function LoginPage() {
         </div>
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-2">
-            Contraseña
+            {t("password")}
           </label>
           <input
             id="password"
@@ -48,12 +50,12 @@ export default function LoginPage() {
           disabled={pending}
           className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
         >
-          {pending ? "Entrando..." : "Entrar"}
+          {pending ? t("submitting") : t("submit")}
         </button>
         <p className="text-sm text-muted-foreground text-center">
-          ¿No tienes cuenta?{" "}
+          {t("noAccount")}{" "}
           <Link href="/register" className="text-coral-ink hover:underline">
-            Regístrate
+            {t("registerLink")}
           </Link>
         </p>
       </form>

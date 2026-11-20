@@ -4,11 +4,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MapPin, Clock, Phone, DollarSign, Navigation } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import type { Commerce } from "@/lib/types/commerce"
-import { COMMERCE_TYPES } from "@/lib/map/layers"
 import { FavoriteButton } from "@/components/business/favorite-button"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 interface CommerceCardProps {
   commerce: Commerce
@@ -17,6 +16,8 @@ interface CommerceCardProps {
 
 export function CommerceCard({ commerce, initialFavorited = false }: CommerceCardProps) {
   const t = useTranslations()
+  const locale = useLocale()
+  const description = locale === "en" && commerce.descriptionEn ? commerce.descriptionEn : commerce.description
 
   return (
     <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -28,7 +29,7 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-4 left-4">
-          <Badge className="bg-colonial-gold text-ink">{COMMERCE_TYPES[commerce.type]}</Badge>
+          <Badge className="bg-colonial-gold text-ink">{t(`commerce.types.${commerce.type}`)}</Badge>
         </div>
         <div className="absolute top-4 right-4 flex items-center gap-2">
           {commerce.priceHint && (
@@ -54,7 +55,7 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{commerce.description}</p>
+        <p className="text-stone-darker text-sm mb-4 line-clamp-2">{description}</p>
 
         {/* Tags */}
         {commerce.tags.length > 0 && (
@@ -98,7 +99,7 @@ export function CommerceCard({ commerce, initialFavorited = false }: CommerceCar
               href={`https://www.google.com/maps/dir/?api=1&destination=${commerce.coords.lat},${commerce.coords.lng}`}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Cómo llegar a ${commerce.name}`}
+              aria-label={t("commerce.directionsTo", { name: commerce.name })}
             >
               <Navigation className="w-4 h-4" />
             </a>

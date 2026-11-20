@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { CommerceCard } from "@/components/cards/commerce-card"
 import { CommerceFilters } from "@/components/commerce/commerce-filters"
 import type { Commerce } from "@/lib/types/commerce"
@@ -11,6 +12,7 @@ interface CommerceGridProps {
 }
 
 export function CommerceGrid({ commerces, favoriteSlugs = [] }: CommerceGridProps) {
+  const t = useTranslations("commerce")
   const [filteredCommerces, setFilteredCommerces] = useState<Commerce[]>(commerces)
 
   const handleFilterChange = (filters: {
@@ -57,7 +59,7 @@ export function CommerceGrid({ commerces, favoriteSlugs = [] }: CommerceGridProp
 
         {(filteredCommerces?.length === 0 || !filteredCommerces) && (
           <div className="text-center py-16">
-            <p className="text-stone-darker text-lg">No se encontraron comercios con los filtros seleccionados.</p>
+            <p className="text-stone-darker text-lg">{t("empty")}</p>
           </div>
         )}
       </div>

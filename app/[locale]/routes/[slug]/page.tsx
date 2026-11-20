@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import { Header } from "@/components/navigation/header"
 import { RoutePlayer } from "@/components/routes/route-player"
 import { RouteMap } from "@/components/routes/route-map"
@@ -38,21 +38,26 @@ export async function generateMetadata({ params }: RoutePageProps): Promise<Meta
 
 export default async function RoutePage({ params }: RoutePageProps) {
   const { slug } = await params
-  const route = await getRouteBySlug(slug)
+  const [route, locale, t] = await Promise.all([
+    getRouteBySlug(slug),
+    getLocale(),
+    getTranslations("routePlayer"),
+  ])
 
   if (!route) {
     notFound()
   }
 
   if (route.steps.length === 0) {
+    const routeTitle = locale === "en" && route.titleEn ? route.titleEn : route.title
     return (
       <div className="min-h-screen">
         <Header />
         <div className="pt-24 flex items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
-            <h1 className="font-serif text-3xl font-bold text-foreground mb-3">{route.title}</h1>
+            <h1 className="font-serif text-3xl font-bold text-foreground mb-3">{routeTitle}</h1>
             <p className="text-muted-foreground">
-              Todavía no hay pasos cargados para esta ruta. Vuelve pronto — la estamos completando.
+              {t("emptySteps")}
             </p>
           </div>
         </div>

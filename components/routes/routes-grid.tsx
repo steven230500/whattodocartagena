@@ -1,32 +1,35 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Clock, MapPin, Headphones, Play } from "lucide-react"
 import { categoryColor } from "@/lib/routes/category-color"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import type { Route } from "@/lib/api/routes"
 
 interface RoutesGridProps {
   routes: Route[]
 }
 
+const ALL_CATEGORY = "__all__"
+
 export function RoutesGrid({ routes }: RoutesGridProps) {
   const locale = useLocale()
-  const categories = ["Todos", ...Array.from(new Set(routes.map((r) => r.category)))]
-  const [selectedCategory, setSelectedCategory] = useState("Todos")
+  const t = useTranslations("routes")
+  const categories = [ALL_CATEGORY, ...Array.from(new Set(routes.map((r) => r.category)))]
+  const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORY)
 
   const filteredRoutes =
-    selectedCategory === "Todos" ? routes : routes.filter((route) => route.category === selectedCategory)
+    selectedCategory === ALL_CATEGORY ? routes : routes.filter((route) => route.category === selectedCategory)
 
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mb-12">
-          <h2 className="font-serif text-3xl font-bold text-foreground mb-3">Rutas disponibles</h2>
+          <h2 className="font-serif text-3xl font-bold text-foreground mb-3">{t("availableRoutes")}</h2>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Button
@@ -36,7 +39,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                 onClick={() => setSelectedCategory(category)}
                 className={selectedCategory === category ? "bg-coral text-ink hover:bg-coral-dark" : "bg-transparent"}
               >
-                {category}
+                {category === ALL_CATEGORY ? t("allCategories") : category}
               </Button>
             ))}
           </div>
@@ -72,7 +75,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                     <div className="absolute bottom-4 left-4">
                       <div className="flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
                         <Headphones className="w-3 h-3 text-white" />
-                        <span className="text-xs text-white">Audio</span>
+                        <span className="text-xs text-white">{t("audio")}</span>
                       </div>
                     </div>
                   )}
@@ -99,7 +102,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
 
                   {route.highlights.length > 0 && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold mb-2">Puntos destacados:</h4>
+                      <h4 className="text-sm font-semibold mb-2">{t("highlights")}</h4>
                       <div className="flex flex-wrap gap-1">
                         {route.highlights.slice(0, 3).map((highlight) => (
                           <Badge key={highlight} variant="outline" className="text-xs bg-transparent">
@@ -119,7 +122,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
                   <Button asChild size="sm" variant="outline" className="w-full border-ink/20 bg-transparent text-ink hover:bg-ink hover:text-background">
                     <Link href={`/routes/${route.slug}`}>
                       <Play className="w-4 h-4 mr-2" aria-hidden />
-                      Ver ruta
+                      {t("viewRoute")}
                     </Link>
                   </Button>
                 </CardContent>

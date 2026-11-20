@@ -6,7 +6,44 @@
     "culture": "Culture",
     "collectibles": "Collectibles",
     "commerce": "Commerce",
-    "events": "Events"
+    "events": "Events",
+    "home": "Home",
+    "explore": "Explore",
+    "brandName": "Cartagena",
+    "brandTagline": "Viva",
+    "search": "Search",
+    "localPlans": "Local plans",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "quickActions": "Quick actions",
+    "navigation": "Navigation",
+    "needHelp": "Need help?",
+    "contactUs": "Contact us",
+    "login": "Log in",
+    "favorites": "Favorites",
+    "achievements": "Achievements",
+    "myBusiness": "My business",
+    "logout": "Log out",
+    "comingSoon": "(Coming soon)",
+    "groups": {
+      "livingCulture": "Living culture",
+      "agenda": "Events",
+      "localCommerce": "Local commerce",
+      "usefulServices": "Useful services",
+      "shortcuts": "Shortcuts"
+    },
+    "items": {
+      "culture": "Culture",
+      "gastronomy": "Gastronomy",
+      "events": "Events",
+      "localPlans": "Local plans",
+      "businesses": "Businesses",
+      "shoppingCenters": "Shopping centers",
+      "massSchedules": "Mass schedules",
+      "city3d": "City in 3D",
+      "todayNearYou": "Today near you",
+      "freeThisWeekend": "Free this weekend"
+    }
   },
   "home": {
     "hero": {
@@ -55,7 +92,34 @@
       "subtitle": "Discover the moments that forged the identity of Cartagena de Indias"
     },
     "timeline": {
-      "title": "Historical Timeline"
+      "title": "Historical timeline"
+    },
+    "preview": {
+      "title": "Travel through time",
+      "subtitle": "The key moments that shaped Cartagena's identity.",
+      "periodLabel": "Historical period",
+      "prevPeriod": "Previous period",
+      "nextPeriod": "Next period",
+      "periodOf": "Period {current} of {total}",
+      "exploreTimeline": "Explore full timeline",
+      "periods": {
+        "founding": {
+          "title": "Founding of Cartagena",
+          "description": "Pedro de Heredia founds the city that would become the most important port in the Caribbean."
+        },
+        "walls": {
+          "title": "Building the city walls",
+          "description": "The fortifications that would protect the city from pirates and enemy fleets are built."
+        },
+        "independence": {
+          "title": "Independence - Heroic City",
+          "description": "Cartagena declares independence, earning the title of Heroic City."
+        },
+        "unesco": {
+          "title": "World Heritage Site",
+          "description": "UNESCO declares the historic center a World Heritage Site."
+        }
+      }
     }
   },
   "map": {
@@ -92,11 +156,22 @@
       "culture": "Culture",
       "shop": "Shops",
       "nature": "Nature"
+    },
+    "poiCard": {
+      "categories": {
+        "historic": "Historic",
+        "food": "Food & drink",
+        "culture": "Culture",
+        "photo": "Photography",
+        "mall": "Shopping mall",
+        "commerce": "Shop",
+        "default": "Point of interest"
+      }
     }
   },
   "routes": {
     "hero": {
-      "title": "Walking Routes",
+      "title": "Walking routes",
       "subtitle": "Explore Cartagena on foot with our guided thematic routes"
     },
     "filter": {
@@ -107,44 +182,102 @@
       "nature": "Landscapes",
       "art": "Art",
       "fortress": "Fortresses"
-    }
+    },
+    "availableRoutes": "Available routes",
+    "allCategories": "All",
+    "audio": "Audio",
+    "offline": "Offline",
+    "highlights": "Highlights:",
+    "viewRoute": "See route",
+    "start": "Start"
   },
   "commerce": {
-    "title": "Local Commerce",
+    "title": "Local commerce",
     "subtitle": "Discover authentic artisans, restaurants and shops in Cartagena",
     "filters": {
       "type": "Type",
       "subtype": "Subtype",
       "neighborhood": "Neighborhood",
       "price": "Price",
-      "all": "All"
+      "all": "All",
+      "label": "Filters:"
     },
     "types": {
-      "mall": "Shopping Mall",
-      "artisan": "Artisan",
-      "food": "Food",
+      "mall": "Shopping mall",
+      "artisan": "Handicrafts",
+      "food": "Food & drink",
       "shop": "Shop",
-      "service": "Service",
-      "culture": "Cultural",
+      "service": "Services",
+      "culture": "Culture",
       "bar": "Bar & nightlife"
+    },
+    "price": {
+      "budget": "$ - Budget",
+      "moderate": "$$ - Moderate",
+      "premium": "$$$ - Premium"
+    },
+    "empty": "No businesses match the selected filters.",
+    "directionsTo": "Directions to {name}",
+    "detail": {
+      "about": "About {name}",
+      "features": "Features:",
+      "contactInfo": "Contact information",
+      "website": "Website"
+    },
+    "claim": {
+      "pendingReview": "Your request to manage this business is under review.",
+      "alreadyManaging": "You already manage this business.",
+      "cta": "Is this your business? Claim it",
+      "placeholder": "Tell us why this is your business (optional)",
+      "alreadyClaimed": "This business already has an owner.",
+      "error": "We couldn't send your request. Please try again.",
+      "submit": "Send request",
+      "submitting": "Sending...",
+      "cancel": "Cancel"
     }
   },
   "events": {
     "title": "Events",
     "subtitle": "Discover festivals, concerts and cultural events in Cartagena",
-    "upcoming": "Upcoming Events",
-    "past": "Past Events",
+    "upcoming": "Upcoming events",
+    "past": "Past events",
     "types": {
       "festival": "Festival",
       "concierto": "Concert",
       "feria": "Fair",
-      "mall_event": "Mall Event",
-      "gastronomia": "Gastronomic",
-      "cultural": "Cultural"
+      "mall_event": "Mall event",
+      "gastronomia": "Food & drink",
+      "cultural": "Cultural",
+      "deportivo": "Sports"
+    },
+    "status": {
+      "upcoming": "Upcoming",
+      "past": "Past"
+    },
+    "filters": {
+      "label": "Filters:",
+      "type": "Event type",
+      "allTypes": "All types",
+      "venue": "Venue",
+      "allVenues": "All venues"
+    },
+    "emptyUpcoming": "No upcoming events have been published yet.",
+    "emptyPast": "No past events match the selected filters.",
+    "seeWeekPlans": "See this week's plans →",
+    "detail": {
+      "about": "About the event",
+      "categories": "Categories:",
+      "info": "Event information",
+      "date": "Date",
+      "venue": "Venue",
+      "type": "Type",
+      "share": "Share event",
+      "relatedCommerce": "Related business",
+      "viewCommerce": "View business"
     }
   },
   "plans": {
-    "title": "Local Plans",
+    "title": "Local plans",
     "subtitle": "Discover the best activities and events to enjoy the weekend in Cartagena",
     "updated": "Updated weekly",
     "allNeighborhoods": "All neighborhoods",
@@ -164,25 +297,32 @@
     "price": {
       "free": "Free",
       "paid": "Paid"
-    }
+    },
+    "empty": "No plans match the selected filters"
   },
   "mass": {
-    "title": "Mass Schedules",
+    "title": "Mass schedules",
     "subtitle": "Updated information on mass schedules at the main parishes in Cartagena",
     "updated": "Updated monthly",
-    "mainParishes": "Main parishes"
+    "mainParishes": "Main parishes",
+    "schedules": "Mass times",
+    "emptyError": "We couldn't load mass times right now. Please try again in a few minutes."
   },
   "common": {
     "duration": "Duration",
     "difficulty": "Difficulty",
     "points": "points of interest",
-    "start": "Start Route",
+    "start": "Start route",
     "easy": "Easy",
     "moderate": "Moderate",
     "hard": "Hard",
     "minutes": "min",
     "hours": "h",
-    "clearFilters": "Clear filters"
+    "clearFilters": "Clear filters",
+    "imageUpload": {
+      "uploadError": "We couldn't upload the image",
+      "uploading": "Uploading..."
+    }
   },
   "cta": {
     "viewOnMap": "View on map",
@@ -327,12 +467,12 @@
     "remove": "Remove from favorites",
     "savedLocal": "Saved on this phone",
     "removedLocal": "Removed from your favorites",
-    "savedLocalHint": "Sign in to have it on all your devices.",
+    "savedLocalHint": "Log in to have it on all your devices.",
     "seeAll": "See favorites",
     "error": "We couldn't save that favorite. Please try again.",
     "synced": "{count, plural, one {Moved # favorite from this phone to your account} other {Moved # favorites from this phone to your account}}",
-    "localNotice": "Your favorites are saved on this phone. Sign in and we'll move them to your account so you can see them on any device.",
-    "login": "Sign in",
+    "localNotice": "Your favorites are saved on this phone. Log in and we'll move them to your account so you can see them on any device.",
+    "login": "Log in",
     "register": "Create account",
     "emptyLocal": "You haven't saved any place yet. Tap the heart on one you like.",
     "empty": "You haven't marked any business as a favorite yet.",
@@ -340,9 +480,204 @@
   },
   "achievementsPage": {
     "guestTitle": "Start earning achievements",
-    "guestBody": "Every route you walk and every neighborhood you discover adds to your progress. Sign in to start saving it.",
-    "login": "Sign in",
+    "guestBody": "Every route you walk and every neighborhood you discover adds to your progress. Log in to start saving it.",
+    "login": "Log in",
     "explore": "See walking routes",
     "loadError": "We couldn't load your progress. Please try again."
+  },
+  "timeline": {
+    "hero": {
+      "titleLine1": "500 years of",
+      "titleLine2": "Living history",
+      "subtitle": "From its Spanish founding to becoming a UNESCO World Heritage Site, discover the moments that shaped Cartagena's identity."
+    },
+    "title": "Interactive timeline",
+    "subtitle": "Journey through the most important moments in Cartagena's history.",
+    "keyFacts": "Key facts:",
+    "viewOnMap": "View on map",
+    "events": {
+      "founding": {
+        "category": "Founding",
+        "title": "Founding of Cartagena",
+        "subtitle": "Pedro de Heredia establishes the city",
+        "description": "Spanish conquistador Pedro de Heredia founds Cartagena de Indias on June 1, 1533, establishing one of the most important ports in the New World. The city quickly becomes the main gateway for wealth flowing to and from Spain.",
+        "fact1": "First major city founded on Colombia's Caribbean coast",
+        "fact2": "Named after Cartagena, Spain",
+        "fact3": "Strategic natural harbor for trade"
+      },
+      "walls": {
+        "category": "Fortification",
+        "title": "Building the city walls",
+        "subtitle": "Fortifications against pirates and enemy fleets",
+        "description": "Over more than 150 years, the imposing walls surrounding the city are built. Designed by Spanish military engineers, these fortifications protect Cartagena from constant attacks by pirates, privateers and enemy fleets.",
+        "fact1": "Over 11 kilometers of defensive walls",
+        "fact2": "Withstood multiple sieges",
+        "fact3": "Masterpiece of colonial military engineering"
+      },
+      "siege1741": {
+        "category": "Defense",
+        "title": "Siege of Cartagena",
+        "subtitle": "Heroic victory against the British fleet",
+        "description": "The city heroically withstands the siege of the British fleet commanded by Admiral Edward Vernon. Spanish Admiral Blas de Lezo successfully defends the city in one of the largest naval battles in the colonial history of the Americas.",
+        "fact1": "British fleet of 186 ships defeated",
+        "fact2": "Blas de Lezo, hero of the defense",
+        "fact3": "Victory that shaped the colonial balance of power"
+      },
+      "independence": {
+        "category": "Independence",
+        "title": "Independence - Heroic City",
+        "subtitle": "First to declare full independence",
+        "description": "Cartagena becomes the first city in present-day Colombia to declare absolute independence from Spain on November 11, 1811. This bold act earns it the title of \"Heroic City\" and sparks the independence movement across the region.",
+        "fact1": "First independent city in Colombia",
+        "fact2": "Official title of \"Heroic City\"",
+        "fact3": "Cradle of liberty in the Americas"
+      },
+      "morillo": {
+        "category": "Resistance",
+        "title": "Morillo's siege and the Reconquest",
+        "subtitle": "Resistance during the Spanish Reconquest",
+        "description": "Pablo Morillo besieges the city for 106 days. The population resists heroically until hunger and disease force a surrender. Thousands of residents die defending their freedom, cementing the city's heroic spirit.",
+        "fact1": "106 days of heroic resistance",
+        "fact2": "Thousands of martyrs for freedom",
+        "fact3": "Resistance that inspired the Americas"
+      },
+      "unesco": {
+        "category": "Heritage",
+        "title": "World Heritage Site",
+        "subtitle": "UNESCO global recognition",
+        "description": "UNESCO declares the historic center of Cartagena a Cultural World Heritage Site, recognizing its outstanding universal value. Its walls, fortifications and colonial architecture are preserved for future generations.",
+        "fact1": "UNESCO World Heritage recognition",
+        "fact2": "Preservation of colonial heritage",
+        "fact3": "World-class cultural destination"
+      }
+    }
+  },
+  "routePlayer": {
+    "emptySteps": "There are no stops loaded for this route yet. Check back soon — we're finishing it.",
+    "stepOf": "Stop {current} of {total}",
+    "audioGuide": "Audio guide",
+    "prevStep": "Previous stop",
+    "nextStep": "Next stop",
+    "playAudio": "Play audio",
+    "pauseAudio": "Pause audio",
+    "previous": "Previous",
+    "nextStop": "Next stop",
+    "routeSteps": "Route stops",
+    "map": {
+      "emptyLocations": "No mapped locations have been loaded for this route yet.",
+      "showMyLocation": "Show my location",
+      "navigate": "Navigate",
+      "legend": "Legend",
+      "routeSteps": "Route stops",
+      "suggestedPath": "Suggested path",
+      "yourLocation": "Your location"
+    }
+  },
+  "explore": {
+    "title": "What to do in Cartagena?",
+    "subtitle": "Culture, events, local shops and services — what the city offers today, without generic filler.",
+    "searchPlaceholder": "Search events, places, shops...",
+    "categoriesTitle": "Categories",
+    "shortcuts": {
+      "todayNearYou": "Today near you",
+      "freeThisWeekend": "Free this weekend"
+    },
+    "categories": {
+      "culture": {
+        "title": "Living culture",
+        "description": "Afro-Caribbean music, art and traditions experienced in the streets, not just in a museum.",
+        "cultureLink": "Culture",
+        "gastronomyLink": "Food & drink"
+      },
+      "agenda": {
+        "title": "What's on",
+        "description": "What's happening in the city this week.",
+        "eventsLink": "Events",
+        "localPlansLink": "Local plans"
+      },
+      "commerce": {
+        "title": "Local businesses",
+        "description": "Cartagena's shops and artisans, firsthand.",
+        "businessesLink": "Businesses",
+        "mallsLink": "Shopping malls"
+      },
+      "services": {
+        "title": "Useful services",
+        "description": "Practical information for everyday life in the city.",
+        "massesLink": "Mass times"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in...",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign up"
+    },
+    "register": {
+      "title": "Create account",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 8 characters.",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in"
+    }
+  },
+  "achievements": {
+    "hero": {
+      "titleLine1": "Your",
+      "titleLine2": "Achievements in Cartagena",
+      "subtitle": "They unlock automatically as you explore: complete guided routes and save your favorite places."
+    },
+    "grid": {
+      "progress": "Progress",
+      "unlocked": "Unlocked!"
+    },
+    "userProgress": {
+      "title": "Your progress",
+      "subtitle": "Keep exploring Cartagena to unlock more achievements.",
+      "achievementsTitle": "Achievements",
+      "unlockedLabel": "Unlocked",
+      "routesCompletedTitle": "Completed routes",
+      "routesCompletedDesc": "Guided routes finished from start to finish.",
+      "favoritesTitle": "Favorites",
+      "favoritesDesc": "Local businesses saved as favorites.",
+      "unlockedListTitle": "Unlocked achievements"
+    },
+    "neighborhoodCard": {
+      "missingData": "Error: neighborhood data is missing",
+      "missingIcon": "Error: icon is missing for {name}",
+      "progress": "Progress",
+      "collectibles": "Collectibles",
+      "percentComplete": "{progress}% complete",
+      "explore": "Explore"
+    }
+  },
+  "footer": {
+    "brand": "Cartagena Viva",
+    "description": "Your interactive cultural guide to discovering the history, traditions and beauty of Cartagena de Indias.",
+    "quickLinks": "Quick links",
+    "home": "Home",
+    "history": "History",
+    "interactiveMap": "Interactive map",
+    "walkingRoutes": "Walking routes",
+    "explore": "Explore",
+    "discover": "Discover",
+    "livingCulture": "Living culture",
+    "events": "Events",
+    "businesses": "Local businesses",
+    "usefulServices": "Useful services",
+    "contact": "Contact",
+    "location": "Cartagena de Indias, Colombia",
+    "copyright": "© {year} Cartagena Viva. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "developedBy": "Developed by"
   }
 }

@@ -54,28 +54,28 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6">
       <div className="flex flex-wrap items-center gap-4 mb-4">
-        <h3 className="font-semibold text-stone-darker">Filtros:</h3>
+        <h3 className="font-semibold text-stone-darker">{t("events.filters.label")}</h3>
 
         <Select value={filters.type} onValueChange={(value) => updateFilter("type", value)}>
-          <SelectTrigger className="w-[180px]" aria-label="Tipo de Evento">
-            <SelectValue placeholder="Tipo de Evento" />
+          <SelectTrigger className="w-[180px]" aria-label={t("events.filters.type")}>
+            <SelectValue placeholder={t("events.filters.type")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Todos los Tipos</SelectItem>
-            {Object.entries(EVENT_TYPES).map(([key, label]) => (
+            <SelectItem value="all">{t("events.filters.allTypes")}</SelectItem>
+            {(Object.keys(EVENT_TYPES) as Array<keyof typeof EVENT_TYPES>).map((key) => (
               <SelectItem key={key} value={key}>
-                {label}
+                {t(`events.types.${key}`)}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
 
         <Select value={filters.venue} onValueChange={(value) => updateFilter("venue", value)}>
-          <SelectTrigger className="w-[200px]" aria-label="Lugar">
-            <SelectValue placeholder="Lugar" />
+          <SelectTrigger className="w-[200px]" aria-label={t("events.filters.venue")}>
+            <SelectValue placeholder={t("events.filters.venue")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Todos los Lugares</SelectItem>
+            <SelectItem value="all">{t("events.filters.allVenues")}</SelectItem>
             {venues.map((venue) => (
               <SelectItem key={venue} value={venue}>
                 {venue}
@@ -87,7 +87,7 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
         {hasActiveFilters && (
           <Button variant="outline" size="sm" onClick={clearFilters}>
             <X className="w-4 h-4 mr-2" />
-            Limpiar Filtros
+            {t("common.clearFilters")}
           </Button>
         )}
       </div>
@@ -96,7 +96,7 @@ export function EventFilters({ onFilterChange }: EventFiltersProps) {
         <div className="flex flex-wrap gap-2">
           {filters.type !== "all" && (
             <Badge variant="secondary" className="bg-coral/10 text-coral-ink">
-              {EVENT_TYPES[filters.type as keyof typeof EVENT_TYPES]}
+              {t(`events.types.${filters.type as keyof typeof EVENT_TYPES}`)}
             </Badge>
           )}
           {filters.venue !== "all" && (

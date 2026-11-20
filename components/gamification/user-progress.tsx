@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Trophy, Heart, Route, Award } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 import type { AchievementProgress, AchievementStats } from "@/lib/api/achievements"
 
 interface UserProgressProps {
@@ -8,7 +9,8 @@ interface UserProgressProps {
   stats: AchievementStats
 }
 
-export function UserProgress({ achievements, stats }: UserProgressProps) {
+export async function UserProgress({ achievements, stats }: UserProgressProps) {
+  const t = await getTranslations("achievements.userProgress")
   const unlockedCount = achievements.filter((a) => a.unlocked).length
   const unlockedPercentage = achievements.length > 0 ? (unlockedCount / achievements.length) * 100 : 0
 
@@ -16,9 +18,9 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">Tu Progreso</h2>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">{t("title")}</h2>
           <p className="text-lg text-muted-foreground text-pretty">
-            Seguí explorando Cartagena para desbloquear más logros.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -27,14 +29,14 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Trophy className="w-6 h-6 text-coral-ink" />
-                <CardTitle className="font-serif text-2xl">Logros</CardTitle>
+                <CardTitle className="font-serif text-2xl">{t("achievementsTitle")}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-sm mb-2">
-                    <span>Desbloqueados</span>
+                    <span>{t("unlockedLabel")}</span>
                     <span>
                       {unlockedCount} / {achievements.length}
                     </span>
@@ -49,12 +51,12 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Route className="w-6 h-6 text-forest" />
-                <CardTitle className="font-serif text-2xl">Rutas completadas</CardTitle>
+                <CardTitle className="font-serif text-2xl">{t("routesCompletedTitle")}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-4xl font-bold text-foreground">{stats.routesCompleted}</p>
-              <p className="text-sm text-muted-foreground mt-2">Rutas guiadas terminadas de principio a fin.</p>
+              <p className="text-sm text-muted-foreground mt-2">{t("routesCompletedDesc")}</p>
             </CardContent>
           </Card>
 
@@ -62,12 +64,12 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Heart className="w-6 h-6 text-colonial-gold" />
-                <CardTitle className="font-serif text-2xl">Favoritos</CardTitle>
+                <CardTitle className="font-serif text-2xl">{t("favoritesTitle")}</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-4xl font-bold text-foreground">{stats.favoritesCount}</p>
-              <p className="text-sm text-muted-foreground mt-2">Comercios guardados como favoritos.</p>
+              <p className="text-sm text-muted-foreground mt-2">{t("favoritesDesc")}</p>
             </CardContent>
           </Card>
         </div>
@@ -77,7 +79,7 @@ export function UserProgress({ achievements, stats }: UserProgressProps) {
             <CardHeader>
               <CardTitle className="font-serif text-2xl flex items-center space-x-2">
                 <Award className="w-6 h-6 text-coral-ink" />
-                <span>Logros desbloqueados</span>
+                <span>{t("unlockedListTitle")}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>

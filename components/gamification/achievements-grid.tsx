@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Lock } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 import { achievementIcon } from "@/lib/achievements/icon-map"
 import type { AchievementProgress } from "@/lib/api/achievements"
 
@@ -9,7 +10,9 @@ interface AchievementsGridProps {
   achievements: AchievementProgress[]
 }
 
-export function AchievementsGrid({ achievements }: AchievementsGridProps) {
+export async function AchievementsGrid({ achievements }: AchievementsGridProps) {
+  const t = await getTranslations("achievements.grid")
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -43,7 +46,7 @@ export function AchievementsGrid({ achievements }: AchievementsGridProps) {
                   <div className="space-y-3">
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span>Progreso</span>
+                        <span>{t("progress")}</span>
                         <span>
                           {achievement.current}/{achievement.threshold}
                         </span>
@@ -53,7 +56,7 @@ export function AchievementsGrid({ achievements }: AchievementsGridProps) {
 
                     {achievement.unlocked && (
                       <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                        ¡Desbloqueado!
+                        {t("unlocked")}
                       </Badge>
                     )}
                   </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -24,12 +25,14 @@ interface NeighborhoodCardProps {
 }
 
 export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardProps) {
+  const t = useTranslations("achievements.neighborhoodCard")
+
   if (!neighborhood) {
-    return <div>Error: Neighborhood data is missing</div>
+    return <div>{t("missingData")}</div>
   }
 
   if (!neighborhood.icon) {
-    return <div>Error: Icon is missing for {neighborhood.name}</div>
+    return <div>{t("missingIcon", { name: neighborhood.name })}</div>
   }
 
   const Icon = neighborhood.icon
@@ -53,7 +56,7 @@ export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardPr
         <div className="absolute bottom-3 left-3 right-3">
           <div className="bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
             <div className="flex justify-between text-xs text-white mb-1">
-              <span>Progreso</span>
+              <span>{t("progress")}</span>
               <span>
                 {neighborhood.foundItems}/{neighborhood.totalItems}
               </span>
@@ -74,7 +77,7 @@ export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardPr
         <div className="space-y-4">
           <div>
             <div className="flex justify-between text-sm mb-2">
-              <span>Coleccionables</span>
+              <span>{t("collectibles")}</span>
               <span className="font-medium">
                 {neighborhood.foundItems}/{neighborhood.totalItems}
               </span>
@@ -84,7 +87,7 @@ export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardPr
 
           <div className="flex items-center justify-between">
             <Badge variant="outline" className={`${neighborhood.color} text-white border-0`}>
-              {neighborhood.progress}% Completo
+              {t("percentComplete", { progress: neighborhood.progress })}
             </Badge>
             <Button
               size="sm"
@@ -93,7 +96,7 @@ export function NeighborhoodCard({ neighborhood, onExplore }: NeighborhoodCardPr
               onClick={onExplore}
             >
               <MapPin className="w-4 h-4 mr-1" />
-              Explorar
+              {t("explore")}
             </Button>
           </div>
         </div>

@@ -1,11 +1,13 @@
 "use client"
 
 import { useActionState } from "react"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Header } from "@/components/navigation/header"
 import { register } from "./actions"
 
 export default function RegisterPage() {
+  const t = useTranslations("auth.register")
   const [state, formAction, pending] = useActionState(register, undefined)
 
   return (
@@ -13,10 +15,10 @@ export default function RegisterPage() {
     <Header />
     <div className="min-h-screen flex items-center justify-center bg-background px-4 md:pt-16">
       <form action={formAction} className="w-full max-w-sm space-y-4 border border-border rounded-lg p-8 bg-card">
-        <h1 className="font-serif text-2xl font-bold text-foreground">Crear cuenta</h1>
+        <h1 className="font-serif text-2xl font-bold text-foreground">{t("title")}</h1>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
-            Email
+            {t("email")}
           </label>
           <input
             id="email"
@@ -29,7 +31,7 @@ export default function RegisterPage() {
         </div>
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-2">
-            Contraseña
+            {t("password")}
           </label>
           <input
             id="password"
@@ -39,7 +41,7 @@ export default function RegisterPage() {
             minLength={8}
             className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-coral"
           />
-          <p className="text-xs text-muted-foreground mt-1">Mínimo 8 caracteres.</p>
+          <p className="text-xs text-muted-foreground mt-1">{t("passwordHint")}</p>
         </div>
         {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
         <button
@@ -47,12 +49,12 @@ export default function RegisterPage() {
           disabled={pending}
           className="w-full px-4 py-2 bg-coral hover:bg-coral-dark text-ink rounded-lg font-medium transition-colors disabled:opacity-50"
         >
-          {pending ? "Creando cuenta..." : "Crear cuenta"}
+          {pending ? t("submitting") : t("submit")}
         </button>
         <p className="text-sm text-muted-foreground text-center">
-          ¿Ya tienes cuenta?{" "}
+          {t("hasAccount")}{" "}
           <Link href="/login" className="text-coral-ink hover:underline">
-            Inicia sesión
+            {t("loginLink")}
           </Link>
         </p>
       </form>

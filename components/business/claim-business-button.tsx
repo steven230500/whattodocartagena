@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { useRouter } from "@/i18n/navigation"
 import { Store } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { claimBusiness } from "@/app/actions/business-claims"
@@ -13,6 +14,7 @@ interface ClaimBusinessButtonProps {
 }
 
 export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonProps) {
+  const t = useTranslations("commerce.claim")
   const [status, setStatus] = useState(claimStatus)
   const [open, setOpen] = useState(false)
   const [message, setMessage] = useState("")
@@ -21,11 +23,11 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
   const router = useRouter()
 
   if (status === "pending") {
-    return <p className="text-sm text-muted-foreground">Tu solicitud para administrar este negocio está en revisión.</p>
+    return <p className="text-sm text-muted-foreground">{t("pendingReview")}</p>
   }
 
   if (status === "approved") {
-    return <p className="text-sm text-muted-foreground">Ya administrás este negocio.</p>
+    return <p className="text-sm text-muted-foreground">{t("alreadyManaging")}</p>
   }
 
   if (!open) {
@@ -38,7 +40,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
         onClick={() => setOpen(true)}
       >
         <Store className="w-4 h-4 mr-2" />
-        ¿Es tu negocio? Reclámalo
+        {t("cta")}
       </Button>
     )
   }
@@ -48,7 +50,7 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Cuéntanos por qué este negocio es tuyo (opcional)"
+        placeholder={t("placeholder")}
         rows={2}
         className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
       />
@@ -66,11 +68,11 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
                 return
               }
               if (result === "already-claimed") {
-                setError("Este negocio ya tiene dueño.")
+                setError(t("alreadyClaimed"))
                 return
               }
               if (result === "error") {
-                setError("No se pudo enviar la solicitud. Intenta de nuevo.")
+                setError(t("error"))
                 return
               }
               setStatus("pending")
@@ -78,10 +80,10 @@ export function ClaimBusinessButton({ slug, claimStatus }: ClaimBusinessButtonPr
           }}
           className="bg-coral hover:bg-coral-dark text-ink"
         >
-          {pending ? "Enviando..." : "Enviar solicitud"}
+          {pending ? t("submitting") : t("submit")}
         </Button>
         <Button type="button" size="sm" variant="ghost" onClick={() => setOpen(false)}>
-          Cancelar
+          {t("cancel")}
         </Button>
       </div>
     </div>

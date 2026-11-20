@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import type { NavPrimaryItem, Locale } from "@/lib/nav-config"
 
@@ -10,7 +11,8 @@ interface MegaMenuProps {
   locale: Locale
 }
 
-export function MegaMenu({ item, locale }: MegaMenuProps) {
+export function MegaMenu({ item }: MegaMenuProps) {
+  const t = useTranslations("nav")
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -33,7 +35,7 @@ export function MegaMenu({ item, locale }: MegaMenuProps) {
     }
   }, [isOpen])
 
-  const label = locale === "es" ? item.label : item.labelEn
+  const label = t(item.key)
 
   return (
     <div className="relative">
@@ -54,13 +56,13 @@ export function MegaMenu({ item, locale }: MegaMenuProps) {
         >
           <div className="grid grid-cols-2 gap-6">
             {item.children?.map((group) => {
-              const groupLabel = locale === "es" ? group.group : group.groupEn
+              const groupLabel = t(group.key)
               return (
-                <div key={group.group}>
+                <div key={group.key}>
                   <h3 className="text-sm font-semibold text-foreground mb-3">{groupLabel}</h3>
                   <ul className="space-y-2">
                     {group.items.map((navItem) => {
-                      const itemLabel = locale === "es" ? navItem.label : navItem.labelEn
+                      const itemLabel = t(navItem.key)
                       return (
                         <li key={navItem.href}>
                           <Link

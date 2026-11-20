@@ -1,3 +1,6 @@
+"use client"
+
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 
 /**
@@ -5,6 +8,7 @@ import { Link } from "@/i18n/navigation"
  * en vez del icono-en-caja-de-color genérico.
  */
 export function Logo({ size = "default" }: { size?: "default" | "sm" }) {
+  const t = useTranslations("nav")
   const isSm = size === "sm"
 
   return (
@@ -17,8 +21,8 @@ export function Logo({ size = "default" }: { size?: "default" | "sm" }) {
         <rect x="27" y="0" width="5" height="9" className="fill-coral" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className={`font-serif font-bold text-foreground ${isSm ? "text-lg" : "text-xl"}`}>Cartagena</span>
-        <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground">Viva</span>
+        <span className={`font-serif font-bold text-foreground ${isSm ? "text-lg" : "text-xl"}`}>{t("brandName")}</span>
+        <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground">{t("brandTagline")}</span>
       </span>
     </Link>
   )

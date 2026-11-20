@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 
 interface ImageUploadFieldProps {
   name: string
@@ -9,6 +10,7 @@ interface ImageUploadFieldProps {
 }
 
 export function ImageUploadField({ name, label, defaultValue }: ImageUploadFieldProps) {
+  const t = useTranslations("common.imageUpload")
   const [imagePath, setImagePath] = useState(defaultValue ?? "")
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -24,12 +26,12 @@ export function ImageUploadField({ name, label, defaultValue }: ImageUploadField
       const res = await fetch("/api/uploads", { method: "POST", body })
       const data = await res.json()
       if (!res.ok) {
-        setError(data.error || "No se pudo subir la imagen")
+        setError(data.error || t("uploadError"))
         return
       }
       setImagePath(data.path)
     } catch {
-      setError("No se pudo subir la imagen")
+      setError(t("uploadError"))
     } finally {
       setUploading(false)
     }
@@ -60,7 +62,7 @@ export function ImageUploadField({ name, label, defaultValue }: ImageUploadField
         className="block w-full text-sm text-foreground file:mr-3 file:px-3 file:py-1.5 file:rounded-lg file:border-0 file:bg-coral file:text-white file:text-sm file:font-medium file:cursor-pointer hover:file:bg-coral-dark disabled:opacity-50"
       />
 
-      {uploading && <p className="text-xs text-muted-foreground mt-1">Subiendo...</p>}
+      {uploading && <p className="text-xs text-muted-foreground mt-1">{t("uploading")}</p>}
       {error && <p className="text-xs text-destructive mt-1">{error}</p>}
     </div>
   )
