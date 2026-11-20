@@ -47,32 +47,6 @@
       "body": "Explore the walls, Getsemaní and San Felipe Castle in this hour's real light. Tap a neighborhood to focus it, or pick a route and follow it street by street.",
       "cta": "Open the 3D city",
       "classic": "Classic map"
-    },
-    "features": {
-      "title": "A complete experience",
-      "subtitle": "Combines modern technology with authentic narratives to create the most complete cultural guide to Cartagena."
-    }
-  },
-  "features": {
-    "timeline": {
-      "title": "Interactive Timeline",
-      "description": "Travel through 500 years of history from foundation to today"
-    },
-    "map": {
-      "title": "Maps with Historical Layers",
-      "description": "Explore different eras and discover how the city changed"
-    },
-    "audio": {
-      "title": "Immersive Audio Guides",
-      "description": "Listen to stories narrated by locals and history experts"
-    },
-    "palenque": {
-      "title": "Palenque Stories",
-      "description": "Learn about Afro-descendant heritage and the fight for freedom"
-    },
-    "ar": {
-      "title": "Augmented Reality",
-      "description": "See how historical places looked in different eras"
     }
   },
   "history": {
